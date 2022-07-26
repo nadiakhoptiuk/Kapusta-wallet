@@ -1,11 +1,11 @@
 import { Fragment, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 // import authSelectors from 'redux/auth/auth-selectors';
 // import Loader from 'components/Loader';
 import UserMenu from 'components/UserMenu';
 import s from './SharedLayout.module.css';
-import Spinner from 'react-spinkit';
+import Loader from '../Loader/Loader';
 const SharedLayout = () => {
   //   const isLoggedIn = useSelector(authSelectors.isLoggedIn);
 
@@ -24,7 +24,7 @@ const SharedLayout = () => {
           <UserMenu />
         }
       </header>
-      <Suspense fallback={<Spinner name="pacman" color="steelblue" />}>
+      <Suspense fallback={<Loader />}>
         <div>
           <Outlet />
         </div>
