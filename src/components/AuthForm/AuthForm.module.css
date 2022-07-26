@@ -1,0 +1,148 @@
+.box {
+  margin: 0 auto;
+  background-color: #fff;
+  max-width: 280px;
+
+  padding: 40px 20px;
+  box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+  border-radius: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .box {
+    max-width: 426px;
+    padding: 56px 83px;
+  }
+}
+
+.googleText {
+  margin-bottom: 16px;
+
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  letter-spacing: 0.04em;
+
+  color: #52555f;
+}
+
+@media screen and (min-width: 768px) {
+  .googleText {
+    margin-bottom: 20px;
+  }
+}
+
+.googleBtn {
+  margin: 0 auto 32px;
+  padding: 11px 20px;
+  background: #f6f7fb;
+  border: none;
+  border-radius: 26px;
+  filter: drop-shadow(1px 2px 3px rgba(170, 178, 197, 0.2));
+  cursor: pointer;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+
+  color: #000000;
+}
+
+.authText {
+  margin-bottom: 16px;
+
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.04em;
+
+  color: #52555f;
+}
+
+@media screen and (min-width: 768px) {
+  .authText {
+    margin-bottom: 20px;
+  }
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.04em;
+
+  color: #000000;
+}
+
+@media screen and (min-width: 768px) {
+  .label {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+
+.input {
+  margin-top: 12px;
+  padding: 20px;
+  background: #f6f7fb;
+  border: none;
+  border-radius: 30px;
+}
+
+.input::placeholder {
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+
+  color: #a6abb9;
+}
+
+.authBtnBox {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.btn {
+  width: 116px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 16px;
+  filter: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
+  cursor: pointer;
+
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+@media screen and (min-width: 768px) {
+  .btn {
+    width: 122px;
+  }
+}
+
+.loginBtn {
+  composes: btn;
+  background: #ff751d;
+
+  color: #ffffff;
+}
+
+.registerBtn {
+  composes: btn;
+  background: #f5f6fb;
+
+  color: #52555f;
+}
