@@ -1,4 +1,18 @@
-@import-normalize; /* bring in normalize.css styles */
+@import 'node_modules/modern-normalize/modern-normalize.css';
+
+:root {
+  /*Adaptive Design Variables*/
+  --desktop: 1280px;
+  --tablet: 768px;
+  --pdesktop: 1279px;
+  --ptablet: 767px;
+  --responsive-mobile-end: 480px;
+  --responsive-mobile-start: 320px;
+
+  /*Color Variables*/
+  --general-background-top-part-color: #f5f6fb;
+  --header-background-color: #ffffff;
+}
 
 body {
   margin: 0;
