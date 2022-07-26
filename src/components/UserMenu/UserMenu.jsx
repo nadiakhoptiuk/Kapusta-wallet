@@ -9,15 +9,21 @@ const UserMenu = () => {
   //   const dispatch = useDispatch();
   return (
     <div className={s.menu}>
-      <Avatar />
-      <span>userEmail</span>
+      <Avatar className={s.Avatar} />
+      <span className={s.email}>iuliia@gmail.com</span>
 
       <button
         className={s.logout}
         // onClick={() => dispatch(authOperations.logout())}
       >
-        Exit
+        <img
+          src={require('../../images/logout.jpg')}
+          alt="logout"
+          width={16}
+          height={16}
+        />
       </button>
+      <button className={s.btnExit}>Exit</button>
     </div>
   );
 };

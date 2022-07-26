@@ -1,0 +1,23 @@
+.menu {
+  display: flex;
+  justify-content: space-between;
+}
+.email {
+  display: none;
+}
+.logout {
+  width: 16px;
+  height: 16px;
+  margin-top: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.Avatar {
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
+}
+.btnExit {
+  display: none;
+}
