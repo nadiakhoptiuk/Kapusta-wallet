@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 // import Loader from 'components/Loader';
 import UserMenu from 'components/UserMenu';
 import s from './SharedLayout.module.css';
+import Spinner from 'react-spinkit';
 const SharedLayout = () => {
   //   const isLoggedIn = useSelector(authSelectors.isLoggedIn);
 
@@ -12,7 +13,7 @@ const SharedLayout = () => {
     <Fragment>
       <header className={s.header}>
         <img
-          src={require('../../img/logo.jpg')}
+          src={require('../../images/logo.jpg')}
           alt="avatar"
           width={90}
           height={31}
@@ -23,7 +24,7 @@ const SharedLayout = () => {
           <UserMenu />
         }
       </header>
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Spinner name="pacman" color="steelblue" />}>
         <div>
           <Outlet />
         </div>

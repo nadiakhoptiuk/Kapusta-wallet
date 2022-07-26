@@ -10,7 +10,7 @@ const UserMenu = () => {
   return (
     <div className={s.menu}>
       <Avatar />
-      <span>{userEmail}</span>
+      <span>userEmail</span>
 
       <button
         className={s.logout}
