@@ -30,11 +30,11 @@ export default function AuthForm() {
 
   const handleRegister = () => {
     dispatch(authOperations.register({ email, password }));
-    formReset();
+    // formReset();
   };
 
   const handleGoogleLogin = () => {
-    dispatch(authOperations.googleLogin());
+    // dispatch(authOperations.googleLogin());
   };
 
   const formReset = () => {
