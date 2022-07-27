@@ -1,6 +1,6 @@
 import Sprite from '../../images/sprite.svg';
 import { useState } from 'react';
-import { expensesCategory, incomeCategory } from 'utils/localization';
+import { expensesCategory } from 'utils/localization';
 import addSpaceForAmount from '../../utils/addSpaceForAmount';
 import s from './FinancialReport.module.css';
 
@@ -8,7 +8,7 @@ export default function FinancialReport() {
   const [selectedCategory, setSelectedCategory] = useState(
     expensesCategory[0].category
   );
-  const [selectedOperation, setSelectedOperation] = useState('expenses'); // TODO
+  // const [selectedOperation, setSelectedOperation] = useState('expenses'); // TODO
   console.log(selectedCategory);
 
   function transformedString(string) {
