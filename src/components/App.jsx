@@ -2,13 +2,12 @@ import { Fragment, useEffect } from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import SharedLayout from './SharedLayout';
+// import SharedLayout from './SharedLayout';
 import 'react-toastify/dist/ReactToastify.css';
 import routes from 'utils/routes';
 import AuthForm from './AuthForm/AuthForm';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth/auth-operations';
-import { getSid } from 'redux/auth/auth-selectors';
 
 const { home } = routes;
 
@@ -17,6 +16,7 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
+    // dispatch(authOperations.getUserData());
   }, [dispatch]);
 
   return (
