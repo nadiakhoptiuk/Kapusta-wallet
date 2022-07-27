@@ -1,6 +1,7 @@
-// import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 // import authSelectors from 'redux/auth/auth-selectors';
-// import authOperations from 'redux/auth/auth-operations';
+import { getUserData } from '../../redux/auth/auth-selectors';
+import { authOperations } from '../../redux/auth/auth-operations';
 import { Avatar } from '@mui/material';
 import React, { Fragment } from 'react';
 import Media from 'react-media';
@@ -9,8 +10,11 @@ import s from './UserMenu.module.css';
 import Sprite from '../../images/sprite.svg';
 
 const UserMenu = () => {
-  //   const userEmail = useSelector(authSelectors.userEmail);
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const userData = useSelector(getUserData);
+  const userEmail = userData.email;
+  console.log(userEmail);
+
   const name = 'alina@gmail.com';
   return (
     <div className={s.menu}>
@@ -19,7 +23,6 @@ const UserMenu = () => {
         queries={{
           small: '(max-width: 767px)',
           medium: '(min-width: 768px)',
-          // large: '(min-width: 1280px)',
         }}
       >
         {matches => (
@@ -27,8 +30,7 @@ const UserMenu = () => {
             {matches.small && (
               <button
                 className={s.logout}
-
-                // onClick={() => dispatch(authOperations.logout())}
+                onClick={() => dispatch(authOperations.logout())}
               >
                 <svg alt="logout" className={s.svg} width={16} height={16}>
                   <use href={`${Sprite}#logout-icon`}></use>
@@ -39,10 +41,14 @@ const UserMenu = () => {
               <>
                 <span className={s.email}>iuliia@gmail.com</span>
                 <span className={s.line}></span>
-                <button className={s.btnExit}>Exit</button>
+                <button
+                  className={s.btnExit}
+                  onClick={() => dispatch(authOperations.logout())}
+                >
+                  Exit
+                </button>
               </>
             )}
-            {/* {matches.large && <p>I am large!</p>} */}
           </Fragment>
         )}
       </Media>
