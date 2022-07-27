@@ -12,12 +12,9 @@
   background: transparent;
   border: none;
   cursor: pointer;
+  margin-left: 16px;
 }
-.Avatar {
-  width: 32px;
-  height: 32px;
-  margin-right: 16px;
-}
+
 .btnExit {
   display: none;
 }

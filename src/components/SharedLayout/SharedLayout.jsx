@@ -2,7 +2,6 @@ import { Fragment, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 // import authSelectors from 'redux/auth/auth-selectors';
-// import Loader from 'components/Loader';
 import UserMenu from 'components/UserMenu';
 import s from './SharedLayout.module.css';
 import Loader from '../Loader/Loader';
