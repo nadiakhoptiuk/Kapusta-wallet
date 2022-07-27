@@ -1,13 +1,14 @@
 import Sprite from '../../images/sprite.svg';
 import { useState } from 'react';
-import s from './FinancialReport.module.css';
 import { expensesCategory, incomeCategory } from 'utils/localization';
+import addSpaceForAmount from '../../utils/addSpaceForAmount';
+import s from './FinancialReport.module.css';
 
 export default function FinancialReport() {
   const [selectedCategory, setSelectedCategory] = useState(
     expensesCategory[0].category
   );
-  const [selectedOperation, setSelectedOperation] = useState('expenses');
+  const [selectedOperation, setSelectedOperation] = useState('expenses'); // TODO
   console.log(selectedCategory);
 
   function transformedString(string) {
@@ -18,25 +19,6 @@ export default function FinancialReport() {
     return string.split(' ').map((str, index) => {
       return <span key={index}>{str}</span>;
     });
-  }
-
-  function addSpaceForAmount(amount) {
-    const floatNum = amount.toFixed(2);
-    const parts = floatNum.toString().split('.');
-
-    const integerReverse = parts[0].split('').reverse();
-
-    const newString = integerReverse
-      .map((char, index) => {
-        if ((index + 1) % 3 === 0) {
-          return ` ${char}`;
-        }
-        return char;
-      })
-      .reverse()
-      .join('');
-
-    return `${newString}.${parts[1]}`;
   }
 
   function handleCategoryClick(newCategoryName) {
