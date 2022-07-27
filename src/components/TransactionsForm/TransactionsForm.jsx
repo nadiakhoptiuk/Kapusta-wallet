@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import s from './TransactionsForm.module.css';
 
 const TransactionsForm = () => {
-  const [value, setValue] = useState(new Date());
+  // const [value, setValue] = useState(new Date());
 
   return (
     <div className={s.wrap}>
