@@ -1,5 +1,5 @@
 import TransactionsForm from 'components/TransactionsForm';
-import TransactionsModal from 'components/TransactionsModal/TransactionsModal';
+import TransactionsModal from 'components/TransactionsModal';
 import TransactionsSummary from 'components/TransactionsSummary';
 import TransactionsTable from 'components/TransactionsTable';
 import { useState } from 'react';

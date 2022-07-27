@@ -4,7 +4,7 @@ import s from './TransactionsModal.module.css';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export default function TransactionsModal({ onClose, children }) {
+function TransactionsModal({ onClose, children }) {
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
@@ -32,3 +32,5 @@ export default function TransactionsModal({ onClose, children }) {
     modalRoot
   );
 }
+
+export default TransactionsModal;

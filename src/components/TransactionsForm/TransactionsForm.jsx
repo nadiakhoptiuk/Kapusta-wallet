@@ -1,7 +1,5 @@
-import TransactionsTable from 'components/TransactionsTable';
 import moment from 'moment';
 import React, { useState } from 'react';
-import ReactDatePicker from 'react-datepicker';
 import s from './TransactionsForm.module.css';
 
 const TransactionsForm = () => {
