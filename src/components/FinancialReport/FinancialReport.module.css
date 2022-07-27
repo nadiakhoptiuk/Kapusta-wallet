@@ -11,7 +11,6 @@ button {
 }
 
 .reportSection {
-  position: relative;
   padding-top: 32px;
   text-transform: uppercase;
 }
@@ -52,19 +51,8 @@ button {
   flex-wrap: wrap;
   margin: 0 auto;
 
-  border-bottom: 1px solid var(--header-line-separator-color);
   text-align: center;
-}
-
-.categoryList::after {
-  display: block;
-  width: calc(100% * 3);
-  height: 1px;
-  position: absolute;
-  right: 0;
-  bottom: -20px;
-  background-color: var(--header-line-separator-color);
-  content: '';
+  border-bottom: 1px solid var(--header-line-separator-color);
 }
 
 .categoryItem {
@@ -164,7 +152,9 @@ button {
 @media screen and (min-width: 768px) {
   .categoryList {
     width: 623px;
+    max-width: 623px;
     justify-content: center;
+    border: none;
   }
 
   .categoryItem {
