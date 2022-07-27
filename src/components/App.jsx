@@ -25,7 +25,7 @@ export const App = () => {
         <Route path={home} element={<AuthForm />}>
           {/* <Route index element={<div>Home View Auth</div>} />
           <Route path={app} element={<div>Balance Bar View</div>}>
-            <Route index element={<div>Transactions View</div>}>
+            <Route path={app} element={<div>Transactions View</div>}>
               <Route path={expenses} element={<div>Expenses Table</div>} />
               <Route path={income} element={<div>Income Table</div>} />
             </Route>
