@@ -5,7 +5,6 @@ import sprite from '../../images/sprite.svg';
 import BalanceModal from 'components/BalanceModal';
 
 const isReportPage = true;
-const isMobile = true;
 
 const balanceRow = s.Balance;
 const balanceRowRevers = s.BalanceRevers;
@@ -20,7 +19,7 @@ export default function Balance() {
             <svg width="18" height="12">
               <use href={`${sprite}#arrow-to-main-icon`}></use>
             </svg>
-            {!isMobile && 'Main page'}
+            <p className={s.linkToHomeText}>Main page</p>
           </Link>
         )}
 
@@ -75,9 +74,11 @@ export default function Balance() {
             </div>
           )}
         </div>
+        {/* <BalanceModal /> */}
       </div>
-      <Outlet />
-      <BalanceModal />
+      <div>
+        <Outlet />
+      </div>
     </Fragment>
   );
 }
