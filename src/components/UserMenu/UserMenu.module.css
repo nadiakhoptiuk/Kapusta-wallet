@@ -1,6 +1,7 @@
 .menu {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .email {
   display: flex;
@@ -28,12 +29,16 @@
 .logout {
   width: 16px;
   height: 16px;
-  margin-top: 10px;
+  padding: 0;
+  /* margin-top: 10px; */
   background: transparent;
   border: none;
   cursor: pointer;
   margin-left: 16px;
 }
+/* .svg {
+  width: 100%;
+} */
 
 .btnExit {
   background: transparent;

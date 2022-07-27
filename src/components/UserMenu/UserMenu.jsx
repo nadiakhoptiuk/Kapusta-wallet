@@ -6,6 +6,7 @@ import React, { Fragment } from 'react';
 import Media from 'react-media';
 import stringAvatar from '../../utils/Avatar';
 import s from './UserMenu.module.css';
+import Sprite from '../../images/sprite.svg';
 
 const UserMenu = () => {
   //   const userEmail = useSelector(authSelectors.userEmail);
@@ -26,14 +27,12 @@ const UserMenu = () => {
             {matches.small && (
               <button
                 className={s.logout}
+
                 // onClick={() => dispatch(authOperations.logout())}
               >
-                <img
-                  src={require('../../images/logout.jpg')}
-                  alt="logout"
-                  width={16}
-                  height={16}
-                />
+                <svg alt="logout" className={s.svg} width={16} height={16}>
+                  <use href={`${Sprite}#logout-icon`}></use>
+                </svg>
               </button>
             )}
             {matches.medium && (

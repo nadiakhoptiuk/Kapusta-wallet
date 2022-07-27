@@ -24,6 +24,7 @@ function stringAvatar(name) {
       bgcolor: stringToColor(name),
       width: 32,
       height: 32,
+      fontSize: 12,
     },
 
     children: `${name.split(' ')[0][0]}`,
