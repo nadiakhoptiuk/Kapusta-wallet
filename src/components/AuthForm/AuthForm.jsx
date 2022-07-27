@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth/auth-operations';
 import s from './AuthForm.module.css';
 
 export default function AuthForm() {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,11 +24,17 @@ export default function AuthForm() {
   };
 
   const handleLogin = () => {
+    dispatch(authOperations.login({ email, password }));
     formReset();
   };
 
   const handleRegister = () => {
-    formReset();
+    dispatch(authOperations.register({ email, password }));
+    // formReset();
+  };
+
+  const handleGoogleLogin = () => {
+    // dispatch(authOperations.googleLogin());
   };
 
   const formReset = () => {
@@ -36,7 +45,13 @@ export default function AuthForm() {
   return (
     <div className={s.box}>
       <p className={s.googleText}>You can log in with your Google Account:</p>
-      <button className={s.googleBtn} type="button">
+      <button onClick={handleGoogleLogin} className={s.googleBtn} type="button">
+        <svg className={s.googleSvg} width="18" height="18">
+          <use
+            className={s.googleIcon}
+            href="src\images\sprite.svg#google-icon"
+          />
+        </svg>
         Google
       </button>
       <p className={s.authText}>
