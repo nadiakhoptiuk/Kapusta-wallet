@@ -52,6 +52,8 @@
     #031634 67.28%
   );
   --balance-popup-message-text-color: #ffffff;
+  --balance-text-color: rgba(85, 85, 95, 0.7);
+  --balance-modal-top-color: #1d346a;
 
   /* Transactions */
   /* Navbar */

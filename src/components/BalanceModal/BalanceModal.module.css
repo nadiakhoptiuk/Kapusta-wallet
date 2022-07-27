@@ -1,0 +1,41 @@
+.backdrop {
+  width: 100%;
+  height: 100%;
+}
+
+.modalBalance {
+  position: relative;
+  width: 280px;
+  padding-top: 29px;
+  padding-bottom: 50px;
+  padding-left: 29px;
+  padding-right: 29px;
+  color: var(--balance-button-border-color);
+  background-image: var(--balance-popup-message-gradient);
+  border-radius: 30px;
+}
+
+.modalText {
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+.modalAfterText {
+  font-size: 12px;
+  line-height: 1.33;
+}
+
+@media screen and (min-width: 1280px) {
+  .modalBalance {
+    width: 288px;
+  }
+}
+
+.modalTop {
+  position: absolute;
+  top: -39px;
+  left: 49px;
+  width: 26px;
+  border: 20px solid transparent;
+  border-bottom: 20px solid var(--balance-modal-top-color);
+}
