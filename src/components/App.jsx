@@ -6,6 +6,9 @@ import SharedLayout from './SharedLayout';
 import 'react-toastify/dist/ReactToastify.css';
 import routes from 'utils/routes';
 import AuthForm from './AuthForm/AuthForm';
+
+import HomeView from 'views/HomeView';
+
 const { home, app, reports, income, expenses } = routes;
 
 export const App = () => {
