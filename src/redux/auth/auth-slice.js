@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { authHeader } from 'service/kapustaAPI';
 import { authOperations } from './auth-operations';
 
 const initialState = {
@@ -7,7 +8,7 @@ const initialState = {
   refreshToken: null,
   sid: null,
   isLoggedIn: false,
-  isLoadingRefresh: false,
+  // isLoadingRefresh: false,
 };
 
 const authSlice = createSlice({
@@ -36,6 +37,17 @@ const authSlice = createSlice({
       state.accessToken = action.payload.data.newAccessToken;
       state.refreshToken = action.payload.data.newRefreshToken;
       state.sid = action.payload.data.newSid;
+      authHeader.set(action.payload.data.newAccessToken);
+      // state.isLoggedIn = true;
+    },
+    [authOperations.googleLogin.fulfilled](state, action) {
+      // state.accessToken = action.payload.accessToken;
+      // state.refreshToken = action.payload.refreshToken;
+      // state.sid = action.payload.sid;
+      // state.isLoggedIn = true;
+    },
+    [authOperations.getUserData.fulfilled](state, action) {
+      state.userData = action.payload;
       state.isLoggedIn = true;
     },
   },

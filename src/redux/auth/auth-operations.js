@@ -5,7 +5,8 @@ import {
   sendLoginCredentialsQuery,
   sendLogoutQuery,
   sendRefreshQuery,
-  // getAuthTokensFromGoogleQuery,
+  getAuthTokensFromGoogleQuery,
+  getAllUserInfoQuery,
 } from 'service/kapustaAPI';
 
 const register = createAsyncThunk(
@@ -57,7 +58,34 @@ const fetchCurrentUser = createAsyncThunk(
     authHeader.set(savedToken);
 
     try {
-      const data = await sendRefreshQuery(getState().auth.sid);
+      const tokens = await sendRefreshQuery(getState().auth.sid);
+      // authHeader.set(tokens.newAccessToken);
+      return tokens;
+    } catch (error) {
+      return rejectWithValue(error.response.status);
+    }
+  }
+);
+
+const googleLogin = createAsyncThunk(
+  '/auth/googleLogin',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await getAuthTokensFromGoogleQuery();
+      // authHeader.set(data.accessToken);
+      document.querySelector('#root-modal').innerHTML = await data;
+      // return data;
+    } catch (error) {
+      return rejectWithValue(error.response.status);
+    }
+  }
+);
+
+const getUserData = createAsyncThunk(
+  'auth/getUserData',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await getAllUserInfoQuery();
       return data;
     } catch (error) {
       return rejectWithValue(error.response.status);
@@ -70,4 +98,6 @@ export const authOperations = {
   login,
   logout,
   fetchCurrentUser,
+  googleLogin,
+  getUserData,
 };
