@@ -17,7 +17,7 @@
   --general-background-bot-part-color: #ffffff;
   --general-accent-background-color: #ff751d;
   --general-accent-text-color: #ffffff;
-  --general-accent-shadow: drop-shadow(1px 3px 5px rgba(255, 107, 8, 0.35));
+  --general-accent-shadow: drop-shadow(1px 3px 5px hsla(24, 100%, 52%, 0.35));
   --general-text-color: #52555f;
   --general-header-color: #000000;
 
@@ -84,6 +84,11 @@
   --top-panel-background-color: #ffffff;
   --top-panel-expense-color: #e53935;
   --top-panel-income-color: #407946;
+
+  /* Reports */
+
+  --report-bg-rectangle-active: #ffdac0;
+  --report-icon-fill: #071f41;
 
   /* Diagram */
   --diagram-descended-accent-color: #ffdac0;
