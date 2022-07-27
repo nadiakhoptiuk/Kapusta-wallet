@@ -16,12 +16,28 @@ export default function FinancialReport() {
     }
 
     return string.split(' ').map((str, index) => {
-      console.log(str);
       return <span key={index}>{str}</span>;
     });
   }
 
-  function addSpaceForAmount() {}
+  function addSpaceForAmount(amount) {
+    const floatNum = amount.toFixed(2);
+    const parts = floatNum.toString().split('.');
+
+    const integerReverse = parts[0].split('').reverse();
+
+    const newString = integerReverse
+      .map((char, index) => {
+        if ((index + 1) % 3 === 0) {
+          return ` ${char}`;
+        }
+        return char;
+      })
+      .reverse()
+      .join('');
+
+    return `${newString}.${parts[1]}`;
+  }
 
   function handleCategoryClick(newCategoryName) {
     setSelectedCategory(newCategoryName);
@@ -47,7 +63,9 @@ export default function FinancialReport() {
         {expensesCategory.map(({ total, imgPath, category }, index) => {
           return total === 0 ? null : (
             <li key={index} className={s.categoryItem}>
-              <span className={s.categoryAmount}>{total.toFixed(2)}</span>
+              <span className={s.categoryAmount}>
+                {addSpaceForAmount(total)}
+              </span>
 
               <div className={s.btnWrap}>
                 <button

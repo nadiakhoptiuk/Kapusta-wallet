@@ -3,7 +3,7 @@ export const expensesCategory = [
     backendName: 'Продукты',
     category: 'Products',
     imgPath: 'products-icon',
-    total: 5000,
+    total: 500,
   },
   {
     backendName: 'Алкоголь',
