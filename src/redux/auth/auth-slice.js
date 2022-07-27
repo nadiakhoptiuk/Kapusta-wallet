@@ -37,7 +37,7 @@ const authSlice = createSlice({
       state.accessToken = action.payload.data.newAccessToken;
       state.refreshToken = action.payload.data.newRefreshToken;
       state.sid = action.payload.data.newSid;
-      authHeader.set(action.payload.data.newAccessToken);
+      // authHeader.set(action.payload.data.newAccessToken);
       // state.isLoggedIn = true;
     },
     [authOperations.googleLogin.fulfilled](state, action) {
