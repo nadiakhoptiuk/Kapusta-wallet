@@ -2,15 +2,13 @@ import { Fragment } from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-// import SharedLayout from './SharedLayout';
+import SharedLayout from './SharedLayout';
 import 'react-toastify/dist/ReactToastify.css';
 import routes from 'utils/routes';
-
 
 const { home, app, reports, income, expenses } = routes;
 
 export const App = () => {
-
   return (
     <Fragment>
       <Routes>
