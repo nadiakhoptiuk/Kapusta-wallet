@@ -4,7 +4,7 @@ import s from './ReportView.module.css'
 
 export default function ReportView() {
     return (
-        <Container>
+        <Container >
         <div className={s.balance_line}>
             <IncomesInMonthly  />
             </div>
