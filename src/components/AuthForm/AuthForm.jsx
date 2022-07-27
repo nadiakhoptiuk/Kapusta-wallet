@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth/auth-operations';
 import s from './AuthForm.module.css';
 
 export default function AuthForm() {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,10 +24,12 @@ export default function AuthForm() {
   };
 
   const handleLogin = () => {
+    dispatch(authOperations.login({ email, password }));
     formReset();
   };
 
-  const handleRegister = () => {
+  const handleRegister = e => {
+    dispatch(authOperations.register({ email, password }));
     formReset();
   };
 
