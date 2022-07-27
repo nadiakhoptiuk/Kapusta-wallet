@@ -133,6 +133,26 @@
   }
 }
 
+@media screen and (min-width: 1400px) {
+  .topWrapper {
+    left: 289px;
+  }
+
+  .auth {
+    right: 151px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .topWrapper {
+    left: 389px;
+  }
+
+  .auth {
+    right: 251px;
+  }
+}
+
 /* @media (min-device-pixel-ratio: 2),
   (min-resolution: 192dpi),
   (min-resolution: 2dppx),
