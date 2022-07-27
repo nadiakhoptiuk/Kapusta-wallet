@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import SharedLayout from './SharedLayout';
 import 'react-toastify/dist/ReactToastify.css';
 import routes from 'utils/routes';
-
+import Chart from './Chart/Chart';
 const { home } = routes;
 
 export const App = () => {
@@ -13,6 +13,8 @@ export const App = () => {
     <Fragment>
       <Routes>
         <Route path={home} element={<SharedLayout />}>
+          <Route path={home} element={<Chart />}></Route>
+
           {/* <Route index element={<div>Home View Auth</div>} />
           <Route path={app} element={<div>Balance Bar View</div>}>
             <Route
