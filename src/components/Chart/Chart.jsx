@@ -42,10 +42,25 @@ const Chart = () => {
         ctx,
         scales: { x, y },
       } = chart;
-      ctx.font = 'bold 12px Roboto';
-      ctx.fillStyle = 'blue';
-      ctx.textAlign = 'center';
-      ctx.ctx.fillText('19', x.getPixelForValue(0), 100);
+      chart.data.datasets.forEach((datapoint, index) => {
+        const datasetArray = [];
+        chart.data.datasets.forEach(dataset => {
+          datasetArray.push(dataset.data[index]);
+        });
+        function value(values) {
+          return values;
+        }
+        let sum = datasetArray.reduce(value, 0);
+        console.log(sum);
+        ctx.font = 'bold 12px Roboto';
+        ctx.fillStyle = 'blue';
+        ctx.textAlign = 'center';
+        ctx.ctx.fillText(
+          sum,
+          x.getPixelForValue(index),
+          chart.getDatasetMeta(1).data[index].y - 10
+        );
+      });
     },
   };
   const barChart = (
@@ -58,7 +73,7 @@ const Chart = () => {
           legend: {
             display: false,
           },
-          // ChartDataLabels,
+          topLabels,
         },
 
         scales: {
@@ -82,8 +97,21 @@ const Chart = () => {
           },
         },
       }}
+      //   onAnimationComplete = function  (){
+
+      //     var ctx = this.chart.ctx;
+      //     ctx.font = this.scale.font;
+      //     ctx.fillStyle = this.scale.textColor
+      //     ctx.textAlign = "center";
+      //     ctx.textBaseline = "bottom";
+
+      //     this.datasets.forEach(function (dataset) {
+      //         dataset.bars.forEach(function (bar) {
+      //             ctx.fillText(bar.value, bar.x, bar.y - 5);
+      //         });
+      //     })
+      // }
       data={barChartData}
-      plugins={(ChartDataLabels, topLabels)}
     />
   );
   return barChart;
