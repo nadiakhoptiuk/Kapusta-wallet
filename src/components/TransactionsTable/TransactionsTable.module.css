@@ -1,0 +1,178 @@
+@media screen and (max-width: 767px) {
+  .tableMobileWrap {
+    /* display: none; */
+    position: absolute;
+    bottom: 70px;
+    z-index: 2;
+  }
+  .table {
+    display: none;
+  }
+
+  .mobileTable {
+    /* display: none; */
+    margin: 0 auto;
+  }
+
+  .tBody {
+    font-weight: 400;
+    /* max-height: 345px; */
+    display: block;
+    overflow: auto;
+    width: 100vw;
+    max-height: 150px;
+  }
+
+  .description {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 10px;
+    background-color: var(--general-background-bot-part-color);
+    color: var(--table-expense-text-color);
+  }
+
+  .column {
+    composes: description;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.04em;
+    padding: 10px;
+    background-color: var(--general-background-bot-part-color);
+
+    color: var(--general-text-color);
+  }
+
+  .date {
+    margin-top: 3px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 9px;
+    letter-spacing: 0.04em;
+    text-align: start;
+
+    color: var(--general-text-color);
+  }
+
+  .tableRow {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.04em;
+    align-items: center;
+    border-bottom: 2px solid var(--trans-dropdown-border-color);
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+
+    color: var(--general-text-color);
+  }
+
+  .lastTD {
+    width: 30px;
+  }
+  .btnDelete {
+    border: none;
+    background-color: transparent;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .mobileTable {
+    display: none;
+  }
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    overflow: hidden;
+    flex-shrink: 1;
+    table-layout: fixed;
+    margin-bottom: 80px;
+  }
+
+  .tableBody::-webkit-scrollbar {
+    background-color: var(--modal-button-border-color);
+    width: 6px;
+  }
+  .tableBody::-webkit-scrollbar-thumb {
+    background-color: var(--general-accent-background-color);
+  }
+
+  .tableBody {
+    font-weight: 400;
+    max-height: 345px;
+    display: block;
+    overflow-y: scroll;
+    width: 100%;
+  }
+
+  .description {
+    padding: 10px;
+    background-color: var(--general-background-bot-part-color);
+    text-align: center;
+  }
+
+  .descriptionLast {
+    composes: description;
+    width: 90px;
+  }
+
+  .tableTitle {
+    height: 38px;
+    background-color: var(--trans-dropdown-border-color);
+    color: var(--general-header-color);
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    /* text-align: center; */
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    border: none;
+  }
+  .tableRow {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.04em;
+    border-bottom: 2px solid var(--trans-dropdown-border-color);
+    border-left: 2px solid var(--trans-dropdown-border-color);
+    border-right: 2px solid var(--trans-dropdown-border-color);
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    color: var(--general-text-color);
+  }
+
+  .lastTD {
+    composes: tableTitle;
+    width: 100px;
+  }
+  .btnDelete {
+    border: none;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .table {
+    width: 746px;
+  }
+}
