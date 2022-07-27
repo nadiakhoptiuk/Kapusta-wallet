@@ -16,9 +16,9 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
-    // dispatch(authOperations.getUserData());
   }, [dispatch]);
 
+  console.log();
   return (
     <Fragment>
       <Routes>

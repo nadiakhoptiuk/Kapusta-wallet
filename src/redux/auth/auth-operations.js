@@ -48,7 +48,7 @@ const logout = createAsyncThunk(
 
 const fetchCurrentUser = createAsyncThunk(
   '/auth/refresh',
-  async (_, { getState, rejectWithValue }) => {
+  async (_, { getState, rejectWithValue, dispatch }) => {
     const savedToken = getState().auth.refreshToken;
 
     if (savedToken === null) {
@@ -59,7 +59,8 @@ const fetchCurrentUser = createAsyncThunk(
 
     try {
       const tokens = await sendRefreshQuery(getState().auth.sid);
-      // authHeader.set(tokens.newAccessToken);
+      authHeader.set(tokens.data.newAccessToken);
+      dispatch(authOperations.getUserData());
       return tokens;
     } catch (error) {
       return rejectWithValue(error.response.status);
