@@ -1,16 +1,29 @@
+import { Fragment } from 'react';
+
+import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import SharedLayout from './SharedLayout';
+import 'react-toastify/dist/ReactToastify.css';
+import routes from 'utils/routes';
+
+const { home, app, reports, income, expenses } = routes;
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Fragment>
+      <Routes>
+        <Route path={home} element={<SharedLayout />}>
+          <Route index element={<div>Auth (Home) View</div>} />
+          <Route path={app} element={<div>Balance Bar View</div>}>
+            <Route index element={<div>Transactions View</div>}>
+              <Route path={expenses} element={<div>Expenses Table</div>} />
+              <Route path={income} element={<div>Income Table</div>} />
+            </Route>
+            <Route path={reports} element={<div>Reports View</div>} />
+          </Route>
+        </Route>
+      </Routes>
+      <ToastContainer />
+    </Fragment>
   );
 };

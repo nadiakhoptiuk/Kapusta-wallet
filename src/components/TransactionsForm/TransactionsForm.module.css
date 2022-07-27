@@ -1,0 +1,297 @@
+@media screen and (max-width: 767px) {
+  .wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .wrapInput {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 258px;
+    background-color: var(--modal-button-border-color);
+    border-bottom-left-radius: 30%;
+  }
+
+  .description {
+    width: 280px;
+    height: 44px;
+    border: 2px solid #fff;
+    border-top-left-radius: 16px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    background-color: transparent;
+  }
+
+  .description::placeholder {
+    color: var(--trans-form-input-placeholder-color);
+  }
+  .select {
+    width: 280px;
+    height: 44px;
+    border: 2px solid #fff;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    border-bottom-right-radius: 16px;
+    background-color: transparent;
+
+    color: var(--general-text-color);
+  }
+  .inputCount {
+    width: 183px;
+    height: 44px;
+    border: 2px solid #fff;
+    border-radius: 22px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    margin-top: 32px;
+    background-color: transparent;
+
+    color: var(--modal-button-border-color);
+  }
+
+  .inputCount::placeholder {
+    color: var(--general-header-color);
+  }
+  .datePicker {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--general-text-color);
+    background-color: transparent;
+    border: none;
+    width: 90px;
+    height: 44px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .datePicker::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    position: absolute;
+    left: 0;
+  }
+
+  .btnInput {
+    width: 130px;
+    height: 44px;
+
+    background: #ff751d;
+    border: none;
+    border-radius: 16px;
+    margin-right: 15px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    color: var(--modal-background-color);
+  }
+
+  .btnClear {
+    width: 130px;
+    height: 44px;
+    background-color: transparent;
+
+    border: 2px solid var(--trans-form-clear-button-border-color);
+    border-radius: 16px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    color: var(--general-text-color);
+  }
+  .buttonWrap {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    margin-top: 32px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .wrap {
+    width: 100%;
+    margin: 0 auto;
+    width: 624px;
+    height: 44px;
+  }
+
+  .datePicker {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--general-text-color);
+    background-color: transparent;
+    border: none;
+    width: 90px;
+    height: 100%;
+    margin-right: 44px;
+    text-align: center;
+  }
+
+  .description {
+    width: 184px;
+    height: 44px;
+    border: 2px solid var(--modal-button-border-color);
+    border-top-left-radius: 16px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 14px;
+    padding-left: 19px;
+  }
+
+  .description::placeholder {
+    color: var(--trans-form-input-placeholder-color);
+  }
+  .select {
+    width: 184px;
+    height: 44px;
+    border: 2px solid var(--modal-button-border-color);
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 14px;
+    padding-left: 19px;
+
+    color: var(--general-text-color);
+  }
+  .inputCount {
+    width: 110px;
+    height: 44px;
+    border: 2px solid var(--modal-button-border-color);
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+
+    color: var(--general-text-color);
+  }
+
+  .btnInput {
+    width: 125px;
+    height: 44px;
+
+    background: #ff751d;
+    border: none;
+    border-radius: 16px;
+    margin-right: 15px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    color: var(--trans-background-color);
+  }
+
+  .btnClear {
+    width: 125px;
+    height: 44px;
+    background-color: transparent;
+
+    border: 2px solid #f6f7fc;
+    border-radius: 16px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    color: var(--general-text-color);
+  }
+  .buttonWrap {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    margin-top: 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .wrap {
+    width: 1120px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 0;
+  }
+  .datePicker {
+    width: 104px;
+  }
+
+  .description {
+    width: 238px;
+  }
+  .select {
+    width: 169px;
+  }
+  .inputCount {
+    width: 121px;
+  }
+
+  .btnInput {
+    width: 136px;
+  }
+
+  .btnClear {
+    width: 136px;
+  }
+  .buttonWrap {
+    margin-left: 32px;
+    margin-top: 0;
+  }
+
+  .inputWrap {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+  }
+}
