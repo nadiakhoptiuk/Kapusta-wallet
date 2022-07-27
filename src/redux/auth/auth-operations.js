@@ -58,10 +58,10 @@ const fetchCurrentUser = createAsyncThunk(
     authHeader.set(savedToken);
 
     try {
-      const tokens = await sendRefreshQuery(getState().auth.sid);
-      authHeader.set(tokens.data.newAccessToken);
+      const { data } = await sendRefreshQuery(getState().auth.sid);
+      authHeader.set(data.data.newAccessToken);
       dispatch(authOperations.getUserData());
-      return tokens;
+      return data;
     } catch (error) {
       return rejectWithValue(error.response.status);
     }
@@ -74,8 +74,8 @@ const googleLogin = createAsyncThunk(
     try {
       const { data } = await getAuthTokensFromGoogleQuery();
       // authHeader.set(data.accessToken);
-      document.querySelector('#root-modal').innerHTML = await data;
-      // return data;
+      // document.querySelector('#root-modal').innerHTML = await data;
+      return data;
     } catch (error) {
       return rejectWithValue(error.response.status);
     }
