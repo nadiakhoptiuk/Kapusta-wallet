@@ -3,7 +3,27 @@
   justify-content: space-between;
 }
 .email {
-  display: none;
+  display: flex;
+  margin-left: 12px;
+  margin-right: 20px;
+  align-items: center;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+  /* identical to box height */
+
+  text-align: right;
+  letter-spacing: 0.04em;
+
+  color: var(--general-text-color);
+}
+.line {
+  border-left: 1px solid var(--header-line-separator-color);
+  margin-right: 20px;
+  height: 36px;
 }
 .logout {
   width: 16px;
@@ -12,12 +32,28 @@
   background: transparent;
   border: none;
   cursor: pointer;
+  margin-left: 16px;
+  fill: var(--general-text-color);
 }
-.Avatar {
-  width: 32px;
-  height: 32px;
-  margin-right: 16px;
+.logout:hover {
+  fill: var(--general-accent-background-color);
 }
+
 .btnExit {
-  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+
+  letter-spacing: 0.04em;
+  text-decoration-line: underline;
+
+  color: var(--general-text-color);
+}
+.btnExit:hover {
+  color: var(--general-accent-background-color);
 }
