@@ -85,82 +85,88 @@ export default function AuthForm() {
   };
 
   return (
-    <div className={s.box}>
-      <p className={s.googleText}>You can log in with your Google Account:</p>
-      <button onClick={handleGoogleLogin} className={s.googleBtn} type="button">
-        <svg className={s.googleSvg} width="18" height="18">
-          <use className={s.googleIcon} href={`${Sprite}#google-icon`} />
-        </svg>
-        Google
-      </button>
-      <p className={s.authText}>
-        Or log in using an email and password, after registering:
-      </p>
-      <form onSubmit={handleLogin}>
-        <label className={s.label}>
-          {emptyInput ? (
-            <>
-              <span>
-                <span className={s.labelStar}>*</span>
-                Email:
-              </span>
-            </>
-          ) : (
-            'Email:'
-          )}
-          <input
-            className={s.input}
-            autoComplete="off"
-            type="text"
-            placeholder="your@email.com"
-            value={email}
-            name="email"
-            onChange={onChange}
-          />
-          <p className={s.errorMsg}>
-            {invalidEmail && 'Email must contain the symbol "@"'}
-            {emptyInput && 'This is a required field'}
-          </p>
-        </label>
-        <label className={s.label}>
-          {emptyInput ? (
-            <>
-              <span>
-                <span className={s.labelStar}>*</span>
-                Password:
-              </span>
-            </>
-          ) : (
-            'Password:'
-          )}
-          <input
-            className={s.input}
-            autoComplete="off"
-            type="password"
-            placeholder="Password"
-            value={password}
-            name="password"
-            onChange={onChange}
-          />
-          <p className={s.errorMsg}>
-            {smallLengthPassword &&
-              'Password length must be at least 8 characters'}
-            {emptyInput && 'This is a required field'}
-          </p>
-        </label>
-        <div className={s.authBtnBox}>
-          <button className={s.loginBtn} type="submit">
-            Log in
-          </button>
-          <button
-            onClick={handleRegister}
-            className={s.registerBtn}
-            type="button"
-          >
-            Registration
-          </button>
-        </div>
-      </form>
-    </div>
+    <>
+      <div className={s.box}>
+        <p className={s.googleText}>You can log in with your Google Account:</p>
+        <button
+          onClick={handleGoogleLogin}
+          className={s.googleBtn}
+          type="button"
+        >
+          <svg className={s.googleSvg} width="18" height="18">
+            <use className={s.googleIcon} href={`${Sprite}#google-icon`} />
+          </svg>
+          Google
+        </button>
+        <p className={s.authText}>
+          Or log in using an email and password, after registering:
+        </p>
+        <form onSubmit={handleLogin}>
+          <label className={s.label}>
+            {emptyInput ? (
+              <>
+                <span>
+                  <span className={s.labelStar}>*</span>
+                  Email:
+                </span>
+              </>
+            ) : (
+              'Email:'
+            )}
+            <input
+              className={s.input}
+              autoComplete="off"
+              type="text"
+              placeholder="your@email.com"
+              value={email}
+              name="email"
+              onChange={onChange}
+            />
+            <p className={s.errorMsg}>
+              {invalidEmail && 'Email must contain the symbol "@"'}
+              {emptyInput && 'This is a required field'}
+            </p>
+          </label>
+          <label className={s.label}>
+            {emptyInput ? (
+              <>
+                <span>
+                  <span className={s.labelStar}>*</span>
+                  Password:
+                </span>
+              </>
+            ) : (
+              'Password:'
+            )}
+            <input
+              className={s.input}
+              autoComplete="off"
+              type="password"
+              placeholder="Password"
+              value={password}
+              name="password"
+              onChange={onChange}
+            />
+            <p className={s.errorMsg}>
+              {smallLengthPassword &&
+                'Password length must be at least 8 characters'}
+              {emptyInput && 'This is a required field'}
+            </p>
+          </label>
+          <div className={s.authBtnBox}>
+            <button className={s.loginBtn} type="submit">
+              Log in
+            </button>
+            <button
+              onClick={handleRegister}
+              className={s.registerBtn}
+              type="button"
+            >
+              Registration
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
