@@ -75,6 +75,7 @@
 }
 
 .label {
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
@@ -86,8 +87,13 @@
   color: var(--general-header-color);
 }
 
+.labelStar {
+  color: var(--auth-form-validation-error-color);
+}
+
 @media screen and (min-width: 768px) {
   .label {
+    margin-bottom: 32px;
     font-size: 12px;
     line-height: 14px;
   }
@@ -110,6 +116,18 @@
   letter-spacing: 0.04em;
 
   color: var(--auth-form-input-placeholder-color);
+}
+
+.errorMsg {
+  position: absolute;
+  left: 0;
+  bottom: -16px;
+
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.04em;
+
+  color: var(--auth-form-validation-error-color);
 }
 
 .authBtnBox {
