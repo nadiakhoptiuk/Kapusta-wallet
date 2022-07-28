@@ -6,9 +6,6 @@ import SharedLayout from './SharedLayout';
 import 'react-toastify/dist/ReactToastify.css';
 import routes from 'utils/routes';
 import AuthForm from './AuthForm/AuthForm';
-import { useDispatch } from 'react-redux';
-import { authOperations } from 'redux/auth/auth-operations';
-
 const { home, app, reports, income, expenses } = routes;
 
 export const App = () => {

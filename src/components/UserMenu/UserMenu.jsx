@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-// import authSelectors from 'redux/auth/auth-selectors';
+
 import { getUserData } from '../../redux/auth/auth-selectors';
 import { authOperations } from '../../redux/auth/auth-operations';
 import { Avatar } from '@mui/material';
@@ -12,10 +12,9 @@ import Sprite from '../../images/sprite.svg';
 const UserMenu = () => {
   const dispatch = useDispatch();
   const userData = useSelector(getUserData);
-  const userEmail = userData.email;
-  console.log(userEmail);
+  const name = userData.email;
+  console.log(name);
 
-  const name = 'alina@gmail.com';
   return (
     <div className={s.menu}>
       <Avatar {...stringAvatar(name.toUpperCase())} />
@@ -32,14 +31,14 @@ const UserMenu = () => {
                 className={s.logout}
                 onClick={() => dispatch(authOperations.logout())}
               >
-                <svg alt="logout" className={s.svg} width={16} height={16}>
+                <svg alt="logout" width={16} height={16}>
                   <use href={`${Sprite}#logout-icon`}></use>
                 </svg>
               </button>
             )}
             {matches.medium && (
               <>
-                <span className={s.email}>iuliia@gmail.com</span>
+                <span className={s.email}>{name}</span>
                 <span className={s.line}></span>
                 <button
                   className={s.btnExit}

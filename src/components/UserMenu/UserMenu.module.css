@@ -35,23 +35,27 @@
   border: none;
   cursor: pointer;
   margin-left: 16px;
+  fill: var(--general-text-color);
 }
-/* .svg {
-  width: 100%;
-} */
+.logout:hover {
+  fill: var(--general-accent-background-color);
+}
 
 .btnExit {
   background: transparent;
   border: none;
+  cursor: pointer;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.17;
-  /* identical to box height */
 
   letter-spacing: 0.04em;
   text-decoration-line: underline;
 
   color: var(--general-text-color);
+}
+.btnExit:hover {
+  color: var(--general-accent-background-color);
 }
