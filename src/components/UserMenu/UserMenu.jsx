@@ -1,29 +1,55 @@
-// import { useSelector, useDispatch } from 'react-redux';
-// import authSelectors from 'redux/auth/auth-selectors';
-// import authOperations from 'redux/auth/auth-operations';
+import { useSelector, useDispatch } from 'react-redux';
+import Sprite from '../../images/sprite.svg';
+import { getUserData } from '../../redux/auth/auth-selectors';
+import { authOperations } from '../../redux/auth/auth-operations';
 import { Avatar } from '@mui/material';
+import React, { Fragment } from 'react';
+import Media from 'react-media';
+import stringAvatar from '../../utils/Avatar';
 import s from './UserMenu.module.css';
 
 const UserMenu = () => {
-  //   const userEmail = useSelector(authSelectors.userEmail);
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const userData = useSelector(getUserData);
+  const name = userData.email;
+  console.log(name);
+
   return (
     <div className={s.menu}>
-      <Avatar className={s.Avatar} />
-      <span className={s.email}>iuliia@gmail.com</span>
-
-      <button
-        className={s.logout}
-        // onClick={() => dispatch(authOperations.logout())}
+      <Avatar {...stringAvatar(name.toUpperCase())} />
+      <Media
+        queries={{
+          small: '(max-width: 767px)',
+          medium: '(min-width: 768px)',
+        }}
       >
-        <img
-          src={require('../../images/logout.jpg')}
-          alt="logout"
-          width={16}
-          height={16}
-        />
-      </button>
-      <button className={s.btnExit}>Exit</button>
+        {matches => (
+          <Fragment>
+            {matches.small && (
+              <button
+                className={s.logout}
+                onClick={() => dispatch(authOperations.logout())}
+              >
+                <svg alt="logout" width={16} height={16}>
+                  <use href={`${Sprite}#logout-icon`}></use>
+                </svg>
+              </button>
+            )}
+            {matches.medium && (
+              <>
+                <span className={s.email}>{name}</span>
+                <span className={s.line}></span>
+                <button
+                  className={s.btnExit}
+                  onClick={() => dispatch(authOperations.logout())}
+                >
+                  Exit
+                </button>
+              </>
+            )}
+          </Fragment>
+        )}
+      </Media>
     </div>
   );
 };
