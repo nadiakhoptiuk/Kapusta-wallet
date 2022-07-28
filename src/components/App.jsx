@@ -9,9 +9,10 @@ import HomeView from 'views/HomeView';
 import ReportView from 'views/ReportView';
 import { PublicRoute } from './PublicRoute/PublicRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
-import Chart from './Chart/Chart';
+import Balance from './Balance';
+import TransactionsView from 'views/TransactionsView';
 
-const { home, app, reports, income, expenses } = routes;
+const { home, app, reports, income, expenses, transactions } = routes;
 
 export const App = () => {
   return (
@@ -22,14 +23,13 @@ export const App = () => {
           element={
             <PublicRoute>
               <SharedLayout />
-              <Chart />
             </PublicRoute>
           }
         >
           <Route
             index
             element={
-              <PublicRoute restricted navTo={app}>
+              <PublicRoute restricted navTo={`${app}/${transactions}`}>
                 <HomeView />
               </PublicRoute>
             }
@@ -38,24 +38,15 @@ export const App = () => {
             path={app}
             element={
               <PrivateRoute>
-                <div>Balance Bar View</div>
+                <Balance />
               </PrivateRoute>
             }
           >
-            <Route
-              path={app}
-              element={
-                <PrivateRoute>
-                  <div>Balance Bar View</div>
-                </PrivateRoute>
-              }
-            ></Route>
-            <Route path={app} element={<div>Transactions View</div>}>
+            <Route path={transactions} element={<TransactionsView />}>
               <Route path={expenses} element={<div>Expenses Table</div>} />
               <Route path={income} element={<div>Income Table</div>} />
             </Route>
             <Route path={reports} element={<ReportView />} />
-            {/* <Route path={reports} element={<Chart />} /> */}
           </Route>
         </Route>
       </Routes>

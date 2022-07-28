@@ -35,7 +35,7 @@
 }
 
 .monthChangeBtn {
-  width: 24px;
+  width: 10px;
   height: 24px;
   padding: 0;
   background-color: transparent;
@@ -76,8 +76,8 @@
 
 .form {
   text-align: center;
-  width: 280px;
-  margin: 0 auto;
+  /* width: 280px; */
+  /* margin: 0 auto; */
 }
 
 .labelText {
@@ -112,8 +112,8 @@
   border: none;
   border: 2px solid var(--general-header-color);
   border-radius: 22px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 13px;
+  padding-bottom: 13px;
   padding-left: 19px;
   padding-right: 16px;
   text-align: center;
@@ -153,7 +153,7 @@
 }
 
 .buttonForm {
-  position: relative;
+  /* position: relative; */
   top: -1.5px;
   width: 140px;
   height: 44px;
@@ -220,6 +220,7 @@
   }
 
   .buttonForm {
+    position: relative;
     border-radius: 0px 22px 22px 0px;
   }
 
@@ -238,6 +239,11 @@
   .currentPeriod {
     padding-bottom: 32px;
   }
+
+  .form {
+    width: 280px;
+    margin: 0 auto;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -255,16 +261,25 @@
   .linkToHome {
     width: 100px;
     text-decoration: none;
+    /* margin-right: 139px; */
+    margin-right: 100px;
+    padding-left: 6px;
   }
 
   .linkToHomeText {
     display: inline-block;
+    width: 61px;
+    margin-left: 16px;
 
     font-size: 12px;
     line-height: 1.17;
     letter-spacing: 0.04em;
 
     color: rgba(82, 85, 95, 0.7);
+  }
+
+  .linkReports {
+    margin: 0;
   }
 
   .label {
@@ -280,10 +295,13 @@
   .input {
     border-radius: 16px;
     margin-right: 15px;
+    width: 125px;
   }
 
   .buttonForm {
     border-radius: 16px;
+    width: 125px;
+    height: 44px;
   }
 
   .wraper {
@@ -291,12 +309,34 @@
     flex-direction: row-reverse;
     width: 100%;
     justify-content: space-between;
+    /* margin-left: 139px; */
   }
 
   .balanceWraper {
     display: flex;
     align-items: center;
-    margin-left: 139px;
-    margin-right: 102px;
+  }
+
+  .inputReports {
+    width: 125px;
+  }
+
+  .currentPeriod {
+    width: 136px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .linkToHome {
+    margin-right: 326px;
+  }
+
+  .form {
+    margin-left: 382px;
+  }
+
+  .wraper {
+    margin: 0;
+    /* margin-left: 250px; */
   }
 }
