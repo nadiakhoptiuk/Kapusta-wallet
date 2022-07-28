@@ -4,7 +4,22 @@
   position: relative;
 }
 
+/* калічно вирішено проблему */
+@media screen and (max-height: 750px){
+  .bot{
+    margin-top: 50px;
+  }
+}
+@media screen and (max-height: 540px) {
+  .bot {
+    margin-top: 100px;
+  }
+}
+
+
 .top {
+  overflow: hidden;
+  position: relative;
   background-color: var(--general-background-top-part-color);
 }
 
