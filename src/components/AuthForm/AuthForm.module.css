@@ -8,6 +8,12 @@
   border-radius: 30px;
 }
 
+@media screen and (min-width: 400px) {
+  .box {
+    padding: 40px 60px;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .box {
     max-width: 426px;
@@ -131,9 +137,10 @@
 }
 
 .authBtnBox {
+  max-width: 260px;
   display: flex;
   justify-content: space-between;
-  margin-top: 40px;
+  margin: 40px auto 0;
 }
 
 .btn {
