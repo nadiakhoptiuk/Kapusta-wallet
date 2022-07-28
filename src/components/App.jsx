@@ -8,8 +8,6 @@ import routes from 'utils/routes';
 import HomeView from 'views/HomeView';
 import ReportView from 'views/ReportView';
 
-import HomeView from 'views/HomeView';
-
 const { home, app, reports, income, expenses } = routes;
 
 export const App = () => {
