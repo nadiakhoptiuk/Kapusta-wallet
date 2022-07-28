@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth/auth-operations';
 import s from './AuthForm.module.css';
+import Sprite from '../../images/sprite.svg';
 
 export default function AuthForm() {
   const dispatch = useDispatch();
@@ -88,10 +89,7 @@ export default function AuthForm() {
       <p className={s.googleText}>You can log in with your Google Account:</p>
       <button onClick={handleGoogleLogin} className={s.googleBtn} type="button">
         <svg className={s.googleSvg} width="18" height="18">
-          <use
-            className={s.googleIcon}
-            href="src\images\sprite.svg#google-icon"
-          />
+          <use className={s.googleIcon} href={`${Sprite}#google-icon`} />
         </svg>
         Google
       </button>
