@@ -105,7 +105,7 @@ export default function FinancialReport() {
                         ? `${s.categoryBtnActive}`
                         : `${s.categoryBtn}`
                     }
-                    onClick={() => changeCategory(category)}
+                    onClick={() => changeCategory(backendName)}
                   >
                     <svg className={s.categoryIcon}>
                       <use href={`${Sprite}#${imgPath}`}></use>
