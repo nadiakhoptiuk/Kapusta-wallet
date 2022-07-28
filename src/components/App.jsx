@@ -12,7 +12,7 @@ import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import Balance from './Balance';
 import TransactionsView from 'views/TransactionsView';
 
-const { home, app, reports, income, expenses, transactions } = routes;
+const { home, app, reports, transactions } = routes;
 
 export const App = () => {
   return (
