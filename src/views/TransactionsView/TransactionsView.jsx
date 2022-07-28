@@ -8,10 +8,14 @@ const TransactionsView = () => {
   const [mode, setMode] = useState(MODES.expenseMode);
 
   return (
-    <div className={s.container}>
-      <NavBar setMode={setMode} />
-      <Transactions mode={mode} />
-    </div>
+    <>
+      <div className={s.fon}></div>
+      <div className={s.img}></div>
+      <div className={s.container}>
+        <NavBar setMode={setMode} />
+        <Transactions mode={mode} />
+      </div>
+    </>
   );
 };
 

@@ -1,13 +1,13 @@
 import { Fragment, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
-// import authSelectors from 'redux/auth/auth-selectors';
-// import Loader from 'components/Loader';
+import { useSelector } from 'react-redux';
+
+import { getIsLoggedIn } from '../../redux/auth/auth-selectors';
 import UserMenu from 'components/UserMenu';
 import s from './SharedLayout.module.css';
 import Loader from '../Loader/Loader';
 const SharedLayout = () => {
-  //   const isLoggedIn = useSelector(authSelectors.isLoggedIn);
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
   return (
     <Fragment>
@@ -19,10 +19,7 @@ const SharedLayout = () => {
           height={31}
         />
 
-        {
-          // isLoggedIn &&
-          <UserMenu />
-        }
+        {isLoggedIn && <UserMenu />}
       </header>
       <Suspense fallback={<Loader />}>
         <div>
