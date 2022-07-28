@@ -1,15 +1,20 @@
-import Sprite from '../../images/sprite.svg';
 import { useState } from 'react';
 import { expensesCategory } from 'utils/localization';
-import addSpaceForAmount from '../../utils/addSpaceForAmount';
+import addSpaceForAmount from 'utils/addSpaceForAmount';
+// import {
+//   getExpenseCategoriesQuery,
+//   getIncomeCategoriesQuery,
+// } from 'service/kapustaAPI';
+import transactionTypes from 'utils/transactionTypes';
+import Sprite from '../../images/sprite.svg';
 import s from './FinancialReport.module.css';
 
 export default function FinancialReport() {
+  const { expenses, incomes } = transactionTypes;
   const [selectedCategory, setSelectedCategory] = useState(
     expensesCategory[0].category
   );
-  // const [selectedOperation, setSelectedOperation] = useState('expenses'); // TODO
-  console.log(selectedCategory);
+  const [selectedOperation, setSelectedOperation] = useState(expenses);
 
   function transformedString(string) {
     if (!string.includes(' ')) {
@@ -21,20 +26,42 @@ export default function FinancialReport() {
     });
   }
 
-  function handleCategoryClick(newCategoryName) {
+  function changeCategory(newCategoryName) {
     setSelectedCategory(newCategoryName);
   }
+
+  function changeOperationType() {
+    selectedOperation === expenses
+      ? setSelectedOperation(incomes)
+      : setSelectedOperation(expenses);
+  }
+
+  // useEffect(() => {
+  //   const data =
+  //     selectedOperation === expenses
+  //       ? getExpenseCategoriesQuery()
+  //       : getIncomeCategoriesQuery();
+  //   return data;
+  // }, [expenses, selectedOperation]);
 
   return (
     <section className={s.reportSection}>
       <div className={s.controls}>
-        <button type="button" className={s.typeReportControlBtn}>
+        <button
+          type="button"
+          className={s.typeReportControlBtn}
+          onClick={changeOperationType}
+        >
           <svg className={s.arrowIcon}>
             <use href={`${Sprite}#arrow-prev-icon`}></use>
           </svg>
         </button>
-        <h2 className={s.reportTypeTitle}>Expenses</h2>
-        <button type="button" className={s.typeReportControlBtn}>
+        <h2 className={s.reportTypeTitle}>{selectedOperation}</h2>
+        <button
+          type="button"
+          className={s.typeReportControlBtn}
+          onClick={changeOperationType}
+        >
           <svg className={s.arrowIcon}>
             <use href={`${Sprite}#arrow-next-icon`}></use>
           </svg>
@@ -57,7 +84,7 @@ export default function FinancialReport() {
                       ? `${s.categoryBtnActive}`
                       : `${s.categoryBtn}`
                   }
-                  onClick={() => handleCategoryClick(category)}
+                  onClick={() => changeCategory(category)}
                 >
                   <svg className={s.categoryIcon}>
                     <use href={`${Sprite}#${imgPath}`}></use>
