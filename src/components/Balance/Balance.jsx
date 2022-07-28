@@ -1,20 +1,22 @@
-import { Fragment, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import s from './Balance.module.css';
 import sprite from '../../images/sprite.svg';
 // import BalanceModal from 'components/BalanceModal';
 import routes from 'utils/routes';
 
-const { app, reports } = routes;
-
-const isReportPage = false;
+const { reports, transactions } = routes;
 
 const balanceRow = s.Balance;
 const balanceRowRevers = s.BalanceRevers;
-const classBalance = isReportPage ? balanceRowRevers : balanceRow;
 
 export default function Balance() {
   const [balance, setBalance] = useState(0);
+  const location = useLocation();
+  const isReportPage = !location.pathname.endsWith('transactions')
+    ? true
+    : false;
+  const classBalance = isReportPage ? balanceRowRevers : balanceRow;
 
   const handleChange = e => {
     setBalance(e.target.value);
@@ -26,10 +28,10 @@ export default function Balance() {
   };
 
   return (
-    <Fragment>
+    <div>
       <div className={classBalance}>
         {isReportPage && (
-          <Link to={app} className={s.linkToHome}>
+          <Link to={transactions} className={s.linkToHome}>
             <svg width="18" height="12">
               <use href={`${sprite}#arrow-to-main-icon`}></use>
             </svg>
@@ -96,6 +98,6 @@ export default function Balance() {
       <div>
         <Outlet />
       </div>
-    </Fragment>
+    </div>
   );
 }
