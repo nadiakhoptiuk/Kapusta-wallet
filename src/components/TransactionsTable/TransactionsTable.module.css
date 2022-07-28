@@ -33,12 +33,24 @@
     color: var(--table-expense-text-color);
   }
 
+  .descriptionExpense {
+    composes: description;
+    color: var(--table-expense-text-color);
+    font-weight: 700;
+  }
+
+  .descriptionIncome {
+    composes: description;
+    color: var(--table-income-text-color);
+    font-weight: 700;
+  }
+
   .column {
     composes: description;
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: start;
+    align-items: flex-start;
+    justify-content: flex-start;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
@@ -81,7 +93,7 @@
   }
 
   .lastTD {
-    width: 30px;
+    width: 40px;
   }
   .btnDelete {
     border: none;
@@ -127,6 +139,18 @@
     text-align: center;
   }
 
+  .descriptionExpense {
+    composes: description;
+    color: var(--table-expense-text-color);
+    font-weight: 700;
+  }
+
+  .descriptionIncome {
+    composes: description;
+    color: var(--table-income-text-color);
+    font-weight: 700;
+  }
+
   .descriptionLast {
     composes: description;
     width: 90px;
@@ -168,6 +192,8 @@
   }
   .btnDelete {
     border: none;
+    background-color: transparent;
+    cursor: pointer;
   }
 }
 

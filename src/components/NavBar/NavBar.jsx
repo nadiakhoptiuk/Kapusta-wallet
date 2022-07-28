@@ -1,23 +1,28 @@
-import { NavLink } from 'react-router-dom';
 import s from './NavBar.module.css';
-import routes from '../../utils/routes';
+import { MODES } from 'utils/transactionConstants';
 
-const { expenses, income } = routes;
-
-const NavBar = () => {
+const NavBar = ({ setMode }) => {
   return (
     <div className={s.container}>
       <nav className={s.navWrap}>
         <ul className={s.navList}>
           <li className={s.navListItem}>
-            <NavLink className={s.link} to={`/${expenses}`}>
+            <button
+              type="button"
+              className={s.link}
+              onClick={() => setMode(MODES.expenseMode)}
+            >
               expenses
-            </NavLink>
+            </button>
           </li>
           <li className={s.navListItem}>
-            <NavLink className={s.link} to={`/${income}`}>
+            <button
+              type="button"
+              className={s.link}
+              onClick={() => setMode(MODES.incomeMode)}
+            >
               income
-            </NavLink>
+            </button>
           </li>
         </ul>
       </nav>
