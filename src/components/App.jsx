@@ -7,15 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import routes from 'utils/routes';
 
 import HomeView from 'views/HomeView';
-import FinancialReport from './FinancialReport';
 
 const { home, app, reports, income, expenses } = routes;
 
 export const App = () => {
   return (
     <Fragment>
-      <FinancialReport />
-
       <Routes>
         <Route path={home} element={<SharedLayout />}>
           <Route index element={<HomeView />} />
