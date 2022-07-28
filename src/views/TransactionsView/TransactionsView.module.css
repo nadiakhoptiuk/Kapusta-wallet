@@ -1,12 +1,54 @@
+.fon {
+  position: absolute;
+  top: 0;
+  background-color: var(--general-background-top-part-color);
+  border-bottom-left-radius: 30%;
+  width: 100%;
+  height: 325px;
+  z-index: -1;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     width: 704px;
     margin: 0 auto;
   }
+  .fon{
+  height: 583px;
+}
+.img{
+  width: 183px;
+  height: 146px;
+  position: absolute;
+  top: 900px;
+  right: 88px;
+  background-image: url(../../images/two-kapustas-bg-min.png) ;
+}
+/* @media (min-device-pixel-ratio: 2),
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
+  .img {
+    background-image: url(..//..//images/two-kapustas-bg@2x-min.png);
+  }
+} */
 }
 
 @media screen and (min-width: 1280px) {
   .container {
     width: 1098px;
   }
+  .img{
+    width: 100%;
+    height: 232px;
+    position: absolute;
+    top: 656px;
+    left: 0;
+    background-image: url(../../images/many-kapustas-bg-min.png) ;
+    
+  }
+    /* @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+      .img{background-image: url(..//..//images/many-kapustas-bg@2x-min.png);}
+    } */
 }
