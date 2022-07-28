@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth/auth-operations';
 import s from './AuthForm.module.css';
 import Sprite from '../../images/sprite.svg';
-// import ConfirmModal from 'components/ConfirmModal/ConfirmModal';
 
 export default function AuthForm() {
   const dispatch = useDispatch();
@@ -168,7 +167,6 @@ export default function AuthForm() {
           </div>
         </form>
       </div>
-      {/* <ConfirmModal title="Do you really want to leave?" />, */}
     </>
   );
 }
