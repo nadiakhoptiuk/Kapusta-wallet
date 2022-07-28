@@ -1,0 +1,64 @@
+.balance_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.outcomes {
+    color: #e53935;
+}
+
+.line{
+    border-left: 1px solid #E0E5EB;
+    margin: 0px 10px;
+} 
+
+.incomes {
+    color: #407946;
+}
+
+.title,
+.incomes,
+.outcomes {
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+
+    .outcomes_div,
+    .incomes_div {
+        text-align: center;
+    }
+
+    .line {
+        margin: 0px 10px;
+        height: 70px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .outcomes {
+        padding-left: 5px;
+    }
+
+    .incomes {
+        padding-left: 5px;
+    }
+
+    .outcomes_div,
+    .incomes_div {
+        display: flex;
+    }
+
+    .line {
+        text-align: center;
+        height: 36px;
+        margin: 0 20px;
+    }
+}
