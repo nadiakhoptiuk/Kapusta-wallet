@@ -1,7 +1,7 @@
 .box {
   margin: 0 auto;
   background-color: var(--auth-form-background-color);
-  max-width: 280px;
+  max-width: 420px;
 
   padding: 40px 20px;
   box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
@@ -11,6 +11,7 @@
 @media screen and (min-width: 768px) {
   .box {
     max-width: 426px;
+    width: 426px;
     padding: 56px 83px;
   }
 }
