@@ -9,6 +9,7 @@ import HomeView from 'views/HomeView';
 import ReportView from 'views/ReportView';
 import { PublicRoute } from './PublicRoute/PublicRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
+import Chart from './Chart/Chart';
 
 const { home, app, reports, income, expenses } = routes;
 
@@ -21,6 +22,7 @@ export const App = () => {
           element={
             <PublicRoute>
               <SharedLayout />
+              <Chart />
             </PublicRoute>
           }
         >
@@ -40,11 +42,20 @@ export const App = () => {
               </PrivateRoute>
             }
           >
+            <Route
+              path={app}
+              element={
+                <PrivateRoute>
+                  <div>Balance Bar View</div>
+                </PrivateRoute>
+              }
+            ></Route>
             <Route path={app} element={<div>Transactions View</div>}>
               <Route path={expenses} element={<div>Expenses Table</div>} />
               <Route path={income} element={<div>Income Table</div>} />
             </Route>
             <Route path={reports} element={<ReportView />} />
+            {/* <Route path={reports} element={<Chart />} /> */}
           </Route>
         </Route>
       </Routes>

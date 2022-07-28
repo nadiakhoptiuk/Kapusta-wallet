@@ -1,7 +1,10 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
+
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { Chart as ChartJS } from 'chart.js/auto';
+import ChartJS from 'chart.js/auto';
+import addSpaceForAmount from '../../utils/addSpaceForAmount';
+ChartJS.register(ChartDataLabels);
 
 const Chart = () => {
   const barChartData = {
@@ -27,42 +30,18 @@ const Chart = () => {
           'rgba(255, 218, 192, 1)',
           'rgba(255, 218, 192, 1)',
         ],
-        borderRadius: '10',
+        borderRadius: '12',
         fill: true,
         borderJoinStyle: 'bevel',
+        borderWidth: '1',
         showLine: false,
         indexAxis: 'x',
+        barPercentage: 0.5,
+        barThickness: 38,
       },
     ],
   };
-  const topLabels = {
-    id: 'topLabels',
-    afterDatasetDraw(chart, args, plugionOptions) {
-      const {
-        ctx,
-        scales: { x, y },
-      } = chart;
-      chart.data.datasets.forEach((datapoint, index) => {
-        const datasetArray = [];
-        chart.data.datasets.forEach(dataset => {
-          datasetArray.push(dataset.data[index]);
-        });
-        function value(values) {
-          return values;
-        }
-        let sum = datasetArray.reduce(value, 0);
-        console.log(sum);
-        ctx.font = 'bold 12px Roboto';
-        ctx.fillStyle = 'blue';
-        ctx.textAlign = 'center';
-        ctx.ctx.fillText(
-          sum,
-          x.getPixelForValue(index),
-          chart.getDatasetMeta(1).data[index].y - 10
-        );
-      });
-    },
-  };
+
   const barChart = (
     <Bar
       type="bar"
@@ -73,7 +52,14 @@ const Chart = () => {
           legend: {
             display: false,
           },
-          topLabels,
+          datalabels: {
+            color: '#52555f',
+            anchor: 'end',
+            offset: 5,
+            align: 'end',
+            formatter: value =>
+              `${addSpaceForAmount(Math.floor(value)).split('.')[0]} грн`,
+          },
         },
 
         scales: {
@@ -88,7 +74,6 @@ const Chart = () => {
             stacked: true,
             ticks: {
               display: false,
-              // forces step size to be 50 units
             },
           },
           x: {
@@ -97,20 +82,6 @@ const Chart = () => {
           },
         },
       }}
-      //   onAnimationComplete = function  (){
-
-      //     var ctx = this.chart.ctx;
-      //     ctx.font = this.scale.font;
-      //     ctx.fillStyle = this.scale.textColor
-      //     ctx.textAlign = "center";
-      //     ctx.textBaseline = "bottom";
-
-      //     this.datasets.forEach(function (dataset) {
-      //         dataset.bars.forEach(function (bar) {
-      //             ctx.fillText(bar.value, bar.x, bar.y - 5);
-      //         });
-      //     })
-      // }
       data={barChartData}
     />
   );
