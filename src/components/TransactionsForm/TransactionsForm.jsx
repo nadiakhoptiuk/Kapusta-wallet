@@ -11,8 +11,14 @@ import {
   sendExpenseTransactionQuery,
   sendIncomeTransactionQuery,
 } from 'service/kapustaAPI';
+import { MODES } from 'utils/transactionConstants';
 
-const TransactionsForm = ({ onSubmit, setSummary, mode }) => {
+const TransactionsForm = ({
+  onSubmit,
+  setSummary,
+  mode,
+  closeModal = () => 7,
+}) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState(null);
@@ -20,10 +26,10 @@ const TransactionsForm = ({ onSubmit, setSummary, mode }) => {
   const [categories, setCategories] = useState('');
 
   useEffect(() => {
-    if (mode === 'expenseMode') {
+    if (mode === MODES.expenseMode) {
       getExpenseCategoriesQuery().then(({ data }) => setCategories(data));
     }
-    if (mode === 'incomeMode') {
+    if (mode === MODES.incomeMode) {
       getIncomeCategoriesQuery().then(({ data }) => setCategories(data));
     }
   }, [mode]);
@@ -69,8 +75,9 @@ const TransactionsForm = ({ onSubmit, setSummary, mode }) => {
       category: category.value,
       amount: amount,
     };
+    closeModal();
 
-    if (mode === 'expenseMode') {
+    if (mode === MODES.expenseMode) {
       sendExpenseTransactionQuery(transactionsList).then(({ data }) => {
         onSubmit(data.transaction);
       });
@@ -80,7 +87,7 @@ const TransactionsForm = ({ onSubmit, setSummary, mode }) => {
       });
     }
 
-    if (mode === 'incomeMode') {
+    if (mode === MODES.incomeMode) {
       sendIncomeTransactionQuery(transactionsList).then(({ data }) => {
         onSubmit(data.transaction);
       });

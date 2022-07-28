@@ -9,6 +9,7 @@ import {
   getExpenseTransactionsQuery,
   getIncomeTransactionsQuery,
 } from 'service/kapustaAPI';
+import { MODES } from 'utils/transactionConstants';
 
 const Transactions = ({ mode }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -16,12 +17,12 @@ const Transactions = ({ mode }) => {
   const [monthsStats, setMonthsStats] = useState({});
 
   useEffect(() => {
-    if (mode === 'expenseMode') {
+    if (mode === MODES.expenseMode) {
       getExpenseTransactionsQuery().then(({ data }) => {
         setMonthsStats(data.monthsStats);
       });
     }
-    if (mode === 'incomeMode') {
+    if (mode === MODES.incomeMode) {
       getIncomeTransactionsQuery().then(({ data }) => {
         setMonthsStats(data.monthsStats);
       });
@@ -78,7 +79,11 @@ const Transactions = ({ mode }) => {
               <use href={`${Sprite}#arrow-to-main-icon`}></use>
             </svg>
           </button>
-          <TransactionsForm onSubmit={onSubmit} mode={mode} />
+          <TransactionsForm
+            onSubmit={onSubmit}
+            mode={mode}
+            closeModal={onButtonModalClick}
+          />
         </TransactionsModal>
       )}
       <div className={s.summaryWrap}>

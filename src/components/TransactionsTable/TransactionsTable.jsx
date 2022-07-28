@@ -6,6 +6,7 @@ import {
   getExpenseTransactionsQuery,
   getIncomeTransactionsQuery,
 } from 'service/kapustaAPI';
+import { MODES } from 'utils/transactionConstants';
 import Sprite from '../../images/sprite.svg';
 import s from './TransactionsTable.module.css';
 
@@ -19,7 +20,7 @@ const TransactionsTable = ({
 
   useEffect(() => {
     setIsFetching(true);
-    if (mode === 'expenseMode') {
+    if (mode === MODES.expenseMode) {
       getExpenseTransactionsQuery()
         .then(({ data }) => {
           setTransactions(data.expenses);
@@ -27,7 +28,7 @@ const TransactionsTable = ({
         .finally(() => setIsFetching(false));
     }
 
-    if (mode === 'incomeMode') {
+    if (mode === MODES.incomeMode) {
       getIncomeTransactionsQuery()
         .then(({ data }) => {
           setTransactions(data.incomes);
@@ -40,12 +41,12 @@ const TransactionsTable = ({
     const response = await deleteTransactionQuery(id);
     if (response.status === 200) {
       setTransactions(transactions.filter(el => el._id !== id));
-      if (mode === 'expenseMode') {
+      if (mode === MODES.expenseMode) {
         getExpenseTransactionsQuery().then(({ data }) => {
           setSummary(data.monthsStats);
         });
       }
-      if (mode === 'incomeMode') {
+      if (mode === MODES.incomeMode) {
         getIncomeTransactionsQuery().then(({ data }) => {
           setSummary(data.monthsStats);
         });
@@ -76,7 +77,7 @@ const TransactionsTable = ({
                 </td>
                 <td className={s.description}>{el.description}</td>
                 <td className={s.description}>{el.category}</td>
-                {mode === 'expenseMode' ? (
+                {mode === MODES.expenseMode ? (
                   <td className={s.descriptionExpense}>- {el.amount} грн.</td>
                 ) : (
                   <td className={s.descriptionIncome}>{el.amount} грн.</td>
