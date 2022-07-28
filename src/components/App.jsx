@@ -42,10 +42,7 @@ export const App = () => {
               </PrivateRoute>
             }
           >
-            <Route path={transactions} element={<TransactionsView />}>
-              <Route path={expenses} element={<div>Expenses Table</div>} />
-              <Route path={income} element={<div>Income Table</div>} />
-            </Route>
+            <Route path={transactions} element={<TransactionsView />}></Route>
             <Route path={reports} element={<ReportView />} />
           </Route>
         </Route>
