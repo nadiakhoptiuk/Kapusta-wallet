@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-
+import Sprite from '../../images/sprite.svg';
 import { getUserData } from '../../redux/auth/auth-selectors';
 import { authOperations } from '../../redux/auth/auth-operations';
 import { Avatar } from '@mui/material';
@@ -7,7 +7,6 @@ import React, { Fragment } from 'react';
 import Media from 'react-media';
 import stringAvatar from '../../utils/Avatar';
 import s from './UserMenu.module.css';
-import Sprite from '../../images/sprite.svg';
 
 const UserMenu = () => {
   const dispatch = useDispatch();

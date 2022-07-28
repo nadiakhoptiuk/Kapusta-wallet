@@ -1,7 +1,6 @@
 .menu {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 .email {
   display: flex;
@@ -29,8 +28,7 @@
 .logout {
   width: 16px;
   height: 16px;
-  padding: 0;
-  /* margin-top: 10px; */
+  margin-top: 10px;
   background: transparent;
   border: none;
   cursor: pointer;
