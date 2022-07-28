@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import routes from 'utils/routes';
 
 import HomeView from 'views/HomeView';
+import TransactionsView from 'views/TransactionsView';
 
 const { home, app, reports, income, expenses } = routes;
 
@@ -15,6 +16,12 @@ export const App = () => {
     <Fragment>
       <Routes>
         <Route path={home} element={<SharedLayout />}>
+          <Route path={app} element={<TransactionsView />}>
+            {/* <Route path={expenses} element={<div>Expenses Table</div>} />
+            <Route path={income} element={<div>Income Table</div>} /> */}
+          </Route>
+        </Route>
+        {/* <Route path={home} element={<SharedLayout />}>
           <Route index element={<HomeView />} />
           <Route path={app} element={<div>Balance Bar View</div>}>
             <Route path={app} element={<div>Transactions View</div>}>
@@ -23,9 +30,9 @@ export const App = () => {
             </Route>
             <Route path={reports} element={<div>Reports View</div>} />
           </Route>
-        </Route>
+        </Route> */}
       </Routes>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </Fragment>
   );
 };
