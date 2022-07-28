@@ -52,6 +52,8 @@
     #031634 67.28%
   );
   --balance-popup-message-text-color: #ffffff;
+  --balance-text-color: rgba(85, 85, 95, 0.7);
+  --balance-modal-top-color: #1d346a;
 
   /* Transactions */
   /* Navbar */
@@ -148,4 +150,18 @@ code {
 .btnNormal:hover {
   box-shadow: 0 0 0 0 rgba(82, 85, 95, 0);
   background-position: 0 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+p,
+li {
+  margin: 0;
+  padding: 0;
 }
