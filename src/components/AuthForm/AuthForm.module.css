@@ -1,7 +1,7 @@
 .box {
   margin: 0 auto;
   background-color: var(--auth-form-background-color);
-  max-width: 280px;
+  max-width: 420px;
 
   padding: 40px 20px;
   box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
@@ -11,12 +11,14 @@
 @media screen and (min-width: 768px) {
   .box {
     max-width: 426px;
+    width: 426px;
     padding: 56px 83px;
   }
 }
 
 .googleText {
-  margin-bottom: 16px;
+  width: 200px;
+  margin: 0 auto 16px;
 
   font-size: 12px;
   line-height: 14px;
@@ -28,6 +30,7 @@
 
 @media screen and (min-width: 768px) {
   .googleText {
+    width: 100%;
     margin-bottom: 20px;
   }
 }
@@ -49,6 +52,10 @@
   letter-spacing: 0.02em;
 
   color: var(--general-header-color);
+}
+
+.googleSvg {
+  margin-right: 10px;
 }
 
 .authText {
@@ -92,6 +99,9 @@
   background: var(--auth-form-input-background-color);
   border: none;
   border-radius: 30px;
+
+  font-size: 16px;
+  color: var(--general-text-color);
 }
 
 .input::placeholder {
