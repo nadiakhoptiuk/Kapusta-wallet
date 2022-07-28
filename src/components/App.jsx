@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import SharedLayout from './SharedLayout';
 import 'react-toastify/dist/ReactToastify.css';
 import routes from 'utils/routes';
-
+import AuthForm from './AuthForm/AuthForm';
 const { home, app, reports, income, expenses } = routes;
 
 export const App = () => {
@@ -13,7 +13,8 @@ export const App = () => {
     <Fragment>
       <Routes>
         <Route path={home} element={<SharedLayout />}>
-          <Route index element={<div>Auth (Home) View</div>} />
+          <Route index element={<AuthForm />} />
+          {/* <Route index element={<div>Auth (Home) View</div>} /> */}
           <Route path={app} element={<div>Balance Bar View</div>}>
             <Route path={app} element={<div>Transactions View</div>}>
               <Route path={expenses} element={<div>Expenses Table</div>} />
