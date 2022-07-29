@@ -1,6 +1,5 @@
-import { Fragment } from 'react';
-
-import { Route, Routes } from 'react-router-dom';
+import { Fragment, useEffect } from 'react';
+import { Route, Routes, Navigate, useSearchParams } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import SharedLayout from './SharedLayout';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,10 +10,36 @@ import { PublicRoute } from './PublicRoute/PublicRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import Balance from './Balance';
 import TransactionsView from 'views/TransactionsView';
+import { useDispatch } from 'react-redux';
+import { authHeader } from 'service/kapustaAPI';
+import { authOperations } from 'redux/auth/auth-operations';
+import { googleAuth } from 'redux/auth/auth-slice';
+import ChartController from './ChartController/ChartController';
 
 const { home, app, reports, transactions } = routes;
 
 export const App = () => {
+  const [searchParams] = useSearchParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const accessToken = searchParams.get('accessToken');
+    const refreshToken = searchParams.get('refreshToken');
+    const sid = searchParams.get('sid');
+
+    if (!accessToken) {
+      return;
+    }
+
+    authHeader.set(accessToken);
+    dispatch(googleAuth({ accessToken, refreshToken, sid }));
+    dispatch(authOperations.getUserData());
+  }, [dispatch, searchParams]);
+
   return (
     <Fragment>
       <Routes>
@@ -45,7 +70,9 @@ export const App = () => {
             <Route path={transactions} element={<TransactionsView />}></Route>
             <Route path={reports} element={<ReportView />} />
           </Route>
+          <Route path="*" element={<Navigate to={home} />} />
         </Route>
+        <Route path="*" element={<Navigate to={home} />} />
       </Routes>
       <ToastContainer />
     </Fragment>
