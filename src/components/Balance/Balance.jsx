@@ -6,7 +6,6 @@ import sprite from '../../images/sprite.svg';
 import BalanceModal from 'components/BalanceModal';
 import routes from 'utils/routes';
 import moment from 'moment';
-// import { updateUserBalanceQuery } from 'service/kapustaAPI';
 import { getUserData } from 'redux/auth/auth-selectors';
 import { getPeriodData } from 'redux/currentPeriod/period-operations';
 import { authOperations } from '../../redux/auth/auth-operations';
@@ -34,15 +33,15 @@ export default function Balance() {
   const nextMonth = moment().add(counter, 'M').format('MMMM YYYY');
   const nextMonthForFetch = moment().add(counter, 'M').format('YYYY-MM');
   const currentBalance = useSelector(getUserData).balance;
-  const isNewUser = useLocalStorage('isNewUser', null);
-  console.log(isNewUser[0]);
+  const [isNewUser, setIsNewUser] = useLocalStorage('isNewUser', true);
+  const isUserOperations = useSelector(getUserData).transactions.length;
 
-  // Fetch
   useEffect(() => {
-    dispatch(getPeriodData(nextMonthForFetch));
-    dispatch(setCurrentPeriod(nextMonth));
-  }, [nextMonthForFetch, dispatch, nextMonth]);
-  // Fetch
+    if (isReportPage) {
+      dispatch(getPeriodData(nextMonthForFetch));
+      dispatch(setCurrentPeriod(nextMonth));
+    }
+  }, [isReportPage, nextMonthForFetch, dispatch, nextMonth]);
 
   const increment = () => {
     setCounter(counter + 1);
@@ -65,6 +64,7 @@ export default function Balance() {
     toggleModal();
     dispatch(authOperations.updateUserBalance(balance));
     setDisabledButton(true);
+    setIsNewUser(false);
   };
 
   const toggleModal = () => {
@@ -111,7 +111,10 @@ export default function Balance() {
                 </div>
               </div>
             ) : (
-              <Link to={reports} className={s.linkReports}>
+              <Link
+                to={isUserOperations ? reports : transactions}
+                className={s.linkReports}
+              >
                 Reports
                 <svg width="14" height="14" className={s.reportsIcon}>
                   <use href={`${sprite}#report-icon`}></use>
@@ -133,7 +136,7 @@ export default function Balance() {
                       value={balance}
                       onChange={handleChange}
                     />
-                    {showModal && <BalanceModal />}
+                    {isNewUser && <BalanceModal />}
                   </div>
                   {!isReportPage && (
                     <button
