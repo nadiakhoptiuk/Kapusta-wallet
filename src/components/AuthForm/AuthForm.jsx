@@ -34,54 +34,44 @@ export default function AuthForm() {
   const handleLogin = e => {
     e.preventDefault();
 
-    if (checkForEmptyInput() || checkValidEmail() || checkLengthPassword()) {
+    if (checkValidData()) {
       return;
     }
 
     dispatch(authOperations.login({ email, password }));
-    formReset();
   };
 
   const handleRegister = () => {
-    if (checkForEmptyInput() || checkValidEmail() || checkLengthPassword()) {
+    if (checkValidData()) {
       return;
     }
 
     dispatch(authOperations.register({ email, password }));
-    // formReset();
   };
 
   const handleGoogleLogin = () => {
     // dispatch(authOperations.googleLogin());
   };
 
-  const checkForEmptyInput = () => {
-    if (email === '' || password === '') {
-      setEmptyInput(true);
-      return true;
-    }
-    return false;
-  };
+  const checkValidData = () => {
+    let key = false;
 
-  const checkValidEmail = () => {
+    if (email === '') {
+      setEmptyInput(true);
+      key = true;
+    }
+
     if (!email.includes('@')) {
       setInvalidEmail(true);
-      return true;
+      key = true;
     }
-    return false;
-  };
 
-  const checkLengthPassword = () => {
     if (password.length < 8) {
       setSmallLengthPassword(true);
-      return true;
+      key = true;
     }
-    return false;
-  };
 
-  const formReset = () => {
-    setEmail('');
-    setPassword('');
+    return key;
   };
 
   return (
@@ -123,8 +113,9 @@ export default function AuthForm() {
               onChange={onChange}
             />
             <p className={s.errorMsg}>
-              {invalidEmail && 'Email must contain the symbol "@"'}
-              {emptyInput && 'This is a required field'}
+              {emptyInput
+                ? 'This is a required field'
+                : invalidEmail && 'Email must contain the symbol "@"'}
             </p>
           </label>
           <label className={s.label}>
@@ -150,7 +141,6 @@ export default function AuthForm() {
             <p className={s.errorMsg}>
               {smallLengthPassword &&
                 'Password length must be at least 8 characters'}
-              {emptyInput && 'This is a required field'}
             </p>
           </label>
           <div className={s.authBtnBox}>
