@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authHeader } from 'service/kapustaAPI';
 import { authOperations } from 'redux/auth/auth-operations';
 import { googleAuth } from 'redux/auth/auth-slice';
-import ChartController from './ChartController/ChartController';
 import { isLoadingSelector } from 'redux/currentPeriod/period-selectors';
 import Loader from './Loader';
 
@@ -70,10 +69,21 @@ export const App = () => {
               </PrivateRoute>
             }
           >
-            <Route path={transactions} element={<TransactionsView />}></Route>
+            <Route
+              path={transactions}
+              element={
+                <PrivateRoute>
+                  <TransactionsView />
+                </PrivateRoute>
+              }
+            ></Route>
             <Route
               path={reports}
-              element={isLoading ? <Loader /> : <ReportView />}
+              element={
+                <PrivateRoute>
+                  {isLoading ? <Loader /> : <ReportView />}
+                </PrivateRoute>
+              }
             />
           </Route>
           <Route path="*" element={<Navigate to={home} />} />

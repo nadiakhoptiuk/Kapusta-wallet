@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { currentPeriodDataSelector } from 'redux/currentPeriod/period-selectors';
 import transactionTypes from 'utils/transactionTypes';
+import ChartController from 'components/ChartController';
 
 export default function ReportView() {
   const { expenses } = transactionTypes;
@@ -40,6 +41,7 @@ export default function ReportView() {
         selectedOperation={selectedOperation}
         setSelectedOperation={setSelectedOperation}
       />
+      {/* <ChartController categoryObject={diagramData} /> */}
     </Container>
   );
 }
