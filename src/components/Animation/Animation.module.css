@@ -21,6 +21,8 @@
     height: 88px;
     animation: animate 18s linear infinite;
     right: -84px;
+    background-color: var(--general-background-top-part-color);
+    border-radius: 50%;
 }
 
 .cabbage {
@@ -31,6 +33,7 @@
 }
 
 .kochan li:nth-child(1) {
+    z-index: 1;
     top: 10%;
     animation-delay: 2s;
 }

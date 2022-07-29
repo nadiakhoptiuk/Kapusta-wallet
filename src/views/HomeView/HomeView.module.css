@@ -1,187 +1,7 @@
-/* .view {
-  background-color: var(--general-background-bot-part-color);
-  height: calc(100vh - 56px);
-  position: relative;
-}
-
-
-@media screen and (max-height: 750px){
-  .bot{
-    margin-top: 50px;
-  }
-}
-@media screen and (max-height: 540px) {
-  .bot {
-    margin-top: 100px;
-  }
-}
-
-
-.top {
-  overflow: hidden;
-  position: relative;
-  background-color: var(--general-background-top-part-color);
-}
-
-.bot {
-  background-color: var(--general-background-bot-part-color);
-}
-
-.subtitle {
-  color: var(--general-text-color);
-}
-
-@media screen and (max-width: 767px) {
-  .top {
-    height: 38.5%;
-    border-bottom-left-radius: 30%;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .bot {
-    height: 61.5%;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .topWrapper {
-    position: relative;
-    margin: 0 auto;
-    max-width: 420px;
-    top: 86px;
-  }
-
-  .title {
-    width: 183px;
-    height: 46px;
-    top: 86px;
-  }
-
-  .subtitle {
-    font-weight: 700;
-    font-size: 13px;
-    line-height: 1.153;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding-left: 10px;
-  }
-
-  .auth {
-    position: relative;
-    top: -80px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .top {
-    height: 60%;
-    border-bottom-left-radius: 20%;
-  }
-
-  .bot {
-    height: 40%;
-  }
-
-  .topWrapper {
-    position: relative;
-    margin: 0 auto;
-    max-width: 426px;
-    width: 426px;
-    top: 80px;
-  }
-
-  .title {
-    width: 306px;
-    height: 77px;
-  }
-
-  .subtitle {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 1.1875;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    padding-left: 53px;
-  }
-
-  .auth {
-    position: relative;
-    top: -265px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .top {
-    height: 73%;
-    border-bottom-left-radius: 10%;
-  }
-
-  .bot {
-    height: 27%;
-  }
-
-  .topWrapper {
-    position: absolute;
-    top: 308px;
-    left: 229px;
-  }
-
-  .title {
-    width: 377px;
-    height: 120px;
-  }
-
-  .subtitle {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 1.1875;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    padding-left: 53px;
-  }
-
-  .auth {
-    position: absolute;
-    top: 117px;
-    right: 91px;
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .topWrapper {
-    left: 289px;
-  }
-
-  .auth {
-    right: 151px;
-  }
-}
-
-@media screen and (min-width: 1600px) {
-  .topWrapper {
-    left: 389px;
-  }
-
-  .auth {
-    right: 251px;
-  }
-} */
-
-/* @media (min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi),
-  (min-resolution: 2dppx),
-  (max-width: 767px) {
-  .top {
-    background-image: url('../../images/one-kapusta-top-of-bg-min.jpg');
-  }
-} */
-
 .container{
   max-width: 426px;
   flex-direction: column;
   display: flex;
-  /* align-items: center; */
   margin: 0 auto;
 }
 .name{
@@ -204,25 +24,23 @@
   height: 342px;
   z-index: -1;
 }
-.img {
-  width: 83px;
-  height: 89px;
+.anim {
+  position: relative;
+  left: 20px;
+  bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+  width: 184px;
+
+}
+.kapustaflay {
   position: absolute;
-  top: 760px;
-  left: 35px;
+  bottom: 0;
+  top: 740px;
   z-index: -1;
-  background-image: url(../../images/one-kapusta-bottom-of-bg-min.png);
+
 }
 
-/* @media (min-device-pixel-ratio: 2),
-(min-resolution: 192dpi),
-(min-resolution: 2dppx) {
-  .img {
-    width: 83px;
-    height: 89px;
-    background-image: url(..//..//images/one-kapusta-bottom-of-bg@2x-min.png);
-  }
-} */
 @media screen and (max-width: 767px) {
   .subtitle {
     font-size: 13px;
@@ -249,23 +67,10 @@
     .background{
       height: 582px;
     }
-        .img {
-          z-index: -1;
-          width: 183px;
-          height: 142px;
-          position: absolute;
-          top: 785px;
-          left: 103px;
-          background-image: url(../../images/two-kapustas-bg-min.png);
+        .kapustaflay {
+          top: 770px;
+          left: 100px;
         }
-    
-        /* @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-          .img {
-            background-image: url(..//..//images/two-kapustas-bg@2x-min.png);
-          }
-        } */
 }
 @media screen and (min-width: 1280px) {
   .container{
@@ -287,8 +92,9 @@
       width: 377px;
       height: 120px;
     }
-    .img{
-top:660px;
-left: 230px;
+   
+    .kapustaflay {
+      top: 650px;
+      left: 230px;
     }
 }
