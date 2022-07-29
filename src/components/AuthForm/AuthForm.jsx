@@ -34,70 +34,55 @@ export default function AuthForm() {
   const handleLogin = e => {
     e.preventDefault();
 
-    if (checkForEmptyInput() || checkValidEmail() || checkLengthPassword()) {
+    if (checkValidData()) {
       return;
     }
 
     dispatch(authOperations.login({ email, password }));
-    formReset();
   };
 
   const handleRegister = () => {
-    if (checkForEmptyInput() || checkValidEmail() || checkLengthPassword()) {
+    if (checkValidData()) {
       return;
     }
 
     dispatch(authOperations.register({ email, password }));
-    // formReset();
   };
 
-  const handleGoogleLogin = () => {
-    // dispatch(authOperations.googleLogin());
-  };
+  const checkValidData = () => {
+    let key = false;
 
-  const checkForEmptyInput = () => {
-    if (email === '' || password === '') {
+    if (email === '') {
       setEmptyInput(true);
-      return true;
+      key = true;
     }
-    return false;
-  };
 
-  const checkValidEmail = () => {
     if (!email.includes('@')) {
       setInvalidEmail(true);
-      return true;
+      key = true;
     }
-    return false;
-  };
 
-  const checkLengthPassword = () => {
     if (password.length < 8) {
       setSmallLengthPassword(true);
-      return true;
+      key = true;
     }
-    return false;
-  };
 
-  const formReset = () => {
-    setEmail('');
-    setPassword('');
+    return key;
   };
 
   return (
     <>
       <div className={s.box}>
         <p className={s.googleText}>You can log in with your Google Account:</p>
-        <button
-          onClick={handleGoogleLogin}
+        <a
           className={s.googleBtn}
-          type="button"
+          href="https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&client_id=665888736356-aq6fvfmau6mupt4nfbms5tfch0u2698i.apps.googleusercontent.com&prompt=consent&redirect_uri=https%3A%2F%2Fkapusta-backend.goit.global%2Fauth%2Fgoogle-redirect&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile"
         >
           <svg className={s.googleSvg} width="18" height="18">
             <use className={s.googleIcon} href={`${Sprite}#google-icon`} />
           </svg>
           Google
-        </button>
+        </a>
         <p className={s.authText}>
           Or log in using an email and password, after registering:
         </p>
@@ -123,8 +108,9 @@ export default function AuthForm() {
               onChange={onChange}
             />
             <p className={s.errorMsg}>
-              {invalidEmail && 'Email must contain the symbol "@"'}
-              {emptyInput && 'This is a required field'}
+              {emptyInput
+                ? 'This is a required field'
+                : invalidEmail && 'Email must contain the symbol "@"'}
             </p>
           </label>
           <label className={s.label}>
@@ -150,7 +136,6 @@ export default function AuthForm() {
             <p className={s.errorMsg}>
               {smallLengthPassword &&
                 'Password length must be at least 8 characters'}
-              {emptyInput && 'This is a required field'}
             </p>
           </label>
           <div className={s.authBtnBox}>
