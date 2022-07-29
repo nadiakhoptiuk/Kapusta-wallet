@@ -44,19 +44,7 @@ export const App = () => {
             }
           >
             <Route path={transactions} element={<TransactionsView />}></Route>
-            <Route
-              path={reports}
-              element={
-                <ChartController
-                  categoryObject={{
-                    total: 4000,
-                    СТО: 3500,
-                    Мойка: 500,
-                    решутка: 2200,
-                  }}
-                />
-              }
-            />
+            <Route path={reports} element={<ReportView />} />
           </Route>
         </Route>
       </Routes>
