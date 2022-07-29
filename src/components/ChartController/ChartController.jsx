@@ -1,14 +1,11 @@
-// import { useSelector } from 'react-redux';
 import Chart from '../Chart/Chart';
 
 const ChartController = () => {
-  //   const isLoggedIn = useSelector(getIsLoggedIn);
+  const data = [12, 10, 13, 15, 17, 32];
+  const labels = ['meat', 'apple', 'eggs', 'meat', 'apple', 'eggs'];
   return (
     <>
-      {
-        // isLoggedIn &&
-        <Chart />
-      }
+      <Chart data={data} labels={labels} />
     </>
   );
 };

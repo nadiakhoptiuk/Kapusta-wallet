@@ -9,23 +9,14 @@ import s from './Chart.module.css';
 
 ChartJS.register(ChartDataLabels);
 
-const Chart = () => {
+const Chart = ({ labels, data }) => {
+  // ------------TABLET/DESKTOP---------------------------------
   const barChartData = {
-    labels: [
-      'Курица',
-      'Говядина',
-      'Свинина',
-      'Рыба',
-      'Панини',
-      'Кофе',
-      'Спагетти',
-      'Шоколад',
-      'Масло',
-    ],
+    labels: labels,
 
     datasets: [
       {
-        data: [5000, 4500, 3200, 2100, 1800, 1700, 1500, 800, 500],
+        data: data,
 
         borderColor: 'rgba(245, 246, 251, 1)',
         backgroundColor: [
@@ -44,28 +35,29 @@ const Chart = () => {
       },
     ],
   };
+  // -------------------------MOBILE-------------------------
   const barChartDataMobile = {
-    labels: [
-      'Курица',
-      'Говядина',
-      'Свинина',
-      'Рыба',
-      'Панини',
-      'Кофе',
-      'Спагетти',
-      'Шоколад',
-      'Масло',
-    ],
+    labels: labels,
 
     datasets: [
       {
-        data: [300, 300, 300, 300, 300, 300, 300, 300, 200],
+        data: [0, 0, 0, 0, 0, 0],
 
         datalabels: {
+          font: {
+            size: '12',
+          },
           color: '#52555f',
+          labels: {
+            title: {
+              align: 'right',
+            },
+          },
           anchor: 'end',
           offset: 5,
-          align: 'top',
+          // align: 'top',
+          barPercentage: 0.5,
+          categoryPercentage: 1,
 
           formatter: (_, context) => {
             const labels = context.chart.data.labels[context.dataIndex];
@@ -78,12 +70,20 @@ const Chart = () => {
         backgroundColor: ['transparent'],
       },
       {
-        data: [1000, 500, 200, 2100, 1800, 1700, 1500, 800, 500],
+        data: data,
 
         datalabels: {
+          font: {
+            size: '12',
+          },
           color: '#52555f',
+          labels: {
+            title: {
+              align: 'right',
+            },
+          },
           anchor: 'end',
-          offset: 5,
+          offset: 1,
           align: 'top',
 
           formatter: value => {
@@ -115,8 +115,8 @@ const Chart = () => {
   const barChartMobil = (
     <Bar
       type="bar"
-      width={130}
-      height={50}
+      width={100}
+      height={100}
       options={{
         indexAxis: 'y',
         plugins: {
@@ -133,13 +133,15 @@ const Chart = () => {
 
           x: {
             stacked: true,
-            grid: { lineWidth: 0, offset: true },
+            offset: true,
+            grid: { offset: true, lineWidth: 0 },
             ticks: {
               display: false,
             },
           },
           y: {
-            grid: { lineWidth: 0, offset: true },
+            offset: true,
+            grid: { offset: true, lineWidth: 0 },
             stacked: true,
             ticks: {
               display: false,
@@ -178,7 +180,7 @@ const Chart = () => {
 
           y: {
             min: 0,
-            max: 5500,
+            // max: 5500,
             stacked: true,
             ticks: {
               display: false,
