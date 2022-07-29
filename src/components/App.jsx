@@ -13,7 +13,7 @@ import Balance from './Balance';
 import TransactionsView from 'views/TransactionsView';
 import Container from './Container/Container';
 
-const { home, app, reports, income, expenses, transactions } = routes;
+const { home, app, reports, transactions } = routes;
 
 export const App = () => {
   return (
@@ -45,10 +45,7 @@ export const App = () => {
               </PrivateRoute>
             }
           >
-            <Route path={transactions} element={<TransactionsView />}>
-              <Route path={expenses} element={<div>Expenses Table</div>} />
-              <Route path={income} element={<div>Income Table</div>} />
-            </Route>
+            <Route path={transactions} element={<TransactionsView />}></Route>
             <Route path={reports} element={<ReportView />} />
           </Route>
         </Route>

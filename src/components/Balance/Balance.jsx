@@ -10,6 +10,7 @@ import moment from 'moment';
 import { getUserData } from 'redux/auth/auth-selectors';
 import { getPeriodData } from 'redux/currentPeriod/period-operations';
 import { authOperations } from '../../redux/auth/auth-operations';
+import Container from 'components/Container/Container';
 
 const { reports, transactions } = routes;
 
@@ -63,91 +64,93 @@ export default function Balance() {
 
   return (
     <div>
-      <div className={classBalance}>
-        {isReportPage && (
-          <Link to={transactions} className={s.linkToHome}>
-            <svg width="18" height="12">
-              <use href={`${sprite}#arrow-to-main-icon`}></use>
-            </svg>
-            <p className={s.linkToHomeText}>Main page</p>
-          </Link>
-        )}
-
-        <div className={s.wraper}>
-          {isReportPage ? (
-            <div className={s.currentPeriod}>
-              <p className={s.currentPeriodText}>Current period:</p>
-              <div className={s.monthChange}>
-                <button
-                  onClick={decrement}
-                  type="button"
-                  className={s.monthChangeBtn}
-                >
-                  <svg width={4} height={10}>
-                    <use href={`${sprite}#arrow-prev-icon`}></use>
-                  </svg>
-                </button>
-                <p className={s.monthChangeTxt}>{nextMonth}</p>
-                <button
-                  onClick={increment}
-                  type="button"
-                  className={s.monthChangeBtn}
-                >
-                  <svg width={4} height={10}>
-                    <use href={`${sprite}#arrow-next-icon`}></use>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          ) : (
-            <Link to={reports} className={s.linkReports}>
-              Reports
-              <svg width="14" height="14" className={s.reportsIcon}>
-                <use href={`${sprite}#report-icon`}></use>
+      <Container>
+        <div className={`${classBalance} ${s.container}`}>
+          {isReportPage && (
+            <Link to={transactions} className={s.linkToHome}>
+              <svg width="18" height="12">
+                <use href={`${sprite}#arrow-to-main-icon`}></use>
               </svg>
+              <p className={s.linkToHomeText}>Main page</p>
             </Link>
           )}
 
-          {!isReportPage ? (
-            <form className={s.form} onSubmit={handleSubmit}>
-              <label className={s.label}>
-                <span className={s.labelText}>Balance:</span>
-
-                <div>
-                  <input
-                    className={s.input}
-                    type="number"
-                    // placeholder="00.00 UAH"
-                    required
-                    name="balance"
-                    value={balance}
-                    onChange={handleChange}
-                  />
-                  {showModal && <BalanceModal />}
-                </div>
-                {!isReportPage && (
+          <div className={s.wraper}>
+            {isReportPage ? (
+              <div className={s.currentPeriod}>
+                <p className={s.currentPeriodText}>Current period:</p>
+                <div className={s.monthChange}>
                   <button
-                    type="submit"
-                    className={s.buttonForm}
-                    disabled={disabledButton}
+                    onClick={decrement}
+                    type="button"
+                    className={s.monthChangeBtn}
                   >
-                    Confirm
+                    <svg width={4} height={10}>
+                      <use href={`${sprite}#arrow-prev-icon`}></use>
+                    </svg>
                   </button>
-                )}
-              </label>
-            </form>
-          ) : (
-            <div className={s.balanceWraper}>
-              <p className={s.balanceTxt}>Balance:</p>
-              <p className={s.inputReports}>{currentBalance} UAH</p>
-            </div>
-          )}
+                  <p className={s.monthChangeTxt}>{nextMonth}</p>
+                  <button
+                    onClick={increment}
+                    type="button"
+                    className={s.monthChangeBtn}
+                  >
+                    <svg width={4} height={10}>
+                      <use href={`${sprite}#arrow-next-icon`}></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <Link to={reports} className={s.linkReports}>
+                Reports
+                <svg width="14" height="14" className={s.reportsIcon}>
+                  <use href={`${sprite}#report-icon`}></use>
+                </svg>
+              </Link>
+            )}
+
+            {!isReportPage ? (
+              <form className={s.form} onSubmit={handleSubmit}>
+                <label className={s.label}>
+                  <span className={s.labelText}>Balance:</span>
+
+                  <div>
+                    <input
+                      className={s.input}
+                      type="number"
+                      // placeholder="00.00 UAH"
+                      required
+                      name="balance"
+                      value={balance}
+                      onChange={handleChange}
+                    />
+                    {showModal && <BalanceModal />}
+                  </div>
+                  {!isReportPage && (
+                    <button
+                      type="submit"
+                      className={s.buttonForm}
+                      disabled={disabledButton}
+                    >
+                      Confirm
+                    </button>
+                  )}
+                </label>
+              </form>
+            ) : (
+              <div className={s.balanceWraper}>
+                <p className={s.balanceTxt}>Balance:</p>
+                <p className={s.inputReports}>{currentBalance} UAH</p>
+              </div>
+            )}
+          </div>
+          {/* {showModal && <BalanceModal />} */}
         </div>
-        {/* {showModal && <BalanceModal />} */}
-      </div>
-      <div>
-        <Outlet />
-      </div>
+        <div>
+          <Outlet />
+        </div>
+      </Container>
     </div>
   );
 }
