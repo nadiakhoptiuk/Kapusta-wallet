@@ -8,10 +8,11 @@ const ChartController = ({ categoryObject }) => {
 
   const labels = sortArr.map(el => el[0]);
   const data = sortArr.map(el => el[1]);
+  const maxData = Math.max(...data) * 1.2;
 
   return (
     <>
-      <Chart data={data} labels={labels} />
+      <Chart data={data} labels={labels} maxData={maxData} />
     </>
   );
 };

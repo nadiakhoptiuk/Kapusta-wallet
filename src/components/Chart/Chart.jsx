@@ -10,7 +10,7 @@ import { generateArr } from '../../utils/generateArr';
 
 ChartJS.register(ChartDataLabels);
 
-const Chart = ({ labels, data }) => {
+const Chart = ({ labels, data, maxData }) => {
   // ------------TABLET/DESKTOP---------------------------------
   const barChartData = {
     labels: labels,
@@ -42,21 +42,28 @@ const Chart = ({ labels, data }) => {
 
     datasets: [
       {
-        data: generateArr(0, labels.length),
+        data: generateArr(180, labels.length),
 
         datalabels: {
+          display: function (context) {
+            const dataTrue = data.find(
+              (_, index) => index === context.dataIndex
+            );
+
+            return dataTrue > 800;
+          },
+
           font: {
             size: '12',
           },
           color: '#52555f',
           labels: {
             title: {
-              align: 'right',
+              align: 'top',
             },
           },
           anchor: 'end',
           offset: 5,
-          // align: 'top',
           barPercentage: 0.5,
           categoryPercentage: 1,
 
@@ -66,26 +73,40 @@ const Chart = ({ labels, data }) => {
             return labels;
           },
         },
+        barPercentage: 1,
+        barThickness: 15,
 
-        borderColor: 'rgba(245, 246, 251, 1)',
         backgroundColor: ['transparent'],
       },
       {
         data: data,
 
         datalabels: {
+          layout: {
+            padding: {
+              top: 0,
+              right: 100,
+              bottom: 100,
+              left: 8,
+            },
+          },
+          // display: function (context) {
+          //   console.log('context>>>>', context);
+          //   return context.dataset.data[context.dataIndex] > 500;
+          // },
           font: {
             size: '12',
           },
           color: '#52555f',
           labels: {
             title: {
-              align: 'right',
+              align: 'top',
             },
           },
           anchor: 'end',
-          offset: 1,
-          align: 'top',
+          offset: 5,
+          barPercentage: 0.5,
+          categoryPercentage: 1,
 
           formatter: value => {
             return `${addSpaceForAmount(Math.floor(value)).split('.')[0]} грн`;
@@ -119,6 +140,9 @@ const Chart = ({ labels, data }) => {
       width={100}
       height={100}
       options={{
+        layout: {
+          padding: { left: 30, right: 30 },
+        },
         indexAxis: 'y',
         plugins: {
           legend: {
@@ -135,14 +159,14 @@ const Chart = ({ labels, data }) => {
           x: {
             stacked: true,
             offset: true,
-            grid: { offset: true, lineWidth: 0 },
+            grid: { offset: true, lineWidth: 0, borderColor: 'transparent' },
             ticks: {
               display: false,
             },
           },
           y: {
             offset: true,
-            grid: { offset: true, lineWidth: 0 },
+            grid: { offset: true, lineWidth: 0, borderColor: 'transparent' },
             stacked: true,
             ticks: {
               display: false,
@@ -156,8 +180,8 @@ const Chart = ({ labels, data }) => {
   const barChart = (
     <Bar
       type="bar"
-      width={130}
-      height={50}
+      width={100}
+      height={100}
       options={{
         plugins: {
           legend: {
@@ -181,13 +205,15 @@ const Chart = ({ labels, data }) => {
 
           y: {
             min: 0,
-            // max: 5500,
+            max: maxData,
             stacked: true,
             ticks: {
               display: false,
             },
           },
           x: {
+            min: 0,
+            max: maxData,
             grid: { lineWidth: 0 },
             stacked: true,
           },

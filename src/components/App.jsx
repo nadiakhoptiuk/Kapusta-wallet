@@ -11,6 +11,7 @@ import { PublicRoute } from './PublicRoute/PublicRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import Balance from './Balance';
 import TransactionsView from 'views/TransactionsView';
+import ChartController from './ChartController/ChartController';
 
 const { home, app, reports, transactions } = routes;
 
@@ -43,7 +44,7 @@ export const App = () => {
             }
           >
             <Route path={transactions} element={<TransactionsView />}></Route>
-            <Route path={reports} element={<ReportView />} />
+            <Route path={reports} element={<ChartController />} />
           </Route>
         </Route>
       </Routes>
