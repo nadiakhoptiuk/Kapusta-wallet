@@ -42,8 +42,12 @@
 }
 
 .googleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 40px;
   margin: 0 auto 32px;
-  padding: 11px 20px;
   background: var(--auth-form-button-background-color);
   border: none;
   border-radius: 26px;
@@ -56,6 +60,7 @@
   display: flex;
   align-items: center;
   letter-spacing: 0.02em;
+  text-decoration: none;
 
   color: var(--general-header-color);
 }

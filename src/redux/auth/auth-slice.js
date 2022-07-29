@@ -17,6 +17,13 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    googleAuth(state, action) {
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
+      state.sid = action.payload.sid;
+    },
+  },
   extraReducers: {
     // register
     [authOperations.register.pending](state) {
@@ -94,10 +101,11 @@ const authSlice = createSlice({
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
       state.accessToken = action.payload.newAccessToken;
       state.refreshToken = action.payload.newRefreshToken;
-      state.sid = action.payload.data.newSid;
+      state.sid = action.payload.newSid;
     },
     [authOperations.fetchCurrentUser.rejected](state) {
       state.isLoadingRefresh = false;
+      toast.error('error');
     },
     [authOperations.getUserData.fulfilled](state, action) {
       state.userData = action.payload;
@@ -107,19 +115,8 @@ const authSlice = createSlice({
     [authOperations.getUserData.rejected](state) {
       state.isLoadingRefresh = false;
     },
-
-    // google
-    [authOperations.googleLogin.pending](state) {
-      state.isLoadingLogin = true;
-    },
-    [authOperations.googleLogin.fulfilled](state, action) {
-      state.isLoadingLogin = false;
-    },
-    [authOperations.googleLogin.rejected](state) {
-      state.isLoadingLogin = false;
-      toast.error('error');
-    },
   },
 });
 
+export const { googleAuth } = authSlice.actions;
 export default authSlice.reducer;
