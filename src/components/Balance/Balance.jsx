@@ -11,6 +11,9 @@ import { getUserData } from 'redux/auth/auth-selectors';
 import { getPeriodData } from 'redux/currentPeriod/period-operations';
 import { authOperations } from '../../redux/auth/auth-operations';
 import Container from 'components/Container/Container';
+import { toast } from 'react-toastify';
+import { useLocalStorage } from 'hooks/useLocalStorage';
+import { setCurrentPeriod } from 'redux/currentPeriod/period-operations';
 
 const { reports, transactions } = routes;
 
@@ -31,11 +34,14 @@ export default function Balance() {
   const nextMonth = moment().add(counter, 'M').format('MMMM YYYY');
   const nextMonthForFetch = moment().add(counter, 'M').format('YYYY-MM');
   const currentBalance = useSelector(getUserData).balance;
+  const isNewUser = useLocalStorage('isNewUser', null);
+  console.log(isNewUser[0]);
 
   // Fetch
   useEffect(() => {
     dispatch(getPeriodData(nextMonthForFetch));
-  }, [nextMonthForFetch, dispatch]);
+    dispatch(setCurrentPeriod(nextMonth));
+  }, [nextMonthForFetch, dispatch, nextMonth]);
   // Fetch
 
   const increment = () => {
@@ -52,7 +58,10 @@ export default function Balance() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(balance);
+    if (balance < 0) {
+      toast.error('Balance cannot be negative');
+      return;
+    }
     toggleModal();
     dispatch(authOperations.updateUserBalance(balance));
     setDisabledButton(true);
@@ -115,11 +124,10 @@ export default function Balance() {
                 <label className={s.label}>
                   <span className={s.labelText}>Balance:</span>
 
-                  <div>
+                  <div className={s.modalWraper}>
                     <input
                       className={s.input}
                       type="number"
-                      // placeholder="00.00 UAH"
                       required
                       name="balance"
                       value={balance}

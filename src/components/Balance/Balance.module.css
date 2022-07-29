@@ -1,5 +1,4 @@
-.container{
-  
+.container {
 }
 .Balance {
   padding-top: 40px;
@@ -153,6 +152,10 @@
   text-align: right;
 
   color: var(--general-header-color);
+}
+
+.modalWraper {
+  position: relative;
 }
 
 .buttonForm {
