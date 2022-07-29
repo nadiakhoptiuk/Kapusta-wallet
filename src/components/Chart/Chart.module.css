@@ -4,8 +4,7 @@
   margin: 0 auto;
 }
 .barMob {
-  width: 800px;
-
-  margin: 0 auto;
+  width: 90% !important;
+  margin: auto;
   /* padding: 20px; */
 }

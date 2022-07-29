@@ -1,7 +1,7 @@
 import { Fragment, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import { NavLink } from 'react-router-dom';
 import { getIsLoggedIn } from '../../redux/auth/auth-selectors';
 import UserMenu from 'components/UserMenu';
 import s from './SharedLayout.module.css';
@@ -12,12 +12,14 @@ const SharedLayout = () => {
   return (
     <Fragment>
       <header className={s.header}>
-        <img
-          src={require('../../images/logo.jpg')}
-          alt="avatar"
-          width={90}
-          height={31}
-        />
+        <NavLink to="/">
+          <img
+            src={require('../../images/logo.jpg')}
+            alt="avatar"
+            width={90}
+            height={31}
+          />
+        </NavLink>
 
         {isLoggedIn && <UserMenu />}
       </header>
