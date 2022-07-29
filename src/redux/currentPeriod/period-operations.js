@@ -1,5 +1,7 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 import { getPeriodDataQuery } from 'service/kapustaAPI';
+
+export const actionName = 'period/setCurrentPeriod';
 
 export const getPeriodData = createAsyncThunk(
   'period/get',
@@ -12,3 +14,5 @@ export const getPeriodData = createAsyncThunk(
     }
   }
 );
+
+export const setCurrentPeriod = createAction(actionName);
