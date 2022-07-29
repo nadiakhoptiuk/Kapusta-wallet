@@ -1,6 +1,6 @@
 const transactionTypes = {
-  expenses: 'Expenses',
-  incomes: 'Incomes',
+  expenses: 'expenses',
+  incomes: 'incomes',
 };
 
 export default transactionTypes;
