@@ -1,1 +1,1 @@
-export {IncomesInMonthly } from './IncomesInMonthly'
+export { IncomesInMonthly } from './IncomesInMonthly';

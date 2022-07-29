@@ -12,22 +12,27 @@ const initialState = {
   isLoadingLogin: false,
   isLoadingLogout: false,
   isLoadingRefresh: false,
+  isUpdating: false,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    googleAuth(state, action) {
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
+      state.sid = action.payload.sid;
+    },
+  },
   extraReducers: {
     // register
     [authOperations.register.pending](state) {
       state.isLoadingRegister = true;
     },
-    [authOperations.register.fulfilled](state, action) {
-      state.userData.email = action.payload.email;
-      state.userData.id = action.payload.id;
+    [authOperations.register.fulfilled](state) {
       state.isLoadingRegister = false;
-      toast('You have successfully registered');
-      toast('Now you can login');
+      toast('You have successfully registered.');
     },
     [authOperations.register.rejected](state, action) {
       state.isLoadingRegister = false;
@@ -97,7 +102,7 @@ const authSlice = createSlice({
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
       state.accessToken = action.payload.newAccessToken;
       state.refreshToken = action.payload.newRefreshToken;
-      state.sid = action.payload.data.newSid;
+      state.sid = action.payload.newSid;
     },
     [authOperations.fetchCurrentUser.rejected](state) {
       state.isLoadingRefresh = false;
@@ -111,18 +116,31 @@ const authSlice = createSlice({
       state.isLoadingRefresh = false;
     },
 
-    // google
-    [authOperations.googleLogin.pending](state) {
-      state.isLoadingLogin = true;
+    // userBalance
+    [authOperations.updateUserBalance.pending](state) {
+      state.isUpdating = true;
     },
-    [authOperations.googleLogin.fulfilled](state, action) {
-      state.isLoadingLogin = false;
+    [authOperations.updateUserBalance.fulfilled](state, action) {
+      state.isUpdating = false;
+      state.userData.balance = action.payload.newBalance;
     },
-    [authOperations.googleLogin.rejected](state) {
-      state.isLoadingLogin = false;
-      toast.error('error');
+    [authOperations.updateUserBalance.rejected](state, action) {
+      state.isUpdating = false;
+      switch (action.payload) {
+        case 401:
+          toast.error('Unauthorized');
+          break;
+
+        case 404:
+          toast.error('Invalid user');
+          break;
+
+        default:
+          toast.error('Bad reguest');
+      }
     },
   },
 });
 
+export const { googleAuth } = authSlice.actions;
 export default authSlice.reducer;

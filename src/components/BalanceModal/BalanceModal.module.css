@@ -1,21 +1,28 @@
-.backdrop {
-  width: 100%;
-  height: 100%;
-}
+/* .backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1200;
+  pointer-events: none;
+} */
 
 .modalBalance {
   position: relative;
   width: 280px;
   padding-top: 29px;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
   padding-left: 29px;
   padding-right: 29px;
   color: var(--balance-button-border-color);
   background-image: var(--balance-popup-message-gradient);
   border-radius: 30px;
+  z-index: 10;
 }
 
 .modalText {
+  margin-bottom: 20px;
   font-size: 14px;
   line-height: 1.43;
 }
@@ -25,8 +32,29 @@
   line-height: 1.33;
 }
 
+@media screen and (max-width: 767px) {
+  .modalBalance {
+    position: absolute;
+    left: 0;
+    top: 63px;
+    /* margin: 0 auto; */
+    /* margin-top: 245px; */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modalBalance {
+    position: absolute;
+    top: 63px;
+    left: 10px;
+    /* margin-left: 150px; */
+    /* margin-top: 158px; */
+  }
+}
+
 @media screen and (min-width: 1280px) {
   .modalBalance {
+    /* margin-left: 545px; */
     width: 288px;
   }
 }

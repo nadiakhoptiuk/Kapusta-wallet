@@ -1,20 +1,22 @@
-import { useState } from 'react';
-import { expensesCategory } from 'utils/localization';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { expensesCategory, incomeCategory } from 'utils/localization';
+import { currentPeriodDataSelector } from 'redux/currentPeriod/period-selectors';
 import addSpaceForAmount from 'utils/addSpaceForAmount';
-// import {
-//   getExpenseCategoriesQuery,
-//   getIncomeCategoriesQuery,
-// } from 'service/kapustaAPI';
 import transactionTypes from 'utils/transactionTypes';
 import Sprite from '../../images/sprite.svg';
 import s from './FinancialReport.module.css';
 
-export default function FinancialReport() {
+export default function FinancialReport({
+  selectedCategory,
+  setSelectedCategory,
+  selectedOperation,
+  setSelectedOperation,
+}) {
   const { expenses, incomes } = transactionTypes;
-  const [selectedCategory, setSelectedCategory] = useState(
-    expensesCategory[0].category
-  );
-  const [selectedOperation, setSelectedOperation] = useState(expenses);
+  const [operationData, setOperationData] = useState([]);
+
+  const currentPeriodData = useSelector(currentPeriodDataSelector);
 
   function transformedString(string) {
     if (!string.includes(' ')) {
@@ -36,13 +38,31 @@ export default function FinancialReport() {
       : setSelectedOperation(expenses);
   }
 
-  // useEffect(() => {
-  //   const data =
-  //     selectedOperation === expenses
-  //       ? getExpenseCategoriesQuery()
-  //       : getIncomeCategoriesQuery();
-  //   return data;
-  // }, [expenses, selectedOperation]);
+  useEffect(() => {
+    const data =
+      selectedOperation === expenses
+        ? currentPeriodData.expenses.expensesData
+        : currentPeriodData.incomes.incomesData;
+
+    const arrayOfCategories =
+      selectedOperation === expenses ? expensesCategory : incomeCategory;
+
+    const dataForOperation = Object.entries(data).map(el => {
+      const obj = arrayOfCategories?.find(
+        ({ backendName }) => el[0] === backendName
+      );
+
+      return {
+        total: el[1].total,
+        category: obj.category,
+        imgPath: obj.imgPath,
+        backendName: obj.backendName,
+      };
+    });
+
+    setOperationData(dataForOperation);
+    setSelectedCategory(dataForOperation[0]?.backendName);
+  }, [expenses, selectedOperation, currentPeriodData, setSelectedCategory]);
 
   return (
     <section className={s.reportSection}>
@@ -69,40 +89,46 @@ export default function FinancialReport() {
       </div>
 
       <ul className={s.categoryList}>
-        {expensesCategory.map(({ total, imgPath, category }, index) => {
-          return total === 0 ? null : (
-            <li key={index} className={s.categoryItem}>
-              <span className={s.categoryAmount}>
-                {addSpaceForAmount(total)}
-              </span>
+        {operationData ? (
+          operationData?.map(
+            ({ total, imgPath, backendName, category }, index) => {
+              return (
+                <li key={index} className={s.categoryItem}>
+                  <span className={s.categoryAmount}>
+                    {addSpaceForAmount(total)}
+                  </span>
 
-              <div className={s.btnWrap}>
-                <button
-                  type="button"
-                  className={
-                    category === selectedCategory
-                      ? `${s.categoryBtnActive}`
-                      : `${s.categoryBtn}`
-                  }
-                  onClick={() => changeCategory(category)}
-                >
-                  <svg className={s.categoryIcon}>
-                    <use href={`${Sprite}#${imgPath}`}></use>
-                  </svg>
-                </button>
-                <div
-                  className={
-                    category === selectedCategory
-                      ? `${s.rectangleActive}`
-                      : `${s.rectangle}`
-                  }
-                ></div>
-              </div>
+                  <div className={s.btnWrap}>
+                    <button
+                      type="button"
+                      className={
+                        backendName === selectedCategory
+                          ? `${s.categoryBtnActive}`
+                          : `${s.categoryBtn}`
+                      }
+                      onClick={() => changeCategory(backendName)}
+                    >
+                      <svg className={s.categoryIcon}>
+                        <use href={`${Sprite}#${imgPath}`}></use>
+                      </svg>
+                    </button>
+                    <div
+                      className={
+                        backendName === selectedCategory
+                          ? `${s.rectangleActive}`
+                          : `${s.rectangle}`
+                      }
+                    ></div>
+                  </div>
 
-              <p className={s.category}>{transformedString(category)}</p>
-            </li>
-          );
-        })}
+                  <p className={s.category}>{transformedString(category)}</p>
+                </li>
+              );
+            }
+          )
+        ) : (
+          <p>You haven't added your ${selectedOperation} for February yet...</p>
+        )}
       </ul>
     </section>
   );

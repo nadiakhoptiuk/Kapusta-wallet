@@ -1,0 +1,10 @@
+.bar {
+  width: 704px;
+  /* height: 422px; */
+  margin: 0 auto;
+}
+.barMob {
+  width: 90% !important;
+  margin: auto;
+  /* padding: 20px; */
+}

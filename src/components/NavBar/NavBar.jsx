@@ -1,7 +1,7 @@
 import s from './NavBar.module.css';
 import { MODES } from 'utils/transactionConstants';
 
-const NavBar = ({ setMode }) => {
+const NavBar = ({ mode, setMode }) => {
   return (
     <div className={s.container}>
       <nav className={s.navWrap}>
@@ -9,7 +9,7 @@ const NavBar = ({ setMode }) => {
           <li className={s.navListItem}>
             <button
               type="button"
-              className={s.link}
+              className={mode === MODES.expenseMode ? s.linkActive : s.link}
               onClick={() => setMode(MODES.expenseMode)}
             >
               expenses
@@ -18,7 +18,7 @@ const NavBar = ({ setMode }) => {
           <li className={s.navListItem}>
             <button
               type="button"
-              className={s.link}
+              className={mode === MODES.incomeMode ? s.linkActive : s.link}
               onClick={() => setMode(MODES.incomeMode)}
             >
               income

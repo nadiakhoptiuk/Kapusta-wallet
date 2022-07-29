@@ -1,6 +1,8 @@
-import Loader from 'components/Loader';
-import moment from 'moment';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import moment from 'moment';
+import Loader from 'components/Loader';
 import {
   deleteTransactionQuery,
   getExpenseTransactionsQuery,
@@ -14,7 +16,10 @@ const TransactionsTable = ({
   transactions,
   setTransactions,
   setSummary,
+  isLoading,
+  setIsLoading,
   mode,
+  modalOpen,
 }) => {
   const [isFetching, setIsFetching] = useState(false);
 
@@ -25,7 +30,10 @@ const TransactionsTable = ({
         .then(({ data }) => {
           setTransactions(data.expenses);
         })
-        .finally(() => setIsFetching(false));
+        .catch(err => toast.error(err.message))
+        .finally(() => {
+          setIsFetching(false);
+        });
     }
 
     if (mode === MODES.incomeMode) {
@@ -33,24 +41,31 @@ const TransactionsTable = ({
         .then(({ data }) => {
           setTransactions(data.incomes);
         })
-        .finally(() => setIsFetching(false));
+        .catch(err => toast.error(err.message))
+        .finally(() => {
+          setIsFetching(false);
+        });
     }
-  }, [mode, setTransactions]);
+  }, [mode, setIsLoading, setTransactions]);
 
   const deleteTransaction = async id => {
     const response = await deleteTransactionQuery(id);
     if (response.status === 200) {
       setTransactions(transactions.filter(el => el._id !== id));
       if (mode === MODES.expenseMode) {
-        getExpenseTransactionsQuery().then(({ data }) => {
-          setSummary(data.monthsStats);
-        });
+        getExpenseTransactionsQuery()
+          .then(({ data }) => {
+            setSummary(data.monthsStats);
+          })
+          .catch(err => toast.error(err.message));
       }
-      if (mode === MODES.incomeMode) {
-        getIncomeTransactionsQuery().then(({ data }) => {
+    }
+    if (mode === MODES.incomeMode) {
+      getIncomeTransactionsQuery()
+        .then(({ data }) => {
           setSummary(data.monthsStats);
-        });
-      }
+        })
+        .catch(err => toast.error(err.message));
     }
   };
 
@@ -67,9 +82,13 @@ const TransactionsTable = ({
           </tr>
         </thead>
         <tbody className={s.tableBody}>
-          {isFetching ? (
-            <Loader />
-          ) : (
+          {isFetching || isLoading ? (
+            <tr>
+              <td className={s.loader}>
+                <Loader />
+              </td>
+            </tr>
+          ) : transactions.length > 0 ? (
             transactions.map(el => (
               <tr key={el._id} className={s.tableRow}>
                 <td className={s.description}>
@@ -78,7 +97,7 @@ const TransactionsTable = ({
                 <td className={s.description}>{el.description}</td>
                 <td className={s.description}>{el.category}</td>
                 {mode === MODES.expenseMode ? (
-                  <td className={s.descriptionExpense}>- {el.amount} грн.</td>
+                  <td className={s.descriptionExpense}>-{el.amount} грн.</td>
                 ) : (
                   <td className={s.descriptionIncome}>{el.amount} грн.</td>
                 )}
@@ -94,6 +113,12 @@ const TransactionsTable = ({
                 </td>
               </tr>
             ))
+          ) : (
+            <tr className={s.message}>
+              <td>
+                <p>You can add your transactions</p>
+              </td>
+            </tr>
           )}
         </tbody>
       </table>
@@ -101,30 +126,46 @@ const TransactionsTable = ({
       <div className={s.tableMobileWrap}>
         <table className={s.mobileTable}>
           <tbody className={s.tBody}>
-            {transactions.map(el => (
-              <tr key={el._id} className={s.tableRow}>
-                <td className={s.column}>
-                  <span>{el.description}</span>
-                  <span className={s.date}>{el.date}</span>
-                </td>
-                <td className={s.date}>{el.category}</td>
-                {mode === 'expenseMode' ? (
-                  <td className={s.descriptionExpense}>- {el.amount} грн.</td>
-                ) : (
-                  <td className={s.descriptionIncome}>{el.amount} грн.</td>
-                )}
-                <td className={s.lastTD}>
-                  <button
-                    className={s.btnDelete}
-                    onClick={() => deleteTransaction(el._id)}
-                  >
-                    <svg className={s.calendarIcon} width={18} height={18}>
-                      <use href={`${Sprite}#delete-icon`}></use>
-                    </svg>
-                  </button>
+            {isFetching || isLoading ? (
+              <tr>
+                <td className={s.loader}>
+                  <Loader />
                 </td>
               </tr>
-            ))}
+            ) : transactions.length > 0 ? (
+              transactions.map(el => (
+                <tr key={el._id} className={s.tableRow}>
+                  <td className={s.column}>
+                    <span className={s.descriptionMobile}>
+                      {el.description}
+                    </span>
+                    <span className={s.date}>{el.date}</span>
+                  </td>
+                  <td className={s.category}>{el.category}</td>
+                  {mode === MODES.expenseMode ? (
+                    <td className={s.descriptionExpense}>- {el.amount} грн.</td>
+                  ) : (
+                    <td className={s.descriptionIncome}>{el.amount} грн.</td>
+                  )}
+                  <td className={s.lastTD}>
+                    <button
+                      className={s.btnDelete}
+                      onClick={() => deleteTransaction(el._id)}
+                    >
+                      <svg className={s.calendarIcon} width={18} height={18}>
+                        <use href={`${Sprite}#delete-icon`}></use>
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr className={s.message}>
+                <td>
+                  <p>You can add your transactions</p>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

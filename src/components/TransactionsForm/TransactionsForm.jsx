@@ -1,5 +1,7 @@
-import moment from 'moment';
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Sprite from '../../images/sprite.svg';
 import StyledSelect from './TransactionFormSelect.styled';
 import s from './TransactionsForm.module.css';
@@ -12,11 +14,14 @@ import {
   sendIncomeTransactionQuery,
 } from 'service/kapustaAPI';
 import { MODES } from 'utils/transactionConstants';
+// import Select from 'react-select';
+// import { customStyles } from './TransactionFormSelect.styled';
 
 const TransactionsForm = ({
   onSubmit,
   setSummary,
   mode,
+  setIsLoading,
   closeModal = () => 7,
 }) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
@@ -26,11 +31,19 @@ const TransactionsForm = ({
   const [categories, setCategories] = useState('');
 
   useEffect(() => {
+    setDate(moment(new Date()).format('YYYY-MM-DD'));
+    setDescription('');
+    setCategory(null);
+    setAmount('');
     if (mode === MODES.expenseMode) {
-      getExpenseCategoriesQuery().then(({ data }) => setCategories(data));
+      getExpenseCategoriesQuery()
+        .then(({ data }) => setCategories(data))
+        .catch(err => toast.error(err.message));
     }
     if (mode === MODES.incomeMode) {
-      getIncomeCategoriesQuery().then(({ data }) => setCategories(data));
+      getIncomeCategoriesQuery()
+        .then(({ data }) => setCategories(data))
+        .catch(err => toast.error(err.message));
     }
   }, [mode]);
 
@@ -68,6 +81,13 @@ const TransactionsForm = ({
 
   const handleSubmit = e => {
     e.preventDefault();
+    setIsLoading(true);
+
+    if (description.trim().length === 0) {
+      toast.warning('Please fill in all fields');
+      setIsLoading(false);
+      return;
+    }
 
     const transactionsList = {
       description: description,
@@ -75,26 +95,35 @@ const TransactionsForm = ({
       category: category.value,
       amount: amount,
     };
+
     closeModal();
 
     if (mode === MODES.expenseMode) {
-      sendExpenseTransactionQuery(transactionsList).then(({ data }) => {
-        onSubmit(data.transaction);
-      });
+      sendExpenseTransactionQuery(transactionsList)
+        .then(({ data }) => {
+          onSubmit(data.transaction);
+        })
+        .catch(err => toast.error(err.message));
 
-      getExpenseTransactionsQuery().then(({ data }) => {
-        setSummary(data.monthsStats);
-      });
+      getExpenseTransactionsQuery()
+        .then(({ data }) => {
+          setSummary(data.monthsStats);
+        })
+        .catch(err => toast.error(err.message));
     }
 
     if (mode === MODES.incomeMode) {
-      sendIncomeTransactionQuery(transactionsList).then(({ data }) => {
-        onSubmit(data.transaction);
-      });
+      sendIncomeTransactionQuery(transactionsList)
+        .then(({ data }) => {
+          onSubmit(data.transaction);
+        })
+        .catch(err => toast.error(err.message));
 
-      getIncomeTransactionsQuery().then(({ data }) => {
-        setSummary(data.monthsStats);
-      });
+      getIncomeTransactionsQuery()
+        .then(({ data }) => {
+          setSummary(data.monthsStats);
+        })
+        .catch(err => toast.error(err.message));
     }
 
     setDate(moment(new Date()).format('YYYY-MM-DD'));
@@ -136,8 +165,18 @@ const TransactionsForm = ({
           placeholder="Product description"
           value={description}
         />
+        {/* <Select
+          required
+          placeholder={<div>Product category</div>}
+          width="200px"
+          styles={customStyles}
+          value={category}
+          onChange={setCategory}
+          options={selectOptions()}
+        /> */}
         <StyledSelect
           required
+          placeholder={<div>Product category</div>}
           value={category}
           onChange={setCategory}
           options={selectOptions()}
