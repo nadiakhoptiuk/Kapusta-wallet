@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { expensesCategory, incomeCategory } from 'utils/localization';
-import { currentPeriodDataSelector } from 'redux/currentPeriod/period-selectors';
+import {
+  currentPeriodDataSelector,
+  currentPeriodSelector,
+  isLoadingSelector,
+} from 'redux/currentPeriod/period-selectors';
 import addSpaceForAmount from 'utils/addSpaceForAmount';
 import transactionTypes from 'utils/transactionTypes';
 import Sprite from '../../images/sprite.svg';
@@ -17,6 +22,7 @@ export default function FinancialReport({
   const [operationData, setOperationData] = useState([]);
 
   const currentPeriodData = useSelector(currentPeriodDataSelector);
+  const currentPeriod = useSelector(currentPeriodSelector);
 
   function transformedString(string) {
     if (!string.includes(' ')) {
@@ -39,29 +45,38 @@ export default function FinancialReport({
   }
 
   useEffect(() => {
-    const data =
-      selectedOperation === expenses
-        ? currentPeriodData.expenses.expensesData
-        : currentPeriodData.incomes.incomesData;
+    if (Object.keys(currentPeriodData).length > 0) {
+      const data =
+        selectedOperation === expenses
+          ? currentPeriodData?.expenses?.expensesData
+          : currentPeriodData?.incomes?.incomesData;
 
-    const arrayOfCategories =
-      selectedOperation === expenses ? expensesCategory : incomeCategory;
+      const arrayOfCategories =
+        selectedOperation === expenses ? expensesCategory : incomeCategory;
 
-    const dataForOperation = Object.entries(data).map(el => {
-      const obj = arrayOfCategories?.find(
-        ({ backendName }) => el[0] === backendName
-      );
+      const arrayForHandle = Object.entries(data);
 
-      return {
-        total: el[1].total,
-        category: obj.category,
-        imgPath: obj.imgPath,
-        backendName: obj.backendName,
-      };
-    });
+      if (arrayForHandle.length === 0) {
+        setOperationData(null);
+        setSelectedCategory(null);
+      } else {
+        const dataForOperation = Object.entries(data).map(el => {
+          const obj = arrayOfCategories?.find(
+            ({ backendName }) => el[0] === backendName
+          );
 
-    setOperationData(dataForOperation);
-    setSelectedCategory(dataForOperation[0]?.backendName);
+          return {
+            total: el[1].total,
+            category: obj.category,
+            imgPath: obj.imgPath,
+            backendName: obj.backendName,
+          };
+        });
+
+        setOperationData(dataForOperation);
+        setSelectedCategory(dataForOperation[0]?.backendName);
+      }
+    }
   }, [expenses, selectedOperation, currentPeriodData, setSelectedCategory]);
 
   return (
@@ -89,7 +104,7 @@ export default function FinancialReport({
       </div>
 
       <ul className={s.categoryList}>
-        {operationData ? (
+        {operationData?.length > 0 ? (
           operationData?.map(
             ({ total, imgPath, backendName, category }, index) => {
               return (
@@ -127,9 +142,19 @@ export default function FinancialReport({
             }
           )
         ) : (
-          <p>You haven't added your ${selectedOperation} for February yet...</p>
+          <p className={s.reportNotify}>
+            You haven't added your {selectedOperation} for {currentPeriod}{' '}
+            yet...
+          </p>
         )}
       </ul>
     </section>
   );
 }
+
+FinancialReport.propTypes = {
+  selectedCategory: PropTypes.string,
+  setSelectedCategory: PropTypes.func.isRequired,
+  selectedOperation: PropTypes.string.isRequired,
+  setSelectedOperation: PropTypes.func.isRequired,
+};
