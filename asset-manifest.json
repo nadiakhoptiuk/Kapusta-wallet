@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/react-kapusta-project/static/css/main.30d4f1f0.css",
-    "main.js": "/react-kapusta-project/static/js/main.51f4e8e7.js",
+    "main.css": "/react-kapusta-project/static/css/main.3142c0db.css",
+    "main.js": "/react-kapusta-project/static/js/main.90004b63.js",
     "static/media/sprite.svg": "/react-kapusta-project/static/media/sprite.6c0bc17fde8fdf4fef69a46da6985f78.svg",
     "index.html": "/react-kapusta-project/index.html",
-    "main.30d4f1f0.css.map": "/react-kapusta-project/static/css/main.30d4f1f0.css.map",
-    "main.51f4e8e7.js.map": "/react-kapusta-project/static/js/main.51f4e8e7.js.map"
+    "main.3142c0db.css.map": "/react-kapusta-project/static/css/main.3142c0db.css.map",
+    "main.90004b63.js.map": "/react-kapusta-project/static/js/main.90004b63.js.map"
   },
   "entrypoints": [
-    "static/css/main.30d4f1f0.css",
-    "static/js/main.51f4e8e7.js"
+    "static/css/main.3142c0db.css",
+    "static/js/main.90004b63.js"
   ]
 }
