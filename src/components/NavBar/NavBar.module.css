@@ -78,7 +78,7 @@
     list-style: none;
     min-width: 159px;
     height: 53px;
-    background-color: var(--trans-dropdown-border-color);
+    background-color: var(--trans-navbar-link-background);
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
@@ -93,6 +93,11 @@
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     cursor: pointer;
+  }
+
+  .link:hover,
+  .link:focus {
+    color: var(--general-accent-background-color);
   }
 
   .linkActive {

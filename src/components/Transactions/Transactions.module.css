@@ -16,8 +16,9 @@
     background-color: var(--general-accent-background-color);
     position: absolute;
     z-index: 8;
-    bottom: 80px;
-    right: 20px;
+    top: 250px;
+    left: 50%;
+    transform: translateX(-50%);
     border: none;
     border-bottom-left-radius: 16px;
     border-top-right-radius: 16px;

@@ -17,7 +17,7 @@
     flex-direction: column;
     width: 100vw;
     height: 258px;
-    background-color: var(--modal-button-border-color);
+    background-color: var(--trans-dropdown-border-color);
     border-bottom-left-radius: 30%;
   }
 
@@ -28,7 +28,7 @@
     border-top-left-radius: 16px;
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 900;
+    font-weight: 400;
     font-size: 12px;
     line-height: 14px;
     text-align: center;
@@ -36,6 +36,7 @@
   }
 
   .description::placeholder {
+    font-weight: 400;
     color: var(--trans-form-input-placeholder-color);
   }
   .select {
@@ -241,7 +242,7 @@
     border-top-left-radius: 16px;
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 900;
+    font-weight: 400;
     font-size: 12px;
     line-height: 14px;
     padding-left: 19px;
@@ -261,7 +262,6 @@
     line-height: 14px;
     padding-left: 19px;
     background-color: transparent;
-
     color: var(--general-text-color);
   }
 
