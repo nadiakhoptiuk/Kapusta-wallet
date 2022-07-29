@@ -39,9 +39,7 @@ export const App = () => {
             path={app}
             element={
               <PrivateRoute>
-                <Container>
-                  <Balance />
-                </Container>
+                <Balance />
               </PrivateRoute>
             }
           >
