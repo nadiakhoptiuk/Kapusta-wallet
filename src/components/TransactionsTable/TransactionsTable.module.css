@@ -1,26 +1,37 @@
 @media screen and (max-width: 767px) {
   .tableMobileWrap {
-    /* display: none; */
     position: absolute;
+    left: 50%;
+    transform: translate(-50%);
     bottom: 70px;
     z-index: 2;
+  }
+
+  .loader {
+    width: 320px;
   }
   .table {
     display: none;
   }
 
   .mobileTable {
-    /* display: none; */
     margin: 0 auto;
   }
 
   .tBody {
     font-weight: 400;
-    /* max-height: 345px; */
     display: block;
     overflow: auto;
-    width: 100vw;
+    min-width: 310px;
     max-height: 150px;
+  }
+
+  .tBody::-webkit-scrollbar {
+    background-color: var(--modal-button-border-color);
+    width: 6px;
+  }
+  .tBody::-webkit-scrollbar-thumb {
+    background-color: var(--general-accent-background-color);
   }
 
   .description {
@@ -28,9 +39,14 @@
     font-style: normal;
     font-weight: 700;
     font-size: 12px;
-    padding: 10px;
+    text-align: center;
+    width: 80px;
     background-color: var(--general-background-bot-part-color);
     color: var(--table-expense-text-color);
+  }
+
+  .descriptionMobile {
+    text-align: start;
   }
 
   .descriptionExpense {
@@ -45,6 +61,18 @@
     font-weight: 700;
   }
 
+  .message {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 20px;
+    color: var(--general-text-color);
+    opacity: 0.8;
+    width: 280px;
+  }
+
   .column {
     composes: description;
     display: flex;
@@ -57,10 +85,11 @@
     font-size: 12px;
     line-height: 14px;
     letter-spacing: 0.04em;
-    padding: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     background-color: var(--general-background-bot-part-color);
-
     color: var(--general-text-color);
+    max-width: 90px;
   }
 
   .date {
@@ -72,7 +101,18 @@
     line-height: 9px;
     letter-spacing: 0.04em;
     text-align: start;
+    color: var(--general-text-color);
+  }
 
+  .category {
+    padding-left: 10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 9px;
+    letter-spacing: 0.04em;
+    text-align: start;
     color: var(--general-text-color);
   }
 
@@ -102,6 +142,10 @@
 }
 
 @media screen and (min-width: 768px) {
+  .loader {
+    width: 1089px;
+  }
+
   .mobileTable {
     display: none;
   }
@@ -131,6 +175,18 @@
     display: block;
     overflow-y: scroll;
     width: 100%;
+  }
+
+  .message {
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 30px;
+    color: var(--general-text-color);
+    opacity: 0.8;
+    width: 500px;
   }
 
   .description {

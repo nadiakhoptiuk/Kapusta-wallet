@@ -6,6 +6,7 @@ import {
   sendLogoutQuery,
   sendRefreshQuery,
   getAllUserInfoQuery,
+  updateUserBalanceQuery,
 } from 'service/kapustaAPI';
 
 const register = createAsyncThunk(
@@ -82,10 +83,23 @@ const getUserData = createAsyncThunk(
   }
 );
 
+const updateUserBalance = createAsyncThunk(
+  'auth/updateUserBalance',
+  async (newBalance, { rejectWithValue }) => {
+    try {
+      const { data } = await updateUserBalanceQuery();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.status);
+    }
+  }
+);
+
 export const authOperations = {
   register,
   login,
   logout,
   fetchCurrentUser,
   getUserData,
+  updateUserBalance,
 };

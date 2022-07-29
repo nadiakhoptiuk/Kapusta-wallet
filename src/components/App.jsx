@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { authHeader } from 'service/kapustaAPI';
 import { authOperations } from 'redux/auth/auth-operations';
 import { googleAuth } from 'redux/auth/auth-slice';
+import ChartController from './ChartController/ChartController';
 
 const { home, app, reports, transactions } = routes;
 

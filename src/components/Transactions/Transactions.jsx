@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+// import Media from 'react-media';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import TransactionsForm from 'components/TransactionsForm';
 import TransactionsModal from 'components/TransactionsModal';
 import TransactionsSummary from 'components/TransactionsSummary';
@@ -15,17 +18,24 @@ const Transactions = ({ mode }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [transactionsUpdate, setTransactionsUpdate] = useState([]);
   const [monthsStats, setMonthsStats] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (mode === MODES.expenseMode) {
-      getExpenseTransactionsQuery().then(({ data }) => {
-        setMonthsStats(data.monthsStats);
-      });
+      getExpenseTransactionsQuery()
+        .then(({ data }) => {
+          setMonthsStats(data.monthsStats);
+        })
+        .catch(err => toast.error(err.message))
+        .finally(setIsLoading(false));
     }
     if (mode === MODES.incomeMode) {
-      getIncomeTransactionsQuery().then(({ data }) => {
-        setMonthsStats(data.monthsStats);
-      });
+      getIncomeTransactionsQuery()
+        .then(({ data }) => {
+          setMonthsStats(data.monthsStats);
+        })
+        .catch(err => toast.error(err.message))
+        .finally(setIsLoading(false));
     }
   }, [mode, transactionsUpdate]);
 
@@ -45,6 +55,8 @@ const Transactions = ({ mode }) => {
             mode={mode}
             onSubmit={onSubmit}
             setSummary={setMonthsStats}
+            setIsLoading={setIsLoading}
+            modalOpen={modalOpen}
           />
         </div>
         <div className={s.transactionsContainer}>
@@ -54,6 +66,8 @@ const Transactions = ({ mode }) => {
               transactions={transactionsUpdate}
               setTransactions={setTransactionsUpdate}
               setSummary={setMonthsStats}
+              setIsLoading={setIsLoading}
+              isLoading={isLoading}
             />
           </div>
         </div>
@@ -80,15 +94,30 @@ const Transactions = ({ mode }) => {
             </svg>
           </button>
           <TransactionsForm
+            setSummary={setMonthsStats}
             onSubmit={onSubmit}
             mode={mode}
             closeModal={onButtonModalClick}
+            setIsLoading={setIsLoading}
           />
         </TransactionsModal>
       )}
+
+      {/* <Media
+        queries={{
+          medium: '(min-width: 768px)',
+        }}
+      >
+        {matches => (
+          <>
+            {matches.medium && ( */}
       <div className={s.summaryWrap}>
         <TransactionsSummary monthsStats={monthsStats} />
       </div>
+      {/* )}
+          </>
+        )}
+      </Media> */}
     </div>
   );
 };

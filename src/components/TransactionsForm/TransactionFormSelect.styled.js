@@ -29,6 +29,10 @@ const StyledSelect = styled(Select)`
       order: 2px solid #f5f6fb;
       cursor: pointer;
     }
+    .css-14el2xx-placeholder {
+      color: #c7ccdc;
+      margin: 0;
+    }
   }
   @media screen and (min-width: 768px) {
     .css-1s2u09g-control {
@@ -44,6 +48,17 @@ const StyledSelect = styled(Select)`
 
       color: var(--general-text-color);
     }
+
+    .css-2613qy-menu:hover {
+      transform: scale(0);
+      color: #c7ccdc;
+    }
+
+    .css-14el2xx-placeholder {
+      color: #c7ccdc;
+      margin: 0;
+    }
+
     .Select__control:hover {
       border-color: #a1a1a1;
     }
@@ -103,3 +118,41 @@ const StyledSelect = styled(Select)`
 `;
 
 export default StyledSelect;
+
+export const customStyles = {
+  menu: (provided, state) => ({
+    ...provided,
+    width: state.selectProps.width,
+    borderBottom: '1px dotted pink',
+    padding: 5,
+  }),
+
+  control: (_, { selectProps: { width } }) => ({
+    width: '169px',
+    display: 'flex',
+    height: '44px',
+    border: '2px solid var(--modal-button-border-color)',
+    fontFamily: 'Roboto',
+    fontWeight: 400,
+    fontSize: '12px',
+    lineHeight: '14px',
+    paddingLeft: '19px',
+    color: 'var(--general-text-color)',
+  }),
+
+  placeholder: defaultStyles => {
+    return {
+      ...defaultStyles,
+      color: '#C7CCDC',
+      margin: 0,
+    };
+  },
+  indicatorSeparator: styles => ({ display: 'none' }),
+
+  singleValue: (provided, state) => {
+    const opacity = state.isDisabled ? 0.5 : 1;
+    const transition = 'opacity 300ms';
+
+    return { ...provided, opacity, transition };
+  },
+};

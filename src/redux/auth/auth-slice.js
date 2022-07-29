@@ -12,6 +12,7 @@ const initialState = {
   isLoadingLogin: false,
   isLoadingLogout: false,
   isLoadingRefresh: false,
+  isUpdating: false,
 };
 
 const authSlice = createSlice({
