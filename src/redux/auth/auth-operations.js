@@ -11,10 +11,10 @@ import {
 
 const register = createAsyncThunk(
   'auth/register',
-  async (credentials, { rejectWithValue }) => {
+  async (credentials, { rejectWithValue, dispatch }) => {
     try {
-      const { data } = await sendRegisterCredentialsQuery(credentials);
-      return data;
+      await sendRegisterCredentialsQuery(credentials);
+      dispatch(authOperations.login(credentials));
     } catch (error) {
       return rejectWithValue(error.response.status);
     }

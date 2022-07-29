@@ -22,12 +22,9 @@ const authSlice = createSlice({
     [authOperations.register.pending](state) {
       state.isLoadingRegister = true;
     },
-    [authOperations.register.fulfilled](state, action) {
-      state.userData.email = action.payload.email;
-      state.userData.id = action.payload.id;
+    [authOperations.register.fulfilled](state) {
       state.isLoadingRegister = false;
-      toast('You have successfully registered');
-      toast('Now you can login');
+      toast('You have successfully registered.');
     },
     [authOperations.register.rejected](state, action) {
       state.isLoadingRegister = false;
