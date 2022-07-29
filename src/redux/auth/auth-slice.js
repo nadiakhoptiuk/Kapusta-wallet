@@ -106,7 +106,6 @@ const authSlice = createSlice({
     },
     [authOperations.fetchCurrentUser.rejected](state) {
       state.isLoadingRefresh = false;
-      toast.error('error');
     },
     [authOperations.getUserData.fulfilled](state, action) {
       state.userData = action.payload;
