@@ -16,16 +16,13 @@ export default function ReportView() {
   const currentPeriodData = useSelector(currentPeriodDataSelector);
 
   useEffect(() => {
-    const currentOperationData =
-      currentPeriodData[selectedOperation][`${selectedOperation}Data`];
-    console.log(selectedCategory);
-    if (Object.keys(currentOperationData).length > 0) {
+    if (Object.keys(currentPeriodData).length > 0) {
+      const currentOperationData =
+        currentPeriodData[selectedOperation][`${selectedOperation}Data`];
+
       const arrayOfDescription = Object.entries(currentOperationData).find(
         item => item[0] === selectedCategory
       );
-      console.log(Object.entries(currentOperationData));
-      console.log(arrayOfDescription);
-      arrayOfDescription && console.log(arrayOfDescription[1]);
 
       arrayOfDescription && setDiagramData(arrayOfDescription[1]);
     }
