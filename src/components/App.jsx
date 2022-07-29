@@ -11,7 +11,6 @@ import { PublicRoute } from './PublicRoute/PublicRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import Balance from './Balance';
 import TransactionsView from 'views/TransactionsView';
-import Container from './Container/Container';
 
 const { home, app, reports, transactions } = routes;
 
