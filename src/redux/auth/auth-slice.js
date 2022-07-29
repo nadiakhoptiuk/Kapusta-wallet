@@ -12,6 +12,7 @@ const initialState = {
   isLoadingLogin: false,
   isLoadingLogout: false,
   isLoadingRefresh: false,
+  isUpdating: false,
 };
 
 const authSlice = createSlice({
@@ -121,6 +122,30 @@ const authSlice = createSlice({
     [authOperations.googleLogin.rejected](state) {
       state.isLoadingLogin = false;
       toast.error('error');
+    },
+
+    // userBalance
+    [authOperations.updateUserBalance.pending](state) {
+      state.isUpdating = true;
+    },
+    [authOperations.updateUserBalance.fulfilled](state, action) {
+      state.isUpdating = false;
+      state.userData.balance = action.payload.newBalance;
+    },
+    [authOperations.updateUserBalance.rejected](state, action) {
+      state.isUpdating = false;
+      switch (action.payload) {
+        case 401:
+          toast.error('Unauthorized');
+          break;
+
+        case 404:
+          toast.error('Invalid user');
+          break;
+
+        default:
+          toast.error('Bad reguest');
+      }
     },
   },
 });
