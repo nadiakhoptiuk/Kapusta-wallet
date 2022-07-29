@@ -7,6 +7,7 @@ import {
   sendRefreshQuery,
   getAuthTokensFromGoogleQuery,
   getAllUserInfoQuery,
+  updateUserBalanceQuery,
 } from 'service/kapustaAPI';
 
 const register = createAsyncThunk(
@@ -94,6 +95,18 @@ const getUserData = createAsyncThunk(
   }
 );
 
+const updateUserBalance = createAsyncThunk(
+  'auth/updateUserBalance',
+  async (newBalance, { rejectWithValue }) => {
+    try {
+      const { data } = await updateUserBalanceQuery();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.status);
+    }
+  }
+);
+
 export const authOperations = {
   register,
   login,
@@ -101,4 +114,5 @@ export const authOperations = {
   fetchCurrentUser,
   googleLogin,
   getUserData,
+  updateUserBalance,
 };
