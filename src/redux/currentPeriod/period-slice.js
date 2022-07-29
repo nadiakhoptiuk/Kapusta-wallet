@@ -1,12 +1,18 @@
 import { toast } from 'react-toastify';
 import { createSlice } from '@reduxjs/toolkit';
 import { getPeriodData } from './period-operations';
+import { actionName } from './period-operations';
 
-const initialState = { periodData: {}, isLoading: false };
+const initialState = { periodData: {}, isLoading: false, currentPeriod: '' };
 
 const periodSlice = createSlice({
   name: 'currentPeriodData',
   initialState,
+  reducers: {
+    [actionName]: (state, action) => {
+      state.currentPeriod = action.payload;
+    },
+  },
   extraReducers: {
     [getPeriodData.pending](state) {
       state.isLoading = true;
