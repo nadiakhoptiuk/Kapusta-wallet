@@ -6,6 +6,7 @@ import ChartJS from 'chart.js/auto';
 import addSpaceForAmount from '../../utils/addSpaceForAmount';
 import Media from 'react-media';
 import s from './Chart.module.css';
+import { generateArr } from '../../utils/generateArr';
 
 ChartJS.register(ChartDataLabels);
 
@@ -41,7 +42,7 @@ const Chart = ({ labels, data }) => {
 
     datasets: [
       {
-        data: [0, 0, 0, 0, 0, 0],
+        data: generateArr(0, labels.length),
 
         datalabels: {
           font: {

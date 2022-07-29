@@ -1,8 +1,14 @@
 import Chart from '../Chart/Chart';
+import { objectEntriesComparatorDesc } from '../../utils/comparators';
 
-const ChartController = () => {
-  const data = [12, 10, 13, 15, 17, 32];
-  const labels = ['meat', 'apple', 'eggs', 'meat', 'apple', 'eggs'];
+const ChartController = ({ categoryObject }) => {
+  const arr = Object.entries(categoryObject);
+  console.log(arr.shift());
+  const sortArr = arr.sort(objectEntriesComparatorDesc);
+
+  const labels = sortArr.map(el => el[0]);
+  const data = sortArr.map(el => el[1]);
+
   return (
     <>
       <Chart data={data} labels={labels} />
