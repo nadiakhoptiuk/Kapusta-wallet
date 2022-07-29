@@ -4,6 +4,7 @@ import s from './Balance.module.css';
 import sprite from '../../images/sprite.svg';
 // import BalanceModal from 'components/BalanceModal';
 import routes from 'utils/routes';
+import Container from 'components/Container/Container';
 
 const { reports, transactions } = routes;
 
@@ -29,7 +30,8 @@ export default function Balance() {
 
   return (
     <div>
-      <div className={classBalance}>
+      <Container>
+      <div className={`${classBalance} ${s.container}`}>
         {isReportPage && (
           <Link to={transactions} className={s.linkToHome}>
             <svg width="18" height="12">
@@ -94,7 +96,8 @@ export default function Balance() {
           )}
         </div>
         {/* <BalanceModal /> */}
-      </div>
+        </div>
+        </Container>
       <div>
         <Outlet />
       </div>

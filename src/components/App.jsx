@@ -11,8 +11,8 @@ import { PublicRoute } from './PublicRoute/PublicRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import Balance from './Balance';
 import TransactionsView from 'views/TransactionsView';
-import Chart from '../components/Chart/Chart';
-const { home, app, reports, income, expenses, transactions } = routes;
+
+const { home, app, reports, transactions } = routes;
 
 export const App = () => {
   return (
@@ -42,10 +42,7 @@ export const App = () => {
               </PrivateRoute>
             }
           >
-            <Route path={transactions} element={<Chart />}>
-              <Route path={expenses} element={<div>Expenses Table</div>} />
-              <Route path={income} element={<div>Income Table</div>} />
-            </Route>
+            <Route path={transactions} element={<TransactionsView />}></Route>
             <Route path={reports} element={<ReportView />} />
           </Route>
         </Route>
