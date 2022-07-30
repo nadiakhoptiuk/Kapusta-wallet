@@ -1,25 +1,20 @@
-.container {
-    margin: 0 auto 0 auto;
-    padding: 0px 20px;
-    width: auto;
-}
-
 @media screen and (min-width: 480px) {
     .container {
         width: 480px;
+        margin: 0 auto;
     }
 }
 
   @media screen and (min-width: 768px) {
-      .container{
-    width: 704px;
-    padding: 0px 32px;
+      
+    .container {
+        width: 704px;
       }
+      
   }
 
   @media screen and (min-width: 1280px) {
     .container {
-      width: 1280px;
-    padding: 0px 91px;
-    }
+        width: 1098px;
+      }
   }
