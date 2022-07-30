@@ -53,11 +53,32 @@ const TransactionsTable = ({
     }
   }, [mode, setIsLoading, setTransactions]);
 
-  const deleteTransaction = async id => {
-    const response = await deleteTransactionQuery(id);
-    console.log('response', response);
-    if (response.status === 200) {
-      if (mode === MODES.expenseMode) {
+  const deleteTransaction = async (id, amount) => {
+    if (amount !== userData.balance && mode === MODES.incomeMode) {
+      const response = await deleteTransactionQuery(id);
+
+      if (response.status === 200) {
+        transactions.map(el =>
+          dispatch(
+            authOperations.updateUserBalance(userData.balance - el.amount)
+          )
+        );
+        setTransactions(transactions.filter(el => el._id !== id));
+        getIncomeTransactionsQuery()
+          .then(({ data }) => {
+            setSummary(data.monthsStats);
+          })
+          .catch(err => toast.error(err.message));
+      }
+      return;
+    } else if (amount === userData.balance && mode === MODES.incomeMode) {
+      return toast.error('You can not delete the last Income transaction');
+    }
+
+    if (mode === MODES.expenseMode) {
+      const response = await deleteTransactionQuery(id);
+
+      if (response.status === 200) {
         transactions.map(el =>
           dispatch(
             authOperations.updateUserBalance(userData.balance + el.amount)
@@ -70,17 +91,7 @@ const TransactionsTable = ({
           })
           .catch(err => toast.error(err.message));
       }
-    }
-    if (mode === MODES.incomeMode) {
-      transactions.map(el =>
-        dispatch(authOperations.updateUserBalance(userData.balance - el.amount))
-      );
-      setTransactions(transactions.filter(el => el._id !== id));
-      getIncomeTransactionsQuery()
-        .then(({ data }) => {
-          setSummary(data.monthsStats);
-        })
-        .catch(err => toast.error(err.message));
+      return;
     }
   };
 
@@ -119,7 +130,7 @@ const TransactionsTable = ({
                 <td className={s.descriptionLast}>
                   <button
                     className={s.btnDelete}
-                    onClick={() => deleteTransaction(el._id)}
+                    onClick={() => deleteTransaction(el._id, el.amount)}
                   >
                     <svg className={s.calendarIcon} width={18} height={18}>
                       <use href={`${Sprite}#delete-icon`}></use>
