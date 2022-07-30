@@ -1,6 +1,5 @@
 import Chart from '../Chart/Chart';
 import { objectEntriesComparatorDesc } from '../../utils/comparators';
-import s from './ChartController.module.css';
 
 const ChartController = ({ categoryObject }) => {
   const arr = Object.entries(categoryObject);
@@ -13,12 +12,7 @@ const ChartController = ({ categoryObject }) => {
     <>
       {sortArr.length !== 0 ? (
         <Chart data={data} labels={labels} maxData={maxData} />
-      ) : (
-        <h1 className={s.reportNotify}>
-          Sorry, you don't have any transactions for this period so I cannot
-          build your report diagram
-        </h1>
-      )}
+      ) : null}
     </>
   );
 };

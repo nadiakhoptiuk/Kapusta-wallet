@@ -1,7 +1,7 @@
-import NavBar from 'components/NavBar';
-import Transactions from 'components/Transactions';
 import { useState } from 'react';
 import { MODES } from 'utils/transactionConstants';
+import NavBar from 'components/NavBar';
+import Transactions from 'components/Transactions';
 import s from './TransactionsView.module.css';
 import Container from 'components/Container/Container';
 

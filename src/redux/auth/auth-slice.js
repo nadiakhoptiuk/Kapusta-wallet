@@ -13,6 +13,8 @@ const initialState = {
   isLoadingLogout: false,
   isLoadingRefresh: false,
   isUpdating: false,
+  isSendingIncome: false,
+  isSendingExpense: false,
 };
 
 const authSlice = createSlice({
@@ -136,7 +138,54 @@ const authSlice = createSlice({
           break;
 
         default:
-          toast.error('Bad reguest');
+          toast.error('Bad request');
+      }
+    },
+
+    [authOperations.sendIncomeTransaction.pending](state) {
+      state.isSendingIncome = true;
+    },
+    [authOperations.sendIncomeTransaction.fulfilled](state, action) {
+      state.isSendingIncome = false;
+      state.userData.balance = action.payload.newBalance;
+      state.userData.transactions.push(action.payload.transaction);
+    },
+    [authOperations.sendIncomeTransaction.rejected](state, action) {
+      state.isSendingIncome = false;
+      switch (action.payload) {
+        case 401:
+          toast.error('Unauthorized');
+          break;
+
+        case 404:
+          toast.error('Invalid user');
+          break;
+
+        default:
+          toast.error('Bad request');
+      }
+    },
+    [authOperations.sendExpenseTransaction.pending](state) {
+      state.isSendingExpense = true;
+    },
+    [authOperations.sendExpenseTransaction.fulfilled](state, action) {
+      state.isSendingExpense = false;
+      state.userData.balance = action.payload.newBalance;
+      state.userData.transactions.push(action.payload.transaction);
+    },
+    [authOperations.sendExpenseTransaction.rejected](state, action) {
+      state.isSendingExpense = false;
+      switch (action.payload) {
+        case 401:
+          toast.error('Unauthorized');
+          break;
+
+        case 404:
+          toast.error('Invalid user');
+          break;
+
+        default:
+          toast.error('Bad request');
       }
     },
   },

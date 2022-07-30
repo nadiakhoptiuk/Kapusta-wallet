@@ -196,15 +196,15 @@
   composes: btn;
   background-image: linear-gradient(
     45deg,
-    #c9d1f9 0%,
-    #f5f6fb 50%,
-    #fefefe 100%
+    var(--auth-form-button-normal-color1) 0%,
+    var(--auth-form-button-normal-color2) 40%,
+    var(--auth-form-button-normal-color3) 100%
   );
   background-position: 100% 0;
   background-size: 200% 200%;
   transition: 500ms;
 
-  color: var(--general-text-color);
+  color: var(--general-header-color);
 }
 
 .registerBtn:hover {

@@ -7,6 +7,8 @@ import {
   sendRefreshQuery,
   getAllUserInfoQuery,
   updateUserBalanceQuery,
+  sendIncomeTransactionQuery,
+  sendExpenseTransactionQuery,
 } from 'service/kapustaAPI';
 
 const register = createAsyncThunk(
@@ -87,7 +89,31 @@ const updateUserBalance = createAsyncThunk(
   'auth/updateUserBalance',
   async (newBalance, { rejectWithValue }) => {
     try {
-      const { data } = await updateUserBalanceQuery();
+      const { data } = await updateUserBalanceQuery(newBalance);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.status);
+    }
+  }
+);
+
+const sendIncomeTransaction = createAsyncThunk(
+  'auth/add/income',
+  async (transaction, { rejectWithValue }) => {
+    try {
+      const { data } = await sendIncomeTransactionQuery(transaction);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.status);
+    }
+  }
+);
+
+const sendExpenseTransaction = createAsyncThunk(
+  'auth/add/expense',
+  async (transaction, { rejectWithValue }) => {
+    try {
+      const { data } = await sendExpenseTransactionQuery(transaction);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.status);
@@ -102,4 +128,6 @@ export const authOperations = {
   fetchCurrentUser,
   getUserData,
   updateUserBalance,
+  sendIncomeTransaction,
+  sendExpenseTransaction,
 };
