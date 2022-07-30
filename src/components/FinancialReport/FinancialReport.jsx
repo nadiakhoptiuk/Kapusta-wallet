@@ -11,6 +11,8 @@ import transactionTypes from 'utils/transactionTypes';
 import Sprite from '../../images/sprite.svg';
 import s from './FinancialReport.module.css';
 
+import { CSSTransition } from 'react-transition-group';
+
 export default function FinancialReport({
   selectedCategory,
   setSelectedCategory,
@@ -112,28 +114,31 @@ export default function FinancialReport({
                     {addSpaceForAmount(total)}
                   </span>
 
-                  <div className={s.btnWrap}>
-                    <button
-                      type="button"
-                      className={
-                        backendName === selectedCategory
-                          ? `${s.categoryBtnActive}`
-                          : `${s.categoryBtn}`
-                      }
-                      onClick={() => changeCategory(backendName)}
-                    >
-                      <svg className={s.categoryIcon}>
-                        <use href={`${Sprite}#${imgPath}`}></use>
-                      </svg>
-                    </button>
-                    <div
-                      className={
-                        backendName === selectedCategory
-                          ? `${s.rectangleActive}`
-                          : `${s.rectangle}`
-                      }
-                    ></div>
-                  </div>
+                  <CSSTransition timeout={300} classNames={{ ...s }}>
+                    <div className={s.btnWrap}>
+                      <button
+                        type="button"
+                        className={
+                          backendName === selectedCategory
+                            ? `${s.categoryBtnEnterActive}`
+                            : `${s.categoryBtnExitActive}`
+                        }
+                        onClick={() => changeCategory(backendName)}
+                      >
+                        <svg className={s.categoryIcon}>
+                          <use href={`${Sprite}#${imgPath}`}></use>
+                        </svg>
+                      </button>
+
+                      <div
+                        className={
+                          backendName === selectedCategory
+                            ? `${s.rectangleEnterActive}`
+                            : `${s.rectangleExitActive}`
+                        }
+                      ></div>
+                    </div>
+                  </CSSTransition>
 
                   <p className={s.category}>{transformedString(category)}</p>
                 </li>
