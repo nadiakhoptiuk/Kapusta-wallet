@@ -1,9 +1,6 @@
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://kapusta-backend.goit.global';
-axios.defaults.headers.common[
-  'Authorization'
-] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MmUyMzA2MGRiN2E4MTA4MTQwMmI4ODQiLCJzaWQiOiI2MmUyY2FjYmRiN2E4MTA4MTQwMmJiYzAiLCJpYXQiOjE2NTkwMzAyMTksImV4cCI6MTY1OTAzMzgxOX0.IhkWicHIU-tUTIJhK0IfOoRE5vJ82cxxYy4YQ7Du3rE`;
 
 export const authHeader = {
   set: token => {

@@ -1,0 +1,7 @@
+.reportNotify {
+  margin: 30px 0;
+  color: var(--balance-balance-text-color);
+  text-transform: none;
+  text-align: center;
+  font-size: 16px;
+}

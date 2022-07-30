@@ -1,5 +1,8 @@
-import s from './NavBar.module.css';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import { MODES } from 'utils/transactionConstants';
+import s from './NavBar.module.css';
 
 const NavBar = ({ mode, setMode }) => {
   return (
@@ -31,3 +34,8 @@ const NavBar = ({ mode, setMode }) => {
 };
 
 export default NavBar;
+
+NavBar.propTypes = {
+  mode: PropTypes.string.isRequired,
+  setMode: PropTypes.func.isRequired,
+};
