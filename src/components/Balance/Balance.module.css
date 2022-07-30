@@ -1,5 +1,3 @@
-.container {
-}
 .Balance {
   padding-top: 40px;
 }
@@ -22,7 +20,7 @@
 
 .currentPeriodText {
   margin: 0;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
   font-size: 12px;
   line-height: 1.17;
   letter-spacing: 0.04em;
@@ -37,16 +35,21 @@
 }
 
 .monthChangeBtn {
-  width: 10px;
-  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 30px;
   padding: 0;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .monthChangeTxt {
   margin-left: 1px;
   margin-right: 1px;
+  width: 120px;
   font-weight: 700;
   font-size: 14px;
   line-height: 1.14;
@@ -70,6 +73,13 @@
   letter-spacing: 0.04em;
 
   color: var(--balance-text-color);
+}
+
+.linkReportsBtn {
+  composes: linkReports;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .reportsIcon {
@@ -100,10 +110,15 @@
   background-color: transparent;
   border: none;
   border: 2px solid var(--balance-button-border-color);
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 19px;
-  padding-right: 16px;
+  text-align: center;
+
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: var(--general-header-color);
 }
 
 .inputReports {
@@ -179,15 +194,25 @@
   color: var(--balance-text-color);
 }
 
-/* .disabledButtonForm {
-  composes: buttonForm;
-}
-
-.disabledButtonForm:hover,
-.disabledButtonForm:focus {
-  border-color: var(--general-header-color);
+.buttonFormDisabled {
+  top: -1.5px;
+  width: 140px;
+  height: 44px;
   background-color: transparent;
-} */
+  border: none;
+  border: 2px solid var(--balance-button-border-color);
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 18px;
+  padding-right: 22px;
+
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: var(--balance-text-color);
+}
 
 .buttonForm:hover,
 .buttonForm:focus {
@@ -236,7 +261,11 @@
   }
 
   .buttonForm {
-    position: relative;
+    /* position: relative; */
+    border-radius: 0px 22px 22px 0px;
+  }
+
+  .buttonFormDisabled {
     border-radius: 0px 22px 22px 0px;
   }
 
@@ -320,6 +349,12 @@
     height: 44px;
   }
 
+  .buttonFormDisabled {
+    border-radius: 16px;
+    width: 125px;
+    height: 44px;
+  }
+
   .wraper {
     display: flex;
     flex-direction: row-reverse;
@@ -330,7 +365,7 @@
 
   .balanceWraper {
     display: flex;
-    align-items: center;
+    align-items: baseline;
   }
 
   .inputReports {
@@ -338,7 +373,7 @@
   }
 
   .currentPeriod {
-    width: 136px;
+    width: 162px;
   }
 }
 
