@@ -1,36 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 
 import {
   getExpenseCategoriesQuery,
-  getExpenseTransactionsQuery,
   getIncomeCategoriesQuery,
-  getIncomeTransactionsQuery,
-  sendExpenseTransactionQuery,
-  sendIncomeTransactionQuery,
 } from 'service/kapustaAPI';
 import { MODES } from 'utils/transactionConstants';
 import Sprite from '../../images/sprite.svg';
 import StyledSelect from './TransactionFormSelect.styled';
 import s from './TransactionsForm.module.css';
+import { authOperations } from 'redux/auth/auth-operations';
+import { useDispatch } from 'react-redux';
 
-const TransactionsForm = ({
-  onSubmit,
-  setSummary,
-  mode,
-  setIsLoading,
-  userData,
-  closeModal = () => 7,
-}) => {
+const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState(null);
   const [amount, setAmount] = useState('');
   const [categories, setCategories] = useState('');
 
-  // const userData = useSelector(getUserData);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setDate(moment(new Date()).format('YYYY-MM-DD'));
@@ -83,6 +73,7 @@ const TransactionsForm = ({
 
   const handleSubmit = e => {
     e.preventDefault();
+
     setIsLoading(true);
 
     if (description.trim().length === 0) {
@@ -99,45 +90,13 @@ const TransactionsForm = ({
     };
 
     closeModal();
-    if (userData.balance > 1) {
-      if (
-        mode === MODES.expenseMode &&
-        userData.balance > transactionsList.amount
-      ) {
-        sendExpenseTransactionQuery(transactionsList)
-          .then(({ data }) => {
-            onSubmit(data.transaction);
-          })
-          .catch(err => toast.error(err.message));
 
-        getExpenseTransactionsQuery()
-          .then(({ data }) => {
-            setSummary(data.monthsStats);
-          })
-          .catch(err => toast.error(err.message));
-      }
-    }
-    if (
-      mode === MODES.expenseMode &&
-      userData.balance <= transactionsList.amount
-    ) {
-      setIsLoading(false);
-      toast.error('Balance cannot be negative');
-      return;
+    if (mode === MODES.expenseMode) {
+      dispatch(authOperations.sendExpenseTransaction(transactionsList));
     }
 
     if (mode === MODES.incomeMode) {
-      sendIncomeTransactionQuery(transactionsList)
-        .then(({ data }) => {
-          onSubmit(data.transaction);
-        })
-        .catch(err => toast.error(err.message));
-
-      getIncomeTransactionsQuery()
-        .then(({ data }) => {
-          setSummary(data.monthsStats);
-        })
-        .catch(err => toast.error(err.message));
+      dispatch(authOperations.sendIncomeTransaction(transactionsList));
     }
 
     setDate(moment(new Date()).format('YYYY-MM-DD'));
@@ -226,12 +185,3 @@ const TransactionsForm = ({
 };
 
 export default TransactionsForm;
-
-TransactionsForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  setSummary: PropTypes.func.isRequired,
-  mode: PropTypes.string.isRequired,
-  setIsLoading: PropTypes.func.isRequired,
-  userData: PropTypes.object,
-  closeModal: PropTypes.func,
-};
