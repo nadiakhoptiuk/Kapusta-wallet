@@ -8,11 +8,6 @@ const initialState = { periodData: {}, isLoading: false, currentPeriod: '' };
 const periodSlice = createSlice({
   name: 'currentPeriodData',
   initialState,
-  reducers: {
-    [actionName]: (state, action) => {
-      state.currentPeriod = action.payload;
-    },
-  },
   extraReducers: {
     [getPeriodData.pending](state) {
       state.isLoading = true;
@@ -35,6 +30,9 @@ const periodSlice = createSlice({
         default:
           toast.error('Bad reguest');
       }
+    },
+    [actionName]: (state, action) => {
+      state.currentPeriod = action.payload;
     },
   },
 });

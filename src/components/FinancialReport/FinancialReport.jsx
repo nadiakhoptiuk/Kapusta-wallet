@@ -1,22 +1,28 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { expensesCategory, incomeCategory } from 'utils/localization';
+import {
+  currentPeriodDataSelector,
+  currentPeriodSelector,
+  isLoadingSelector,
+} from 'redux/currentPeriod/period-selectors';
 import addSpaceForAmount from 'utils/addSpaceForAmount';
-// import {
-//   getExpenseTransactionsQuery,
-//   getIncomeTransactionsQuery,
-// } from 'service/kapustaAPI';
 import transactionTypes from 'utils/transactionTypes';
 import Sprite from '../../images/sprite.svg';
 import s from './FinancialReport.module.css';
 
-//
-import responseBack from './response';
-
-export default function FinancialReport() {
+export default function FinancialReport({
+  selectedCategory,
+  setSelectedCategory,
+  selectedOperation,
+  setSelectedOperation,
+}) {
   const { expenses, incomes } = transactionTypes;
   const [operationData, setOperationData] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedOperation, setSelectedOperation] = useState(expenses);
+
+  const currentPeriodData = useSelector(currentPeriodDataSelector);
+  const currentPeriod = useSelector(currentPeriodSelector);
 
   function transformedString(string) {
     if (!string.includes(' ')) {
@@ -39,30 +45,39 @@ export default function FinancialReport() {
   }
 
   useEffect(() => {
-    const data =
-      selectedOperation === expenses
-        ? responseBack.expenses.expensesData
-        : responseBack.incomes.incomesData;
+    if (Object.keys(currentPeriodData).length > 0) {
+      const data =
+        selectedOperation === expenses
+          ? currentPeriodData?.expenses?.expensesData
+          : currentPeriodData?.incomes?.incomesData;
 
-    const arrayOfCategories =
-      selectedOperation === expenses ? expensesCategory : incomeCategory;
+      const arrayOfCategories =
+        selectedOperation === expenses ? expensesCategory : incomeCategory;
 
-    const dataForOperation = Object.entries(data).map(el => {
-      const obj = arrayOfCategories?.find(
-        ({ backendName }) => el[0] === backendName
-      );
+      const arrayForHandle = Object.entries(data);
 
-      return {
-        total: el[1].total,
-        category: obj.category,
-        imgPath: obj.imgPath,
-        backendName: obj.backendName,
-      };
-    });
+      if (arrayForHandle.length === 0) {
+        setOperationData(null);
+        setSelectedCategory(null);
+      } else {
+        const dataForOperation = Object.entries(data).map(el => {
+          const obj = arrayOfCategories?.find(
+            ({ backendName }) => el[0] === backendName
+          );
 
-    setOperationData(dataForOperation);
-    setSelectedCategory(dataForOperation[0]?.backendName);
-  }, [expenses, selectedOperation]);
+          return {
+            total: el[1].total,
+            category: obj.category,
+            imgPath: obj.imgPath,
+            backendName: obj.backendName,
+          };
+        });
+
+        setOperationData(dataForOperation);
+        setSelectedCategory(dataForOperation[0]?.backendName);
+      }
+    }
+  }, [expenses, selectedOperation, currentPeriodData, setSelectedCategory]);
 
   return (
     <section className={s.reportSection}>
@@ -89,43 +104,57 @@ export default function FinancialReport() {
       </div>
 
       <ul className={s.categoryList}>
-        {operationData?.map(
-          ({ total, imgPath, backendName, category }, index) => {
-            return (
-              <li key={index} className={s.categoryItem}>
-                <span className={s.categoryAmount}>
-                  {addSpaceForAmount(total)}
-                </span>
+        {operationData?.length > 0 ? (
+          operationData?.map(
+            ({ total, imgPath, backendName, category }, index) => {
+              return (
+                <li key={index} className={s.categoryItem}>
+                  <span className={s.categoryAmount}>
+                    {addSpaceForAmount(total)}
+                  </span>
 
-                <div className={s.btnWrap}>
-                  <button
-                    type="button"
-                    className={
-                      backendName === selectedCategory
-                        ? `${s.categoryBtnActive}`
-                        : `${s.categoryBtn}`
-                    }
-                    onClick={() => changeCategory(backendName)}
-                  >
-                    <svg className={s.categoryIcon}>
-                      <use href={`${Sprite}#${imgPath}`}></use>
-                    </svg>
-                  </button>
-                  <div
-                    className={
-                      backendName === selectedCategory
-                        ? `${s.rectangleActive}`
-                        : `${s.rectangle}`
-                    }
-                  ></div>
-                </div>
+                  <div className={s.btnWrap}>
+                    <button
+                      type="button"
+                      className={
+                        backendName === selectedCategory
+                          ? `${s.categoryBtnActive}`
+                          : `${s.categoryBtn}`
+                      }
+                      onClick={() => changeCategory(backendName)}
+                    >
+                      <svg className={s.categoryIcon}>
+                        <use href={`${Sprite}#${imgPath}`}></use>
+                      </svg>
+                    </button>
+                    <div
+                      className={
+                        backendName === selectedCategory
+                          ? `${s.rectangleActive}`
+                          : `${s.rectangle}`
+                      }
+                    ></div>
+                  </div>
 
-                <p className={s.category}>{transformedString(category)}</p>
-              </li>
-            );
-          }
+                  <p className={s.category}>{transformedString(category)}</p>
+                </li>
+              );
+            }
+          )
+        ) : (
+          <p className={s.reportNotify}>
+            You haven't added your {selectedOperation} for {currentPeriod}{' '}
+            yet...
+          </p>
         )}
       </ul>
     </section>
   );
 }
+
+FinancialReport.propTypes = {
+  selectedCategory: PropTypes.string,
+  setSelectedCategory: PropTypes.func.isRequired,
+  selectedOperation: PropTypes.string.isRequired,
+  setSelectedOperation: PropTypes.func.isRequired,
+};
