@@ -10,10 +10,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .container {
-    width: 704px;
-    margin: 0 auto;
-  }
+
   .fon{
   height: 583px;
 }
@@ -35,9 +32,7 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .container {
-    width: 1098px;
-  }
+ 
   .img{
     width: 100%;
     height: 232px;
@@ -45,6 +40,7 @@
     top: 656px;
     left: 0;
     background-image: url(../../images/many-kapustas-bg-min.png) ;
+    background-size: cover;
     
   }
     /* @media (min-device-pixel-ratio: 2),

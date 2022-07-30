@@ -30,18 +30,26 @@ export default function ReportView() {
   }, [currentPeriodData, selectedCategory, selectedOperation]);
 
   return (
+    <>
+    <div className={s.fon}></div>
+    <div className={s.img}></div>
     <Container>
       <div className={s.balance_line}>
         <IncomesInMonthly />
       </div>
-
-      <FinancialReport
+        <div className={s.module}>
+          <FinancialReport
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
         selectedOperation={selectedOperation}
         setSelectedOperation={setSelectedOperation}
       />
-      <ChartController categoryObject={diagramData} />
-    </Container>
+</div>
+      
+      <div className={s.module}>
+        <ChartController categoryObject={diagramData} />
+      </div>
+      </Container>
+      </>
   );
 }
