@@ -16,6 +16,8 @@ import { authOperations } from 'redux/auth/auth-operations';
 import { googleAuth } from 'redux/auth/auth-slice';
 import { isLoadingSelector } from 'redux/currentPeriod/period-selectors';
 import Loader from './Loader';
+import CustomizedSwitches from './Theme/ThemeBtn';
+import { useTheme } from './Theme/useTheme';
 
 const { home, app, reports, transactions } = routes;
 
@@ -41,7 +43,7 @@ export const App = () => {
     dispatch(googleAuth({ accessToken, refreshToken, sid }));
     dispatch(authOperations.getUserData());
   }, [dispatch, searchParams]);
-
+  // const { theme, setTheme } = useTheme();
   return (
     <Fragment>
       <Routes>
@@ -49,6 +51,7 @@ export const App = () => {
           path={home}
           element={
             <PublicRoute>
+              <CustomizedSwitches />
               <SharedLayout />
             </PublicRoute>
           }
