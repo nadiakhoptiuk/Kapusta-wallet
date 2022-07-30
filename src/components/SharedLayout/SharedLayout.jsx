@@ -10,6 +10,7 @@ import UserMenu from 'components/UserMenu';
 import s from './SharedLayout.module.css';
 import Loader from '../Loader/Loader';
 import CustomizedSwitches from '../Theme/ThemeBtn';
+import Sprite from '../../images/sprite.svg';
 
 const SharedLayout = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -20,12 +21,15 @@ const SharedLayout = () => {
       <header className={s.header}>
         <div className={s.logoWrapper}>
           <NavLink className={s.logo} to="/">
-            <img
+            {/* <img
               src={require('../../images/logo.jpg')}
               alt="avatar"
               width={90}
               height={31}
-            />
+            /> */}
+            <svg alt="logo" width={90} height={31}>
+              <use href={`${Sprite}#icon-logo`}></use>
+            </svg>
           </NavLink>
           <CustomizedSwitches />
         </div>

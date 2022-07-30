@@ -1,20 +1,20 @@
-.container{
+.container {
   max-width: 426px;
   flex-direction: column;
   display: flex;
   margin: 0 auto;
 }
-.name{
+.name {
   margin-top: 86px;
 }
-.auth{
+.auth {
   margin-top: 50px;
 }
 .subtitle {
   font-weight: 700;
   color: var(--general-text-color);
 }
-.background{
+.background {
   overflow: hidden;
   border-bottom-left-radius: 30%;
   background-color: var(--general-background-top-part-color);
@@ -31,14 +31,12 @@
   display: flex;
   justify-content: space-between;
   width: 184px;
-
 }
 .kapustaflay {
   position: absolute;
   bottom: 0;
   top: 740px;
   z-index: -1;
-
 }
 
 @media screen and (max-width: 767px) {
@@ -49,36 +47,38 @@
     text-transform: uppercase;
     padding-left: 10px;
   }
-    .title {
-      width: 183px;
-      height: 46px;
-      top: 86px;
-    }
+  .title {
+    width: 183px;
+    height: 46px;
+    top: 86px;
+    fill: var(--general-header-color);
+  }
 }
 @media screen and (min-width: 768px) {
   .title {
     width: 306px;
     height: 77px;
+    fill: var(--general-header-color);
   }
-     
-    .auth {
-      margin-top: 80px;
-    }
-    .background{
-      height: 582px;
-    }
-        .kapustaflay {
-          top: 770px;
-          left: 100px;
-        }
+
+  .auth {
+    margin-top: 80px;
+  }
+  .background {
+    height: 582px;
+  }
+  .kapustaflay {
+    top: 770px;
+    left: 100px;
+  }
 }
 @media screen and (min-width: 1280px) {
-  .container{
+  .container {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-  }  
-  .name{
+  }
+  .name {
     padding-right: 157px;
   }
   .subtitle {
@@ -88,13 +88,14 @@
     text-transform: uppercase;
     padding-left: 53px;
   }
-    .title {
-      width: 377px;
-      height: 120px;
-    }
-   
-    .kapustaflay {
-      top: 650px;
-      left: 230px;
-    }
+  .title {
+    width: 377px;
+    height: 120px;
+    fill: var(--general-header-color);
+  }
+
+  .kapustaflay {
+    top: 650px;
+    left: 230px;
+  }
 }
