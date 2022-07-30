@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import s from './TransactionsSummary.module.css';
 
 const TransactionsSummary = ({ monthsStats }) => {
@@ -29,3 +31,7 @@ const TransactionsSummary = ({ monthsStats }) => {
 };
 
 export default TransactionsSummary;
+
+TransactionsSummary.propTypes = {
+  monthsStats: PropTypes.object.isRequired,
+};

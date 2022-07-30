@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Sprite from '../../images/sprite.svg';
-import StyledSelect from './TransactionFormSelect.styled';
-import s from './TransactionsForm.module.css';
+
 import {
   getExpenseCategoriesQuery,
   getExpenseTransactionsQuery,
@@ -14,14 +12,16 @@ import {
   sendIncomeTransactionQuery,
 } from 'service/kapustaAPI';
 import { MODES } from 'utils/transactionConstants';
-// import Select from 'react-select';
-// import { customStyles } from './TransactionFormSelect.styled';
+import Sprite from '../../images/sprite.svg';
+import StyledSelect from './TransactionFormSelect.styled';
+import s from './TransactionsForm.module.css';
 
 const TransactionsForm = ({
   onSubmit,
   setSummary,
   mode,
   setIsLoading,
+  userData,
   closeModal = () => 7,
 }) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
@@ -29,6 +29,8 @@ const TransactionsForm = ({
   const [category, setCategory] = useState(null);
   const [amount, setAmount] = useState('');
   const [categories, setCategories] = useState('');
+
+  // const userData = useSelector(getUserData);
 
   useEffect(() => {
     setDate(moment(new Date()).format('YYYY-MM-DD'));
@@ -97,19 +99,31 @@ const TransactionsForm = ({
     };
 
     closeModal();
+    if (userData.balance > 1) {
+      if (
+        mode === MODES.expenseMode &&
+        userData.balance > transactionsList.amount
+      ) {
+        sendExpenseTransactionQuery(transactionsList)
+          .then(({ data }) => {
+            onSubmit(data.transaction);
+          })
+          .catch(err => toast.error(err.message));
 
-    if (mode === MODES.expenseMode) {
-      sendExpenseTransactionQuery(transactionsList)
-        .then(({ data }) => {
-          onSubmit(data.transaction);
-        })
-        .catch(err => toast.error(err.message));
-
-      getExpenseTransactionsQuery()
-        .then(({ data }) => {
-          setSummary(data.monthsStats);
-        })
-        .catch(err => toast.error(err.message));
+        getExpenseTransactionsQuery()
+          .then(({ data }) => {
+            setSummary(data.monthsStats);
+          })
+          .catch(err => toast.error(err.message));
+      }
+    }
+    if (
+      mode === MODES.expenseMode &&
+      userData.balance <= transactionsList.amount
+    ) {
+      setIsLoading(false);
+      alert('Balance cannot be negative');
+      return;
     }
 
     if (mode === MODES.incomeMode) {
@@ -166,7 +180,6 @@ const TransactionsForm = ({
           value={description}
         />
         {/* <Select
-          required
           placeholder={<div>Product category</div>}
           width="200px"
           styles={customStyles}
@@ -175,12 +188,12 @@ const TransactionsForm = ({
           options={selectOptions()}
         /> */}
         <StyledSelect
-          required
           placeholder={<div>Product category</div>}
           value={category}
           onChange={setCategory}
           options={selectOptions()}
         />
+
         <div className={s.inputCountWrapper}>
           <input
             required
@@ -213,3 +226,12 @@ const TransactionsForm = ({
 };
 
 export default TransactionsForm;
+
+TransactionsForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  setSummary: PropTypes.func.isRequired,
+  mode: PropTypes.string.isRequired,
+  setIsLoading: PropTypes.func.isRequired,
+  userData: PropTypes.object,
+  closeModal: PropTypes.func,
+};
