@@ -90,10 +90,7 @@ const Chart = ({ labels, data, maxData }) => {
               left: 8,
             },
           },
-          // display: function (context) {
-          //   console.log('context>>>>', context);
-          //   return context.dataset.data[context.dataIndex] > 500;
-          // },
+
           font: {
             size: '12',
           },
@@ -124,9 +121,6 @@ const Chart = ({ labels, data, maxData }) => {
         borderJoinStyle: 'bevel',
         borderWidth: 'none',
         showLine: false,
-
-        // responsive: true,
-        // categoryPercentage: 0.5,
 
         barPercentage: 1,
         barThickness: 15,
