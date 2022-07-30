@@ -32,7 +32,7 @@ export default function ReportView() {
     }
   }, [currentPeriodData, selectedCategory, selectedOperation]);
 
-  console.log(diagramData);
+  // console.log(diagramData);
 
   return (
     <>
