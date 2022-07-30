@@ -21,7 +21,7 @@ html[data-theme='dark'] {
   --general-accent-background-color: #ff751d;
   --general-accent-text-color: #252525;
   --general-accent-shadow: drop-shadow(1px 3px 5px hsla(24, 100%, 52%, 0.35));
-  --general-text-color: #cccccf;
+  --general-text-color: #969698;
   --general-header-color: #ffffff;
 
   /* Universal Modal */
@@ -42,6 +42,9 @@ html[data-theme='dark'] {
   --auth-form-input-placeholder-color: #4e4e4e;
   --auth-form-button-background-color: #2a2b2c;
   --auth-form-button-text-color: #131414;
+  --auth-form-button-normal-color1: #4f4f52;
+  --auth-form-button-normal-color2: #a1a1a3;
+  --auth-form-button-normal-color3: #9d9b9b;
   --auth-form-button-shadow: drop-shadow(1px 3px 5px rgba(111, 112, 117, 0.15));
   --auth-form-validation-error-color: #eb5757;
 
@@ -66,7 +69,7 @@ html[data-theme='dark'] {
 
   /* TransactionForm */
   --trans-form-input-border-color: #141414;
-  --trans-form-input-placeholder-color: #f1f2f6;
+  --trans-form-input-placeholder-color: #474848;
   --trans-form-clear-button-border-color: #141414;
   --trans-dropdown-border-color: #2a2b2c;
   --trans-dropdown-text-color: #f1f2f5;
@@ -128,6 +131,10 @@ html[data-theme='light'] {
   --auth-form-button-background-color: #f5f6fb;
   --auth-form-button-text-color: #f5f6fb;
   --auth-form-button-shadow: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
+  --auth-form-button-normal-color1: #fefefe;
+  --auth-form-button-normal-color2: #f5f6fb;
+  --auth-form-button-normal-color3: #e6e9fb;
+
   --auth-form-validation-error-color: #eb5757;
 
   /* Balance */
@@ -222,9 +229,9 @@ code {
   text-decoration: none;
   background-image: linear-gradient(
     45deg,
-    #73778b 0%,
-    #f5f6fb 50%,
-    #fefefe 100%
+    #4f4f52 0%,
+    #a1a1a3 60%,
+    #9d9b9b 100%
   );
   background-position: 100% 0;
   background-size: 200% 200%;
@@ -232,11 +239,11 @@ code {
   font-size: 12px;
   font-weight: 700;
   box-shadow: var(--auth-form-button-shadow);
-  color: var(--balance-text-color);
+  color: var(--general-text-color);
   transition: 0.5s;
 }
 .btnNormal:hover {
-  box-shadow: 0 0 0 0 rgba(82, 85, 95, 0);
+  box-shadow: 0 0 0 0 rgba(27, 28, 31, 0);
   background-position: 0 0;
 }
 
