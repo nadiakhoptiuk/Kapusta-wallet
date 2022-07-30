@@ -1,24 +1,32 @@
-import { useEffect, useState } from 'react';
-// import Media from 'react-media';
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 import TransactionsForm from 'components/TransactionsForm';
 import TransactionsModal from 'components/TransactionsModal';
 import TransactionsSummary from 'components/TransactionsSummary';
 import TransactionsTable from 'components/TransactionsTable';
-import Sprite from '../../images/sprite.svg';
-import s from './Transactions.module.css';
 import {
   getExpenseTransactionsQuery,
   getIncomeTransactionsQuery,
 } from 'service/kapustaAPI';
 import { MODES } from 'utils/transactionConstants';
+import { getUserData } from 'redux/auth/auth-selectors';
+import { authOperations } from 'redux/auth/auth-operations';
+import Sprite from '../../images/sprite.svg';
+import s from './Transactions.module.css';
 
 const Transactions = ({ mode }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [transactionsUpdate, setTransactionsUpdate] = useState([]);
   const [monthsStats, setMonthsStats] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+
+  const userData = useSelector(getUserData);
+  const dispatch = useDispatch();
+
+  let newBalance = null;
 
   useEffect(() => {
     if (mode === MODES.expenseMode) {
@@ -37,13 +45,21 @@ const Transactions = ({ mode }) => {
         .catch(err => toast.error(err.message))
         .finally(setIsLoading(false));
     }
-  }, [mode, transactionsUpdate]);
+  }, [mode, newBalance, transactionsUpdate]);
 
   const onSubmit = transactionsList => {
+    if (mode === MODES.expenseMode) {
+      newBalance = userData.balance - transactionsList.amount;
+    }
+    if (mode === MODES.incomeMode) {
+      newBalance = userData.balance + transactionsList.amount;
+    }
+    dispatch(authOperations.updateUserBalance(newBalance));
     setTransactionsUpdate([transactionsList, ...transactionsUpdate]);
   };
 
   const onButtonModalClick = () => {
+    setIsLoading(false);
     setModalOpen(!modalOpen);
   };
 
@@ -57,6 +73,7 @@ const Transactions = ({ mode }) => {
             setSummary={setMonthsStats}
             setIsLoading={setIsLoading}
             modalOpen={modalOpen}
+            userData={userData}
           />
         </div>
         <div className={s.transactionsContainer}>
@@ -68,6 +85,8 @@ const Transactions = ({ mode }) => {
               setSummary={setMonthsStats}
               setIsLoading={setIsLoading}
               isLoading={isLoading}
+              userData={userData}
+              newBalance={newBalance}
             />
           </div>
         </div>
@@ -94,6 +113,8 @@ const Transactions = ({ mode }) => {
             </svg>
           </button>
           <TransactionsForm
+            modalOpen={modalOpen}
+            userData={userData}
             setSummary={setMonthsStats}
             onSubmit={onSubmit}
             mode={mode}
@@ -123,3 +144,7 @@ const Transactions = ({ mode }) => {
 };
 
 export default Transactions;
+
+Transactions.propTypes = {
+  mode: PropTypes.string.isRequired,
+};

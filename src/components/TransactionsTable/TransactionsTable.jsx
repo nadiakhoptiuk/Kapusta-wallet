@@ -1,16 +1,19 @@
-import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
-import Loader from 'components/Loader';
+import { toast } from 'react-toastify';
+
 import {
   deleteTransactionQuery,
   getExpenseTransactionsQuery,
   getIncomeTransactionsQuery,
 } from 'service/kapustaAPI';
 import { MODES } from 'utils/transactionConstants';
+import Loader from 'components/Loader';
 import Sprite from '../../images/sprite.svg';
 import s from './TransactionsTable.module.css';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth/auth-operations';
 
 const TransactionsTable = ({
   transactions,
@@ -19,9 +22,11 @@ const TransactionsTable = ({
   isLoading,
   setIsLoading,
   mode,
-  modalOpen,
+  userData,
 }) => {
   const [isFetching, setIsFetching] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsFetching(true);
@@ -48,24 +53,45 @@ const TransactionsTable = ({
     }
   }, [mode, setIsLoading, setTransactions]);
 
-  const deleteTransaction = async id => {
-    const response = await deleteTransactionQuery(id);
-    if (response.status === 200) {
-      setTransactions(transactions.filter(el => el._id !== id));
-      if (mode === MODES.expenseMode) {
+  const deleteTransaction = async (id, amount) => {
+    if (amount !== userData.balance && mode === MODES.incomeMode) {
+      const response = await deleteTransactionQuery(id);
+
+      if (response.status === 200) {
+        transactions.map(el =>
+          dispatch(
+            authOperations.updateUserBalance(userData.balance - el.amount)
+          )
+        );
+        setTransactions(transactions.filter(el => el._id !== id));
+        getIncomeTransactionsQuery()
+          .then(({ data }) => {
+            setSummary(data.monthsStats);
+          })
+          .catch(err => toast.error(err.message));
+      }
+      return;
+    } else if (amount === userData.balance && mode === MODES.incomeMode) {
+      return toast.error('You can not delete the last Income transaction');
+    }
+
+    if (mode === MODES.expenseMode) {
+      const response = await deleteTransactionQuery(id);
+
+      if (response.status === 200) {
+        transactions.map(el =>
+          dispatch(
+            authOperations.updateUserBalance(userData.balance + el.amount)
+          )
+        );
+        setTransactions(transactions.filter(el => el._id !== id));
         getExpenseTransactionsQuery()
           .then(({ data }) => {
             setSummary(data.monthsStats);
           })
           .catch(err => toast.error(err.message));
       }
-    }
-    if (mode === MODES.incomeMode) {
-      getIncomeTransactionsQuery()
-        .then(({ data }) => {
-          setSummary(data.monthsStats);
-        })
-        .catch(err => toast.error(err.message));
+      return;
     }
   };
 
@@ -104,7 +130,7 @@ const TransactionsTable = ({
                 <td className={s.descriptionLast}>
                   <button
                     className={s.btnDelete}
-                    onClick={() => deleteTransaction(el._id)}
+                    onClick={() => deleteTransaction(el._id, el.amount)}
                   >
                     <svg className={s.calendarIcon} width={18} height={18}>
                       <use href={`${Sprite}#delete-icon`}></use>
@@ -174,3 +200,12 @@ const TransactionsTable = ({
 };
 
 export default TransactionsTable;
+
+TransactionsTable.propTypes = {
+  transactions: PropTypes.array.isRequired,
+  setTransactions: PropTypes.func.isRequired,
+  setSummary: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  setIsLoading: PropTypes.func.isRequired,
+  mode: PropTypes.string.isRequired,
+};
