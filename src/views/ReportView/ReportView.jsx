@@ -12,7 +12,7 @@ export default function ReportView() {
   const { expenses } = transactionTypes;
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedOperation, setSelectedOperation] = useState(expenses);
-  const [diagramData, setDiagramData] = useState(null);
+  const [diagramData, setDiagramData] = useState({});
 
   const currentPeriodData = useSelector(currentPeriodDataSelector);
 
@@ -41,7 +41,7 @@ export default function ReportView() {
         selectedOperation={selectedOperation}
         setSelectedOperation={setSelectedOperation}
       />
-      {/* <ChartController categoryObject={diagramData} /> */}
+      <ChartController categoryObject={diagramData} />
     </Container>
   );
 }
