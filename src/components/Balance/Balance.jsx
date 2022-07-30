@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import moment from 'moment';
 import s from './Balance.module.css';
 import sprite from '../../images/sprite.svg';
 import BalanceModal from 'components/BalanceModal';
 import routes from 'utils/routes';
-import moment from 'moment';
 import { getUserData } from 'redux/auth/auth-selectors';
-import { getPeriodData } from 'redux/currentPeriod/period-operations';
-import { authOperations } from '../../redux/auth/auth-operations';
+import {
+  getPeriodData,
+  setCurrentPeriod,
+} from 'redux/currentPeriod/period-operations';
+import { authOperations } from 'redux/auth/auth-operations';
 import Container from 'components/Container/Container';
-import { toast } from 'react-toastify';
 import { useLocalStorage } from 'hooks/useLocalStorage';
-import { setCurrentPeriod } from 'redux/currentPeriod/period-operations';
+// import ConfirmModal from 'components/ConfirmModal/ConfirmModal';
 
 const { reports, transactions } = routes;
 
@@ -20,7 +23,7 @@ const balanceRow = s.Balance;
 const balanceRowRevers = s.BalanceRevers;
 
 export default function Balance() {
-  const [balance, setBalance] = useState(0);
+  const [balance, setBalance] = useState('');
   const [counter, setCounter] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [disabledButton, setDisabledButton] = useState(false);
@@ -35,6 +38,8 @@ export default function Balance() {
   const currentBalance = useSelector(getUserData).balance;
   const [isNewUser, setIsNewUser] = useLocalStorage('isNewUser', true);
   const isUserOperations = useSelector(getUserData).transactions.length;
+
+  useEffect(() => {});
 
   useEffect(() => {
     if (isReportPage) {
@@ -62,13 +67,17 @@ export default function Balance() {
       return;
     }
     toggleModal();
-    dispatch(authOperations.updateUserBalance(balance));
+    dispatch(authOperations.updateUserBalance(Number(balance)));
     setDisabledButton(true);
     setIsNewUser(false);
   };
 
   const toggleModal = () => {
     return setShowModal(!showModal);
+  };
+
+  const handleClick = () => {
+    toast.warning('You have not made transactions yet');
   };
 
   return (
@@ -94,7 +103,7 @@ export default function Balance() {
                     type="button"
                     className={s.monthChangeBtn}
                   >
-                    <svg width={4} height={10}>
+                    <svg width={10} height={16}>
                       <use href={`${sprite}#arrow-prev-icon`}></use>
                     </svg>
                   </button>
@@ -104,22 +113,30 @@ export default function Balance() {
                     type="button"
                     className={s.monthChangeBtn}
                   >
-                    <svg width={4} height={10}>
+                    <svg width={10} height={16}>
                       <use href={`${sprite}#arrow-next-icon`}></use>
                     </svg>
                   </button>
                 </div>
               </div>
-            ) : (
-              <Link
-                to={isUserOperations ? reports : transactions}
-                className={s.linkReports}
-              >
+            ) : isUserOperations ? (
+              <Link to={reports} className={s.linkReports}>
                 Reports
                 <svg width="14" height="14" className={s.reportsIcon}>
                   <use href={`${sprite}#report-icon`}></use>
                 </svg>
               </Link>
+            ) : (
+              <button
+                type="button"
+                className={s.linkReportsBtn}
+                onClick={handleClick}
+              >
+                Reports
+                <svg width="14" height="14" className={s.reportsIcon}>
+                  <use href={`${sprite}#report-icon`}></use>
+                </svg>
+              </button>
             )}
 
             {!isReportPage ? (
@@ -133,20 +150,25 @@ export default function Balance() {
                       type="number"
                       required
                       name="balance"
-                      value={balance}
+                      value={isNewUser ? balance : currentBalance}
                       onChange={handleChange}
+                      readOnly={!isNewUser}
                     />
+                    <p className={s.currency}>UAH</p>
+                    {!isReportPage && (
+                      <button
+                        type="submit"
+                        className={
+                          isNewUser ? s.buttonForm : s.buttonFormDisabled
+                        }
+                        disabled={!isNewUser}
+                      >
+                        Confirm
+                      </button>
+                    )}
+                    {/* <ConfirmModal /> */}
                     {isNewUser && <BalanceModal />}
                   </div>
-                  {!isReportPage && (
-                    <button
-                      type="submit"
-                      className={s.buttonForm}
-                      disabled={disabledButton}
-                    >
-                      Confirm
-                    </button>
-                  )}
                 </label>
               </form>
             ) : (
@@ -156,7 +178,6 @@ export default function Balance() {
               </div>
             )}
           </div>
-          {/* {showModal && <BalanceModal />} */}
         </div>
         <div>
           <Outlet />
