@@ -1,5 +1,4 @@
 import { IncomesInMonthly } from 'components/IncomesInMonthly';
-import Container from 'components/Container/Container';
 import s from './ReportView.module.css';
 import FinancialReport from 'components/FinancialReport';
 import { useState, useEffect } from 'react';
@@ -33,13 +32,12 @@ export default function ReportView() {
     }
   }, [currentPeriodData, selectedCategory, selectedOperation]);
 
-  console.log(diagramData);
+  // console.log(diagramData);
 
   return (
     <>
       <div className={s.fon}></div>
       <div className={s.img}></div>
-      <Container>
         <div className={s.balance_line}>
           <IncomesInMonthly />
         </div>
@@ -57,7 +55,6 @@ export default function ReportView() {
             <ChartController categoryObject={diagramData} />
           </div>
         )}
-      </Container>
     </>
   );
 }

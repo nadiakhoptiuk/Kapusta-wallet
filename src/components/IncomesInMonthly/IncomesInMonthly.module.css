@@ -16,6 +16,9 @@
 .incomes {
     color: var(--top-panel-income-color);
 }
+.title{
+color: var(--general-header-color);
+}
 
 .title,
 .incomes,
