@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { CSSTransition } from 'react-transition-group';
 import { expensesCategory, incomeCategory } from 'utils/localization';
 import {
   currentPeriodDataSelector,
@@ -10,8 +11,6 @@ import addSpaceForAmount from 'utils/addSpaceForAmount';
 import transactionTypes from 'utils/transactionTypes';
 import Sprite from '../../images/sprite.svg';
 import s from './FinancialReport.module.css';
-
-import { CSSTransition } from 'react-transition-group';
 
 export default function FinancialReport({
   selectedCategory,
@@ -124,6 +123,7 @@ export default function FinancialReport({
                             : `${s.categoryBtnExitActive}`
                         }
                         onClick={() => changeCategory(backendName)}
+                        ariaLabel={`category ${category} button`}
                       >
                         <svg className={s.categoryIcon}>
                           <use href={`${Sprite}#${imgPath}`}></use>
