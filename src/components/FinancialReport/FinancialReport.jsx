@@ -5,7 +5,6 @@ import { expensesCategory, incomeCategory } from 'utils/localization';
 import {
   currentPeriodDataSelector,
   currentPeriodSelector,
-  isLoadingSelector,
 } from 'redux/currentPeriod/period-selectors';
 import addSpaceForAmount from 'utils/addSpaceForAmount';
 import transactionTypes from 'utils/transactionTypes';
@@ -103,9 +102,9 @@ export default function FinancialReport({
         </button>
       </div>
 
-      <ul className={s.categoryList}>
-        {operationData?.length > 0 ? (
-          operationData?.map(
+      {operationData?.length > 0 ? (
+        <ul className={s.categoryList}>
+          {operationData?.map(
             ({ total, imgPath, backendName, category }, index) => {
               return (
                 <li key={index} className={s.categoryItem}>
@@ -140,14 +139,14 @@ export default function FinancialReport({
                 </li>
               );
             }
-          )
-        ) : (
-          <p className={s.reportNotify}>
-            You haven't added your {selectedOperation} for {currentPeriod}{' '}
-            yet...
-          </p>
-        )}
-      </ul>
+          )}
+        </ul>
+      ) : (
+        <p className={s.reportNotify}>
+          Sorry, you don't have any {selectedOperation} for {currentPeriod} so I
+          can't build your report...
+        </p>
+      )}
     </section>
   );
 }
