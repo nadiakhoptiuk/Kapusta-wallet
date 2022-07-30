@@ -23,7 +23,7 @@ const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
-  const [categories, setCategories] = useState('');
+  const [categories, setCategories] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -157,39 +157,16 @@ const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
           placeholder="Product description"
           value={description}
         />
-        <Media
-          queries={{
-            small: '(max-width: 767px)',
-            medium: '(min-width: 768px)',
-          }}
-        >
-          {matches => (
-            <>
-              {matches.small && (
-                <Select
-                  aria-label="Select"
-                  placeholder={<div>Product category</div>}
-                  width="280px"
-                  styles={customStylesMobile}
-                  value={category}
-                  onChange={setCategory}
-                  options={selectOptions()}
-                />
-              )}
-              {matches.medium && (
-                <Select
-                  aria-label="Select"
-                  placeholder={<div>Product category</div>}
-                  width="200px"
-                  styles={customStyles}
-                  value={category}
-                  onChange={setCategory}
-                  options={selectOptions()}
-                />
-              )}
-            </>
-          )}
-        </Media>
+
+        <Select
+          aria-label="Select"
+          placeholder={<div>Product category</div>}
+          width="200px"
+          styles={customStyles}
+          value={category}
+          onChange={setCategory}
+          options={selectOptions()}
+        />
 
         <div className={s.inputCountWrapper}>
           <input
