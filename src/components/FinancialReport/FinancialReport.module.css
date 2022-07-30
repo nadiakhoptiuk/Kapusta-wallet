@@ -98,35 +98,67 @@ button {
   margin-bottom: 8px;
 }
 
-.categoryBtn,
-.categoryBtnActive {
+.categoryBtn {
   height: 100%;
   border: none;
-  color: var(--report-icon-fill);
   background-color: transparent;
   cursor: pointer;
 }
 
-.categoryBtnActive {
+.categoryBtnEnter {
+  composes: categoryBtn;
+  color: var(--report-icon-fill);
+}
+
+.categoryBtnEnterActive {
+  composes: categoryBtn;
+  color: var(--general-accent-background-color);
+  transition: color 300ms ease-in-out;
+}
+
+.categoryBtnExit {
+  composes: categoryBtn;
   color: var(--general-accent-background-color);
 }
 
-.rectangle,
-.rectangleActive {
+.categoryBtnExitActive {
+  composes: categoryBtn;
+  color: var(--report-icon-fill);
+  transition: color 300ms ease-in-out;
+}
+
+.rectangle {
   display: block;
   position: absolute;
   left: 0;
   bottom: 0;
   width: 59px;
   height: 46px;
-
-  background-color: var(--summary-background-color);
   border-radius: 20px;
   z-index: -1;
 }
 
-.rectangleActive {
+.rectangleEnterActive {
+  composes: rectangle;
   background-color: var(--report-bg-rectangle-active);
+  transition: background-color 300ms ease-in-out;
+}
+
+.rectangleEnter {
+  composes: rectangle;
+  background-color: var(--summary-background-color);
+}
+
+.rectangleExitActive {
+  composes: rectangle;
+  background-color: var(--summary-background-color);
+  transition: background-color 300ms ease-in-out;
+}
+
+.rectangleExit {
+  composes: rectangle;
+  background-color: var(--report-bg-rectangle-active);
+  border-radius: 20px;
 }
 
 .categoryIcon {
