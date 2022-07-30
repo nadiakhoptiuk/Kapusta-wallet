@@ -28,13 +28,13 @@ function IncomesInMonthly() {
          <div className={s.balance_container}>
       <div className={s.outcomes_div}>
         <p className={s.title}>Expenses:</p>
-          <p className={s.outcomes}>{`-${outcomes} грн.`}</p>
+          <p className={s.outcomes}>{`- ${outcomes} грн.`}</p>
         </div>
         <div className={s.line}>
         </div>
       <div className={s.incomes_div}>
         <p className={s.title}>Income:</p>
-          <p className={s.incomes}>{`+${incomes} грн.`}</p>
+          <p className={s.incomes}>{`+ ${incomes} грн.`}</p>
       </div>
     </div>
     )

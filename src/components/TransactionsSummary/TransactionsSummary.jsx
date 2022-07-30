@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 const TransactionsSummary = () => {
   const monthsStats = useSelector(getMonthStats);
-
   const renderSummary = () => {
     let markupArray = [];
     for (const key in monthsStats) {

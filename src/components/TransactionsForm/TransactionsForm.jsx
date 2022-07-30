@@ -68,7 +68,7 @@ const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
         setDescription(value);
         break;
       case 'amount':
-        setAmount(value);
+        setAmount(Number(value));
         break;
 
       default:
