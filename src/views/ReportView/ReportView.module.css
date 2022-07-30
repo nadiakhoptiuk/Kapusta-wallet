@@ -47,9 +47,10 @@
         height: 146px;
         position: absolute;
         top: 900px;
-        right: 88px;
+        right: 28px;
         z-index: -1;
         background-image: url(../../images/two-kapustas-bg-min.png);
+        background-image: -webkit-image-set(url(../../images/two-kapustas-bg-min.webp));
     }
 }
 @media screen and (min-width: 1280px) {
@@ -57,11 +58,11 @@
         width: 100%;
         height: 232px;
         position: absolute;
-        /* top: 656px; */
+        top: 1106px;
         z-index: -1;
-        bottom: 0;
         left: 0;
         background-image: url(../../images/many-kapustas-bg-min.png);
+        background-image: -webkit-image-set (url(../../images/many-kapustas-bg-min.webp));
         background-size: cover;
     }
 }

@@ -179,9 +179,9 @@ export default function Balance() {
             )}
           </div>
         </div>
-        <div>
+        
           <Outlet />
-        </div>
+        
       </Container>
     </div>
   );
