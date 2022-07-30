@@ -21,7 +21,7 @@ const TransactionsTable = ({ mode }) => {
   const expenseTransactions = useSelector(getExpenseTransactions);
   const currentTransactions =
     mode === MODES.expenseMode ? expenseTransactions : incomeTransactions;
-  console.log('currentTransactions', currentTransactions);
+  // console.log('currentTransactions', currentTransactions);
 
   const deleteTransaction = async id => {
     dispatch(authOperations.deleteTransaction(id));
