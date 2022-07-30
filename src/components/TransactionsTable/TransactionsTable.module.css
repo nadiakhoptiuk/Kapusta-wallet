@@ -41,6 +41,8 @@
     font-size: 12px;
     text-align: center;
     width: 80px;
+    overflow: hidden;
+
     /* background-color: var(--general-background-bot-part-color); */
     color: var(--table-expense-text-color);
   }
@@ -193,6 +195,8 @@
     padding: 10px;
     background-color: var(--general-background-bot-part-color);
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .descriptionExpense {

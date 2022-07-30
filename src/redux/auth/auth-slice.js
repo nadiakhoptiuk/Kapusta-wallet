@@ -243,8 +243,9 @@ const authSlice = createSlice({
     [authOperations.deleteTransaction.pending](state) {
       state.isDeleting = true;
     },
-    [authOperations.deleteTransaction.fulfilled](state) {
+    [authOperations.deleteTransaction.fulfilled](state, action) {
       state.isDeleting = false;
+      state.userData.balance = action.payload.newBalance;
     },
     [authOperations.deleteTransaction.rejected](state, action) {
       state.isDeleting = false;
