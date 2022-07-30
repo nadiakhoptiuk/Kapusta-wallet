@@ -30,6 +30,7 @@ button {
 .reportTypeTitle {
   margin: 0 25px;
 
+  color: var(--general-header-color);
   font-weight: 700;
   font-size: 14px;
   line-height: 1.14;
@@ -96,6 +97,7 @@ button {
   height: 56px;
   max-width: 59px;
   margin-bottom: 8px;
+  z-index: 1;
 }
 
 .categoryBtn {
@@ -141,7 +143,7 @@ button {
 .rectangleEnterActive {
   composes: rectangle;
   background-color: var(--report-bg-rectangle-active);
-  transition: background-color 300ms ease-in-out;
+  transition: background-color 400ms ease-in-out;
 }
 
 .rectangleEnter {
@@ -152,7 +154,7 @@ button {
 .rectangleExitActive {
   composes: rectangle;
   background-color: var(--summary-background-color);
-  transition: background-color 300ms ease-in-out;
+  transition: background-color 400ms ease-in-out;
 }
 
 .rectangleExit {

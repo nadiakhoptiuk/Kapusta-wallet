@@ -114,7 +114,7 @@ export default function FinancialReport({
                     {addSpaceForAmount(total)}
                   </span>
 
-                  <CSSTransition timeout={300} classNames={{ ...s }}>
+                  <CSSTransition classNames={{ ...s }}>
                     <div className={s.btnWrap}>
                       <button
                         type="button"
