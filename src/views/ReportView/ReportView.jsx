@@ -25,31 +25,39 @@ export default function ReportView() {
         item => item[0] === selectedCategory
       );
 
-      arrayOfDescription && setDiagramData(arrayOfDescription[1]);
+      if (arrayOfDescription) {
+        setDiagramData(arrayOfDescription[1]);
+      } else {
+        setDiagramData({});
+      }
     }
   }, [currentPeriodData, selectedCategory, selectedOperation]);
 
+  console.log(diagramData);
+
   return (
     <>
-    <div className={s.fon}></div>
-    <div className={s.img}></div>
-    <Container>
-      <div className={s.balance_line}>
-        <IncomesInMonthly />
-      </div>
+      <div className={s.fon}></div>
+      <div className={s.img}></div>
+      <Container>
+        <div className={s.balance_line}>
+          <IncomesInMonthly />
+        </div>
         <div className={s.module}>
           <FinancialReport
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        selectedOperation={selectedOperation}
-        setSelectedOperation={setSelectedOperation}
-      />
-</div>
-      
-      <div className={s.module}>
-        <ChartController categoryObject={diagramData} />
-      </div>
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            selectedOperation={selectedOperation}
+            setSelectedOperation={setSelectedOperation}
+          />
+        </div>
+
+        {!!Object.keys(diagramData)?.length && (
+          <div className={s.module}>
+            <ChartController categoryObject={diagramData} />
+          </div>
+        )}
       </Container>
-      </>
+    </>
   );
 }
