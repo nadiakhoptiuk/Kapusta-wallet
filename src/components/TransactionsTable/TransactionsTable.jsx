@@ -11,6 +11,7 @@ import {
   getIncomeTransactions,
   isDeleting,
 } from 'redux/auth/auth-selectors';
+import addSpaceForAmount from 'utils/addSpaceForAmount';
 
 const TransactionsTable = ({ mode }) => {
   const isDeletingTransaction = useSelector(isDeleting);
@@ -54,9 +55,13 @@ const TransactionsTable = ({ mode }) => {
                 <td className={s.description}>{el.description}</td>
                 <td className={s.description}>{el.category}</td>
                 {mode === MODES.expenseMode ? (
-                  <td className={s.descriptionExpense}>-{el.amount} грн.</td>
+                  <td className={s.descriptionExpense}>
+                    -{addSpaceForAmount(el.amount)} грн.
+                  </td>
                 ) : (
-                  <td className={s.descriptionIncome}>{el.amount} грн.</td>
+                  <td className={s.descriptionIncome}>
+                    {addSpaceForAmount(el.amount)} грн.
+                  </td>
                 )}
                 <td className={s.descriptionLast}>
                   <button
@@ -101,9 +106,13 @@ const TransactionsTable = ({ mode }) => {
                   </td>
                   <td className={s.category}>{el.category}</td>
                   {mode === MODES.expenseMode ? (
-                    <td className={s.descriptionExpense}>- {el.amount} грн.</td>
+                    <td className={s.descriptionExpense}>
+                      - {addSpaceForAmount(el.amount)} грн.
+                    </td>
                   ) : (
-                    <td className={s.descriptionIncome}>{el.amount} грн.</td>
+                    <td className={s.descriptionIncome}>
+                      {addSpaceForAmount(el.amount)} грн.
+                    </td>
                   )}
                   <td className={s.lastTD}>
                     <button
