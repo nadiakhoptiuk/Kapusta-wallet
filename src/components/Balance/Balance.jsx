@@ -16,6 +16,7 @@ import { authOperations } from 'redux/auth/auth-operations';
 import Container from 'components/Container/Container';
 import { useLocalStorage } from 'hooks/useLocalStorage';
 // import ConfirmModal from 'components/ConfirmModal/ConfirmModal';
+import addSpaceForAmount from 'utils/addSpaceForAmount';
 
 const { reports, transactions } = routes;
 
@@ -23,7 +24,7 @@ const balanceRow = s.Balance;
 const balanceRowRevers = s.BalanceRevers;
 
 export default function Balance() {
-  const [balance, setBalance] = useState('');
+  const [balance, setBalance] = useState(0);
   const [counter, setCounter] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [disabledButton, setDisabledButton] = useState(false);
@@ -38,6 +39,7 @@ export default function Balance() {
   const currentBalance = useSelector(getUserData).balance;
   const [isNewUser, setIsNewUser] = useLocalStorage('isNewUser', true);
   const isUserOperations = useSelector(getUserData).transactions.length;
+  const balanceFormated = addSpaceForAmount(Number(currentBalance));
 
   useEffect(() => {});
 
@@ -57,7 +59,9 @@ export default function Balance() {
   };
 
   const handleChange = e => {
+    console.log(balance);
     setBalance(e.target.value);
+    console.log(balance);
   };
 
   const handleSubmit = e => {
@@ -150,7 +154,7 @@ export default function Balance() {
                       type="number"
                       required
                       name="balance"
-                      value={isNewUser ? balance : currentBalance}
+                      value={isNewUser ? balanceFormated : currentBalance}
                       onChange={handleChange}
                       readOnly={!isNewUser}
                     />
@@ -174,7 +178,7 @@ export default function Balance() {
             ) : (
               <div className={s.balanceWraper}>
                 <p className={s.balanceTxt}>Balance:</p>
-                <p className={s.inputReports}>{currentBalance} UAH</p>
+                <p className={s.inputReports}>{balanceFormated} UAH</p>
               </div>
             )}
           </div>

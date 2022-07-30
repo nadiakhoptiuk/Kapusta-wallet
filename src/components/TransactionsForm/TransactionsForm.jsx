@@ -17,7 +17,7 @@ const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState(null);
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useState(0);
   const [categories, setCategories] = useState('');
 
   const dispatch = useDispatch();
@@ -63,7 +63,7 @@ const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
         setDescription(value);
         break;
       case 'amount':
-        setAmount(value);
+        setAmount(Number(value));
         break;
 
       default:
