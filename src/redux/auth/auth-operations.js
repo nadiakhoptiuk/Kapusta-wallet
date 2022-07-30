@@ -9,6 +9,9 @@ import {
   updateUserBalanceQuery,
   sendIncomeTransactionQuery,
   sendExpenseTransactionQuery,
+  getIncomeTransactionsQuery,
+  getExpenseTransactionsQuery,
+  deleteTransactionQuery,
 } from 'service/kapustaAPI';
 
 const register = createAsyncThunk(
@@ -99,9 +102,22 @@ const updateUserBalance = createAsyncThunk(
 
 const sendIncomeTransaction = createAsyncThunk(
   'auth/add/income',
-  async (transaction, { rejectWithValue }) => {
+  async (transaction, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await sendIncomeTransactionQuery(transaction);
+      dispatch(authOperations.getIncomeTransactions());
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.status);
+    }
+  }
+);
+
+const getIncomeTransactions = createAsyncThunk(
+  'auth/get/income',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await getIncomeTransactionsQuery();
       return data;
     } catch (error) {
       return rejectWithValue(error.response.status);
@@ -111,9 +127,36 @@ const sendIncomeTransaction = createAsyncThunk(
 
 const sendExpenseTransaction = createAsyncThunk(
   'auth/add/expense',
-  async (transaction, { rejectWithValue }) => {
+  async (transaction, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await sendExpenseTransactionQuery(transaction);
+      dispatch(authOperations.getExpenseTransactions());
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.status);
+    }
+  }
+);
+const getExpenseTransactions = createAsyncThunk(
+  'auth/get/expense',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await getExpenseTransactionsQuery();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.status);
+    }
+  }
+);
+
+const deleteTransaction = createAsyncThunk(
+  'auth/transaction/delete',
+  async (transactionId, { rejectWithValue, dispatch }) => {
+    try {
+      const { data } = await deleteTransactionQuery(transactionId);
+      dispatch(authOperations.getExpenseTransactions());
+      dispatch(authOperations.getIncomeTransactions());
       return data;
     } catch (error) {
       return rejectWithValue(error.response.status);
@@ -130,4 +173,7 @@ export const authOperations = {
   updateUserBalance,
   sendIncomeTransaction,
   sendExpenseTransaction,
+  getExpenseTransactions,
+  getIncomeTransactions,
+  deleteTransaction,
 };

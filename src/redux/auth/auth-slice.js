@@ -4,6 +4,9 @@ import { authOperations } from './auth-operations';
 
 const initialState = {
   userData: { email: null, id: null, balance: 0, transactions: [] },
+  incomeTransactions: [],
+  expenseTransactions: [],
+  monthsStats: {},
   accessToken: null,
   refreshToken: null,
   sid: null,
@@ -15,6 +18,9 @@ const initialState = {
   isUpdating: false,
   isSendingIncome: false,
   isSendingExpense: false,
+  isGettingIncome: false,
+  isGettingExpense: false,
+  isDeleting: false,
 };
 
 const authSlice = createSlice({
@@ -175,6 +181,73 @@ const authSlice = createSlice({
     },
     [authOperations.sendExpenseTransaction.rejected](state, action) {
       state.isSendingExpense = false;
+      switch (action.payload) {
+        case 401:
+          toast.error('Unauthorized');
+          break;
+
+        case 404:
+          toast.error('Invalid user');
+          break;
+
+        default:
+          toast.error('Bad request');
+      }
+    },
+    [authOperations.getExpenseTransactions.pending](state) {
+      state.isGettingExpense = true;
+    },
+    [authOperations.getExpenseTransactions.fulfilled](state, action) {
+      state.isGettingExpense = false;
+      state.expenseTransactions = action.payload.expenses;
+      state.monthsStats = action.payload.monthsStats;
+    },
+    [authOperations.getExpenseTransactions.rejected](state, action) {
+      state.isGettingExpense = false;
+      switch (action.payload) {
+        case 401:
+          toast.error('Unauthorized');
+          break;
+
+        case 404:
+          toast.error('Invalid user');
+          break;
+
+        default:
+          toast.error('Bad request');
+      }
+    },
+    [authOperations.getIncomeTransactions.pending](state) {
+      state.isGettingIncome = true;
+    },
+    [authOperations.getIncomeTransactions.fulfilled](state, action) {
+      state.isGettingIncome = false;
+      state.incomeTransactions = action.payload.incomes;
+      state.monthsStats = action.payload.monthsStats;
+    },
+    [authOperations.getIncomeTransactions.rejected](state, action) {
+      state.isGettingIncome = false;
+      switch (action.payload) {
+        case 401:
+          toast.error('Unauthorized');
+          break;
+
+        case 404:
+          toast.error('Invalid user');
+          break;
+
+        default:
+          toast.error('Bad request');
+      }
+    },
+    [authOperations.deleteTransaction.pending](state) {
+      state.isDeleting = true;
+    },
+    [authOperations.deleteTransaction.fulfilled](state) {
+      state.isDeleting = false;
+    },
+    [authOperations.deleteTransaction.rejected](state, action) {
+      state.isDeleting = false;
       switch (action.payload) {
         case 401:
           toast.error('Unauthorized');

@@ -1,98 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import moment from 'moment';
-import { toast } from 'react-toastify';
-
-import {
-  deleteTransactionQuery,
-  getExpenseTransactionsQuery,
-  getIncomeTransactionsQuery,
-} from 'service/kapustaAPI';
 import { MODES } from 'utils/transactionConstants';
 import Loader from 'components/Loader';
 import Sprite from '../../images/sprite.svg';
 import s from './TransactionsTable.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authOperations } from 'redux/auth/auth-operations';
+import {
+  getExpenseTransactions,
+  getIncomeTransactions,
+  isDeleting,
+} from 'redux/auth/auth-selectors';
 
-const TransactionsTable = ({
-  transactions,
-  setTransactions,
-  setSummary,
-  isLoading,
-  setIsLoading,
-  mode,
-  userData,
-}) => {
-  const [isFetching, setIsFetching] = useState(false);
+const TransactionsTable = ({ mode }) => {
+  const isDeletingTransaction = useSelector(isDeleting);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setIsFetching(true);
-    if (mode === MODES.expenseMode) {
-      getExpenseTransactionsQuery()
-        .then(({ data }) => {
-          setTransactions(data.expenses);
-        })
-        .catch(err => toast.error(err.message))
-        .finally(() => {
-          setIsFetching(false);
-        });
-    }
+  const incomeTransactions = useSelector(getIncomeTransactions);
+  const expenseTransactions = useSelector(getExpenseTransactions);
+  const currentTransactions =
+    mode === MODES.expenseMode ? expenseTransactions : incomeTransactions;
+  console.log('currentTransactions', currentTransactions);
 
-    if (mode === MODES.incomeMode) {
-      getIncomeTransactionsQuery()
-        .then(({ data }) => {
-          setTransactions(data.incomes);
-        })
-        .catch(err => toast.error(err.message))
-        .finally(() => {
-          setIsFetching(false);
-        });
-    }
-  }, [mode, setIsLoading, setTransactions]);
-
-  const deleteTransaction = async (id, amount) => {
-    if (amount !== userData.balance && mode === MODES.incomeMode) {
-      const response = await deleteTransactionQuery(id);
-
-      if (response.status === 200) {
-        transactions.map(el =>
-          dispatch(
-            authOperations.updateUserBalance(userData.balance - el.amount)
-          )
-        );
-        setTransactions(transactions.filter(el => el._id !== id));
-        getIncomeTransactionsQuery()
-          .then(({ data }) => {
-            setSummary(data.monthsStats);
-          })
-          .catch(err => toast.error(err.message));
-      }
-      return;
-    } else if (amount === userData.balance && mode === MODES.incomeMode) {
-      return toast.error('You can not delete the last Income transaction');
-    }
-
-    if (mode === MODES.expenseMode) {
-      const response = await deleteTransactionQuery(id);
-
-      if (response.status === 200) {
-        transactions.map(el =>
-          dispatch(
-            authOperations.updateUserBalance(userData.balance + el.amount)
-          )
-        );
-        setTransactions(transactions.filter(el => el._id !== id));
-        getExpenseTransactionsQuery()
-          .then(({ data }) => {
-            setSummary(data.monthsStats);
-          })
-          .catch(err => toast.error(err.message));
-      }
-      return;
-    }
+  const deleteTransaction = async id => {
+    dispatch(authOperations.deleteTransaction(id));
   };
 
   return (
@@ -108,14 +40,14 @@ const TransactionsTable = ({
           </tr>
         </thead>
         <tbody className={s.tableBody}>
-          {isFetching || isLoading ? (
+          {isDeletingTransaction ? (
             <tr>
               <td className={s.loader}>
                 <Loader />
               </td>
             </tr>
-          ) : transactions.length > 0 ? (
-            transactions.map(el => (
+          ) : currentTransactions?.length > 0 ? (
+            currentTransactions.map(el => (
               <tr key={el._id} className={s.tableRow}>
                 <td className={s.description}>
                   {moment(el.date).format('DD.MM.YYYY')}
@@ -130,7 +62,7 @@ const TransactionsTable = ({
                 <td className={s.descriptionLast}>
                   <button
                     className={s.btnDelete}
-                    onClick={() => deleteTransaction(el._id, el.amount)}
+                    onClick={() => deleteTransaction(el._id)}
                   >
                     <svg className={s.calendarIcon} width={18} height={18}>
                       <use href={`${Sprite}#delete-icon`}></use>
@@ -152,14 +84,14 @@ const TransactionsTable = ({
       <div className={s.tableMobileWrap}>
         <table className={s.mobileTable}>
           <tbody className={s.tBody}>
-            {isFetching || isLoading ? (
+            {isDeletingTransaction ? (
               <tr>
                 <td className={s.loader}>
                   <Loader />
                 </td>
               </tr>
-            ) : transactions.length > 0 ? (
-              transactions.map(el => (
+            ) : currentTransactions?.length > 0 ? (
+              currentTransactions.map(el => (
                 <tr key={el._id} className={s.tableRow}>
                   <td className={s.column}>
                     <span className={s.descriptionMobile}>
@@ -200,12 +132,3 @@ const TransactionsTable = ({
 };
 
 export default TransactionsTable;
-
-TransactionsTable.propTypes = {
-  transactions: PropTypes.array.isRequired,
-  setTransactions: PropTypes.func.isRequired,
-  setSummary: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  setIsLoading: PropTypes.func.isRequired,
-  mode: PropTypes.string.isRequired,
-};
