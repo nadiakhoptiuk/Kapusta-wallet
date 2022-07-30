@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import PropTypes from 'prop-types';
 import s from './TransactionsModal.module.css';
 
 const modalRoot = document.querySelector('#modal-root');
 
-function TransactionsModal({ onClose, children }) {
+const TransactionsModal = ({ onClose, children }) => {
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
@@ -29,6 +30,11 @@ function TransactionsModal({ onClose, children }) {
     </div>,
     modalRoot
   );
-}
+};
 
 export default TransactionsModal;
+
+TransactionsModal.propTypes = {
+  onClose: PropTypes.func,
+  children: PropTypes.node,
+};

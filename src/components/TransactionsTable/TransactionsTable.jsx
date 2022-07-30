@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
-import Loader from 'components/Loader';
+import { toast } from 'react-toastify';
+
 import {
   deleteTransactionQuery,
   getExpenseTransactionsQuery,
   getIncomeTransactionsQuery,
 } from 'service/kapustaAPI';
 import { MODES } from 'utils/transactionConstants';
+import Loader from 'components/Loader';
 import Sprite from '../../images/sprite.svg';
 import s from './TransactionsTable.module.css';
 
@@ -19,7 +20,6 @@ const TransactionsTable = ({
   isLoading,
   setIsLoading,
   mode,
-  modalOpen,
 }) => {
   const [isFetching, setIsFetching] = useState(false);
 
@@ -174,3 +174,12 @@ const TransactionsTable = ({
 };
 
 export default TransactionsTable;
+
+TransactionsTable.propTypes = {
+  transactions: PropTypes.array.isRequired,
+  setTransactions: PropTypes.func.isRequired,
+  setSummary: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  setIsLoading: PropTypes.func.isRequired,
+  mode: PropTypes.string.isRequired,
+};

@@ -99,7 +99,7 @@ const updateUserBalance = createAsyncThunk(
   'auth/updateUserBalance',
   async (newBalance, { rejectWithValue }) => {
     try {
-      const { data } = await updateUserBalanceQuery();
+      const { data } = await updateUserBalanceQuery(newBalance);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.status);
