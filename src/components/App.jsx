@@ -82,11 +82,7 @@ export const App = () => {
               path={reports}
               element={
                 <PrivateRoute>
-                  {isLoading ? (
-                    <Loader />
-                  ) : (
-                    <ChartController categoryObject={{}} />
-                  )}
+                  {isLoading ? <Loader /> : <ReportView />}
                 </PrivateRoute>
               }
             />
