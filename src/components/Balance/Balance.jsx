@@ -15,7 +15,7 @@ import {
 import { authOperations } from 'redux/auth/auth-operations';
 import Container from 'components/Container/Container';
 import { useLocalStorage } from 'hooks/useLocalStorage';
-import ConfirmModal from 'components/ConfirmModal/ConfirmModal';
+// import ConfirmModal from 'components/ConfirmModal/ConfirmModal';
 
 const { reports, transactions } = routes;
 
@@ -23,7 +23,7 @@ const balanceRow = s.Balance;
 const balanceRowRevers = s.BalanceRevers;
 
 export default function Balance() {
-  const [balance, setBalance] = useState(0);
+  const [balance, setBalance] = useState('');
   const [counter, setCounter] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [disabledButton, setDisabledButton] = useState(false);
@@ -119,16 +119,7 @@ export default function Balance() {
                   </button>
                 </div>
               </div>
-            ) : // <Link
-            //   to={isUserOperations ? reports : transactions}
-            //   className={s.linkReports}
-            // >
-            //   Reports
-            //   <svg width="14" height="14" className={s.reportsIcon}>
-            //     <use href={`${sprite}#report-icon`}></use>
-            //   </svg>
-            // </Link>
-            isUserOperations ? (
+            ) : isUserOperations ? (
               <Link to={reports} className={s.linkReports}>
                 Reports
                 <svg width="14" height="14" className={s.reportsIcon}>
@@ -163,6 +154,7 @@ export default function Balance() {
                       onChange={handleChange}
                       readOnly={!isNewUser}
                     />
+                    <p className={s.currency}>UAH</p>
                     {!isReportPage && (
                       <button
                         type="submit"

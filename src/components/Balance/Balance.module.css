@@ -144,33 +144,22 @@
   color: var(--general-header-color);
 }
 
-.inputReports::placeholder {
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 1.17;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-
-  color: var(--general-header-color);
-}
-
-.input::placeholder {
-  padding-left: 20px;
-
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 1.17;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  text-align: right;
-
-  color: var(--general-header-color);
-}
-
 .modalWraper {
   position: relative;
+}
+
+.currency {
+  position: absolute;
+  top: 15px;
+  left: 80px;
+
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: var(--general-header-color);
 }
 
 .buttonForm {
@@ -288,6 +277,12 @@
   .form {
     width: 280px;
     margin: 0 auto;
+  }
+
+  .currency {
+    position: absolute;
+    top: 15px;
+    left: 100px;
   }
 }
 
