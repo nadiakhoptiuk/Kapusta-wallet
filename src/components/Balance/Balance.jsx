@@ -154,7 +154,7 @@ export default function Balance() {
                       type="number"
                       required
                       name="balance"
-                      value={isNewUser ? balance : currentBalance}
+                      value={isNewUser ? balanceFormated : currentBalance}
                       onChange={handleChange}
                       readOnly={!isNewUser}
                     />
