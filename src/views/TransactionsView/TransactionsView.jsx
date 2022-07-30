@@ -12,9 +12,11 @@ const TransactionsView = () => {
     <>
       <div className={s.fon}></div>
       <div className={s.img}></div>
-        <Container>
-        <NavBar setMode={setMode} mode={mode} />
-        <Transactions mode={mode} />
+      <Container>
+        <div className={s.transactionsWrap}>
+          <NavBar setMode={setMode} mode={mode} />
+          <Transactions mode={mode} />
+        </div>
       </Container>
     </>
   );

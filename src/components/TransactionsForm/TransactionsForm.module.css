@@ -31,8 +31,9 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
-    text-align: center;
+    text-align: start;
     background-color: transparent;
+    padding-left: 10px;
   }
 
   .description::placeholder {

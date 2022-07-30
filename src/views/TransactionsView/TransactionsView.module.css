@@ -9,20 +9,27 @@
   z-index: -1;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 767px) {
+  .transactionsWrap {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+  }
+}
 
-  .fon{
-  height: 583px;
-}
-.img{
-  width: 183px;
-  height: 146px;
-  position: absolute;
-  top: 900px;
-  right: 88px;
-  background-image: url(../../images/two-kapustas-bg-min.png) ;
-}
-/* @media (min-device-pixel-ratio: 2),
+@media screen and (min-width: 768px) {
+  .fon {
+    height: 583px;
+  }
+  .img {
+    width: 183px;
+    height: 146px;
+    position: absolute;
+    top: 900px;
+    right: 88px;
+    background-image: url(../../images/two-kapustas-bg-min.png);
+  }
+  /* @media (min-device-pixel-ratio: 2),
 (min-resolution: 192dpi),
 (min-resolution: 2dppx) {
   .img {
@@ -32,18 +39,16 @@
 }
 
 @media screen and (min-width: 1280px) {
- 
-  .img{
+  .img {
     width: 100%;
     height: 232px;
     position: absolute;
     top: 656px;
     left: 0;
-    background-image: url(../../images/many-kapustas-bg-min.png) ;
+    background-image: url(../../images/many-kapustas-bg-min.png);
     background-size: cover;
-    
   }
-    /* @media (min-device-pixel-ratio: 2),
+  /* @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
       .img{background-image: url(..//..//images/many-kapustas-bg@2x-min.png);}

@@ -21,10 +21,9 @@ const TransactionsTable = ({ mode }) => {
   const expenseTransactions = useSelector(getExpenseTransactions);
   const currentTransactions =
     mode === MODES.expenseMode ? expenseTransactions : incomeTransactions;
-  console.log('currentTransactions', currentTransactions);
 
-  const deleteTransaction = async id => {
-    dispatch(authOperations.deleteTransaction(id));
+  const deleteTransaction = async (transactionId, mode) => {
+    dispatch(authOperations.deleteTransaction({ transactionId, mode }));
   };
 
   return (
@@ -61,8 +60,9 @@ const TransactionsTable = ({ mode }) => {
                 )}
                 <td className={s.descriptionLast}>
                   <button
+                    aria-label="Delete"
                     className={s.btnDelete}
-                    onClick={() => deleteTransaction(el._id)}
+                    onClick={() => deleteTransaction(el._id, mode)}
                   >
                     <svg className={s.calendarIcon} width={18} height={18}>
                       <use href={`${Sprite}#delete-icon`}></use>
@@ -107,8 +107,9 @@ const TransactionsTable = ({ mode }) => {
                   )}
                   <td className={s.lastTD}>
                     <button
+                      aria-label="Delete"
                       className={s.btnDelete}
-                      onClick={() => deleteTransaction(el._id)}
+                      onClick={() => deleteTransaction(el._id, mode)}
                     >
                       <svg className={s.calendarIcon} width={18} height={18}>
                         <use href={`${Sprite}#delete-icon`}></use>

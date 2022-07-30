@@ -13,6 +13,7 @@ import {
   getExpenseTransactionsQuery,
   deleteTransactionQuery,
 } from 'service/kapustaAPI';
+import { MODES } from 'utils/transactionConstants';
 
 const register = createAsyncThunk(
   'auth/register',
@@ -152,11 +153,15 @@ const getExpenseTransactions = createAsyncThunk(
 
 const deleteTransaction = createAsyncThunk(
   'auth/transaction/delete',
-  async (transactionId, { rejectWithValue, dispatch }) => {
+  async ({ transactionId, mode }, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await deleteTransactionQuery(transactionId);
-      dispatch(authOperations.getExpenseTransactions());
-      dispatch(authOperations.getIncomeTransactions());
+      if (mode === MODES.expenseMode) {
+        dispatch(authOperations.getExpenseTransactions());
+      } else {
+        dispatch(authOperations.getIncomeTransactions());
+      }
+
       return data;
     } catch (error) {
       return rejectWithValue(error.response.status);
