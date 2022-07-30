@@ -59,6 +59,7 @@ const Transactions = ({ mode }) => {
   };
 
   const onButtonModalClick = () => {
+    setIsLoading(false);
     setModalOpen(!modalOpen);
   };
 
@@ -84,6 +85,8 @@ const Transactions = ({ mode }) => {
               setSummary={setMonthsStats}
               setIsLoading={setIsLoading}
               isLoading={isLoading}
+              userData={userData}
+              newBalance={newBalance}
             />
           </div>
         </div>
@@ -110,6 +113,8 @@ const Transactions = ({ mode }) => {
             </svg>
           </button>
           <TransactionsForm
+            modalOpen={modalOpen}
+            userData={userData}
             setSummary={setMonthsStats}
             onSubmit={onSubmit}
             mode={mode}

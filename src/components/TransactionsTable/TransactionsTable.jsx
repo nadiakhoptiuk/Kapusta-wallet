@@ -12,6 +12,8 @@ import { MODES } from 'utils/transactionConstants';
 import Loader from 'components/Loader';
 import Sprite from '../../images/sprite.svg';
 import s from './TransactionsTable.module.css';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth/auth-operations';
 
 const TransactionsTable = ({
   transactions,
@@ -20,8 +22,11 @@ const TransactionsTable = ({
   isLoading,
   setIsLoading,
   mode,
+  userData,
 }) => {
   const [isFetching, setIsFetching] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsFetching(true);
@@ -50,9 +55,15 @@ const TransactionsTable = ({
 
   const deleteTransaction = async id => {
     const response = await deleteTransactionQuery(id);
+    console.log('response', response);
     if (response.status === 200) {
-      setTransactions(transactions.filter(el => el._id !== id));
       if (mode === MODES.expenseMode) {
+        transactions.map(el =>
+          dispatch(
+            authOperations.updateUserBalance(userData.balance + el.amount)
+          )
+        );
+        setTransactions(transactions.filter(el => el._id !== id));
         getExpenseTransactionsQuery()
           .then(({ data }) => {
             setSummary(data.monthsStats);
@@ -61,6 +72,10 @@ const TransactionsTable = ({
       }
     }
     if (mode === MODES.incomeMode) {
+      transactions.map(el =>
+        dispatch(authOperations.updateUserBalance(userData.balance - el.amount))
+      );
+      setTransactions(transactions.filter(el => el._id !== id));
       getIncomeTransactionsQuery()
         .then(({ data }) => {
           setSummary(data.monthsStats);
