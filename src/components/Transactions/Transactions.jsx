@@ -1,16 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { toast } from 'react-toastify';
-
 import TransactionsForm from 'components/TransactionsForm';
 import TransactionsModal from 'components/TransactionsModal';
 import TransactionsSummary from 'components/TransactionsSummary';
 import TransactionsTable from 'components/TransactionsTable';
-import {
-  getExpenseTransactionsQuery,
-  getIncomeTransactionsQuery,
-} from 'service/kapustaAPI';
+
 import { MODES } from 'utils/transactionConstants';
 import { getUserData } from 'redux/auth/auth-selectors';
 import { authOperations } from 'redux/auth/auth-operations';
@@ -19,44 +13,20 @@ import s from './Transactions.module.css';
 
 const Transactions = ({ mode }) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [transactionsUpdate, setTransactionsUpdate] = useState([]);
-  const [monthsStats, setMonthsStats] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   const userData = useSelector(getUserData);
-  const dispatch = useDispatch();
 
-  let newBalance = null;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (mode === MODES.expenseMode) {
-      getExpenseTransactionsQuery()
-        .then(({ data }) => {
-          setMonthsStats(data.monthsStats);
-        })
-        .catch(err => toast.error(err.message))
-        .finally(setIsLoading(false));
+      dispatch(authOperations.getExpenseTransactions());
     }
     if (mode === MODES.incomeMode) {
-      getIncomeTransactionsQuery()
-        .then(({ data }) => {
-          setMonthsStats(data.monthsStats);
-        })
-        .catch(err => toast.error(err.message))
-        .finally(setIsLoading(false));
+      dispatch(authOperations.getIncomeTransactions());
     }
-  }, [mode, newBalance, transactionsUpdate]);
-
-  const onSubmit = transactionsList => {
-    if (mode === MODES.expenseMode) {
-      newBalance = userData.balance - transactionsList.amount;
-    }
-    if (mode === MODES.incomeMode) {
-      newBalance = userData.balance + transactionsList.amount;
-    }
-    dispatch(authOperations.updateUserBalance(newBalance));
-    setTransactionsUpdate([transactionsList, ...transactionsUpdate]);
-  };
+  }, [dispatch, mode]);
 
   const onButtonModalClick = () => {
     setIsLoading(false);
@@ -69,8 +39,6 @@ const Transactions = ({ mode }) => {
         <div className={s.formWrap}>
           <TransactionsForm
             mode={mode}
-            onSubmit={onSubmit}
-            setSummary={setMonthsStats}
             setIsLoading={setIsLoading}
             modalOpen={modalOpen}
             userData={userData}
@@ -80,13 +48,9 @@ const Transactions = ({ mode }) => {
           <div className={s.formTableWrap}>
             <TransactionsTable
               mode={mode}
-              transactions={transactionsUpdate}
-              setTransactions={setTransactionsUpdate}
-              setSummary={setMonthsStats}
               setIsLoading={setIsLoading}
               isLoading={isLoading}
               userData={userData}
-              newBalance={newBalance}
             />
           </div>
         </div>
@@ -115,36 +79,17 @@ const Transactions = ({ mode }) => {
           <TransactionsForm
             modalOpen={modalOpen}
             userData={userData}
-            setSummary={setMonthsStats}
-            onSubmit={onSubmit}
             mode={mode}
             closeModal={onButtonModalClick}
             setIsLoading={setIsLoading}
           />
         </TransactionsModal>
       )}
-
-      {/* <Media
-        queries={{
-          medium: '(min-width: 768px)',
-        }}
-      >
-        {matches => (
-          <>
-            {matches.medium && ( */}
       <div className={s.summaryWrap}>
-        <TransactionsSummary monthsStats={monthsStats} />
+        <TransactionsSummary />
       </div>
-      {/* )}
-          </>
-        )}
-      </Media> */}
     </div>
   );
 };
 
 export default Transactions;
-
-Transactions.propTypes = {
-  mode: PropTypes.string.isRequired,
-};

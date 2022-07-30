@@ -1,8 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import s from './TransactionsSummary.module.css';
+import { getMonthStats } from 'redux/auth/auth-selectors';
+import { useSelector } from 'react-redux';
 
-const TransactionsSummary = ({ monthsStats }) => {
+const TransactionsSummary = () => {
+  const monthsStats = useSelector(getMonthStats);
+  console.log('monthsStats', monthsStats);
   const renderSummary = () => {
     let markupArray = [];
     for (const key in monthsStats) {
@@ -31,7 +34,3 @@ const TransactionsSummary = ({ monthsStats }) => {
 };
 
 export default TransactionsSummary;
-
-TransactionsSummary.propTypes = {
-  monthsStats: PropTypes.object.isRequired,
-};
