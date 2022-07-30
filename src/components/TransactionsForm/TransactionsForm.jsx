@@ -122,7 +122,7 @@ const TransactionsForm = ({
       userData.balance <= transactionsList.amount
     ) {
       setIsLoading(false);
-      alert('Balance cannot be negative');
+      toast.error('Balance cannot be negative');
       return;
     }
 
