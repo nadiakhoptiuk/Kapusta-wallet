@@ -1,0 +1,61 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  position: relative;
+  width: 380px;
+  padding: 50px 58px 60px;
+  box-shadow: var(--modal-shadow);
+  border-radius: 30px;
+  background-color: var(--modal-background-color);
+}
+
+@media screen and (max-width: 420px) {
+  .modal {
+    width: 280px;
+  }
+}
+
+.crossBtn {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  transition: 500ms;
+}
+
+.crossBtn:hover {
+  transform: scale(1.2);
+}
+
+.title {
+  margin-bottom: 20px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.02em;
+
+  color: var(--general-text-color);
+}
+
+.btnsBox {
+  display: flex;
+  justify-content: space-around;
+}
+
+.img {
+  cursor: pointer;
+}

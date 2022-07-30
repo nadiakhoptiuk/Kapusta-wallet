@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth/auth-operations';
 import s from './AuthForm.module.css';
 import Sprite from '../../images/sprite.svg';
+import PalyanytsyaModal from 'components/PalyanytsyaModal/PalyanytsyaModal';
 
 export default function AuthForm() {
   const dispatch = useDispatch();
@@ -11,6 +12,8 @@ export default function AuthForm() {
   const [emptyInput, setEmptyInput] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
   const [smallLengthPassword, setSmallLengthPassword] = useState(false);
+  const [showPalyanytsyaReg, setShowPalyanytsyaReg] = useState(false);
+  const [showPalyanytsyaLog, setShowPalyanytsyaLog] = useState(false);
 
   const onChange = e => {
     setEmptyInput(false);
@@ -38,7 +41,7 @@ export default function AuthForm() {
       return;
     }
 
-    dispatch(authOperations.login({ email, password }));
+    setShowPalyanytsyaLog(true);
   };
 
   const handleRegister = () => {
@@ -46,7 +49,7 @@ export default function AuthForm() {
       return;
     }
 
-    dispatch(authOperations.register({ email, password }));
+    setShowPalyanytsyaReg(true);
   };
 
   const checkValidData = () => {
@@ -70,8 +73,26 @@ export default function AuthForm() {
     return key;
   };
 
+  const onClickYesReg = () => {
+    dispatch(authOperations.register({ email, password }));
+  };
+  const onClickYesLog = () => {
+    dispatch(authOperations.login({ email, password }));
+  };
+
+  const onClickNo = () => {
+    setShowPalyanytsyaLog(false);
+    setShowPalyanytsyaReg(false);
+  };
+
   return (
     <>
+      {showPalyanytsyaLog && (
+        <PalyanytsyaModal onClickYes={onClickYesLog} onClickNo={onClickNo} />
+      )}
+      {showPalyanytsyaReg && (
+        <PalyanytsyaModal onClickYes={onClickYesReg} onClickNo={onClickNo} />
+      )}
       <div className={s.box}>
         <p className={s.googleText}>You can log in with your Google Account:</p>
         <a

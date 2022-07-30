@@ -1,11 +1,18 @@
-import { ThreeDots } from 'react-loader-spinner';
-
+import Sprite from '../../images/sprite.svg';
 import s from './Loader.module.css';
 
 const Loader = () => {
   return (
     <div className={s.wrapper}>
-      <ThreeDots height="100" width="100" color="grey" ariaLabel="loading" />
+      <svg className={s.icon} width="50" height="50">
+        <use href={`${Sprite}#icon-kapustina`}></use>
+      </svg>
+      <svg className={s.icon} width="50" height="50">
+        <use href={`${Sprite}#icon-kapustina`}></use>
+      </svg>
+      <svg className={s.icon} width="50" height="50">
+        <use href={`${Sprite}#icon-kapustina`}></use>
+      </svg>
     </div>
   );
 };
