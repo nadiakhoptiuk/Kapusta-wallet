@@ -23,7 +23,7 @@
     display: block;
     overflow: auto;
     min-width: 310px;
-    max-height: 150px;
+    /* max-height: 150px; */
   }
 
   .tBody::-webkit-scrollbar {
@@ -41,7 +41,7 @@
     font-size: 12px;
     text-align: center;
     width: 80px;
-    background-color: var(--general-background-bot-part-color);
+    /* background-color: var(--general-background-bot-part-color); */
     color: var(--table-expense-text-color);
   }
 
@@ -87,7 +87,7 @@
     letter-spacing: 0.04em;
     padding-top: 8px;
     padding-bottom: 8px;
-    background-color: var(--general-background-bot-part-color);
+    /* background-color: var(--general-background-bot-part-color); */
     color: var(--general-text-color);
     max-width: 90px;
   }

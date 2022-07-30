@@ -2,6 +2,7 @@ import React from 'react';
 import s from './TransactionsSummary.module.css';
 import { getMonthStats } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
+import addSpaceForAmount from 'utils/addSpaceForAmount';
 
 const TransactionsSummary = () => {
   const monthsStats = useSelector(getMonthStats);
@@ -21,7 +22,7 @@ const TransactionsSummary = () => {
           el.amount !== 'N/A' ? (
             <li key={el.month} className={s.item}>
               <span>{el.month}</span>
-              <span>{el.amount}</span>
+              <span>{addSpaceForAmount(el.amount)}</span>
             </li>
           ) : (
             ''
