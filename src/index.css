@@ -16,39 +16,90 @@
 /* General */
 /* dark theme */
 html[data-theme='dark'] {
-  --general-background-top-part-color: #20202f;
+  --general-background-top-part-color: #2f3031;
   --general-background-bot-part-color: #252525;
+  --general-accent-background-color: #ff751d;
   --general-accent-text-color: #252525;
-  --general-text-color: #e8ecf9;
-  --general-header-color: #f5f6fa;
+  --general-accent-shadow: drop-shadow(1px 3px 5px hsla(24, 100%, 52%, 0.35));
+  --general-text-color: #969698;
+  --general-header-color: #ffffff;
+
+  /* Universal Modal */
   --modal-background-color: #252525;
+  --modal-button-border-color: #d2d3d4;
+  --modal-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
+
+  /* Header/SharedLayout */
   --header-background-color: #252525;
-  --header-line-separator-color: #333436;
-  --header-user-background-color: #292929;
-  --auth-background-top-part-color: #292929;
+  --header-line-separator-color: #414244;
+  --header-user-background-color: #2a2b2c;
+
+  /* AuthForm */
+  --auth-background-top-part-color: #2a2b2c;
   --auth-background-bot-part-color: #252525;
   --auth-form-background-color: #252525;
-  --auth-form-input-background-color: #a6abb9;
-  --auth-form-input-placeholder-color: #f6f7fb;
-  --auth-form-button-background-color: #292929;
-  --auth-form-button-text-color: #292929;
+  --auth-form-input-background-color: #212121;
+  --auth-form-input-placeholder-color: #4e4e4e;
+  --auth-form-button-background-color: #2a2b2c;
+  --auth-form-button-text-color: #131414;
+  --auth-form-button-normal-color1: #4f4f52;
+  --auth-form-button-normal-color2: #a1a1a3;
+  --auth-form-button-normal-color3: #9d9b9b;
+  --auth-form-button-shadow: drop-shadow(1px 3px 5px rgba(111, 112, 117, 0.15));
+  --auth-form-validation-error-color: #eb5757;
+
+  /* Balance */
+  --balance-balance-text-color: #d7d8dab2;
+  --balance-balance-text-opacity: 70%;
+  --balance-button-border-color: #b7b5b5;
+  --balance-popup-message-gradient: linear-gradient(
+    117.84deg,
+    #1d346a 2.84%,
+    #031634 67.28%
+  );
   --balance-popup-message-text-color: #252525;
-  --balance-text-color: rgba(236, 236, 249, 0.7);
+  --balance-text-color: rgba(231, 231, 234, 0.7);
+  --balance-modal-top-color: #1d346a;
+
+  /* Transactions */
+  /* Navbar */
+  --trans-navbar-link-background: #1a1919;
+  --trans-navbar-active-link-text-color: #ff751d;
   --trans-background-color: #252525;
-  --trans-navbar-link-background: #fefefe;
-  --trans-form-input-border-color: #f6f7fc;
-  --trans-form-input-placeholder-color: #c7ccdc;
-  --trans-form-clear-button-border-color: #f6f7fc;
-  --trans-dropdown-border-color: #292929;
-  --trans-dropdown-text-color: #c7ccdc;
+
+  /* TransactionForm */
+  --trans-form-input-border-color: #141414;
+  --trans-form-input-placeholder-color: #474848;
+  --trans-form-clear-button-border-color: #141414;
+  --trans-dropdown-border-color: #2a2b2c;
+  --trans-dropdown-text-color: #f1f2f5;
   --trans-dropdown-background-color: #252525;
-  --trans-dropdown-active-background-color: #292929;
-  --table-head-element-background-color: #292929;
+  --trans-dropdown-active-background-color: #2a2b2c;
+
+  /* TransactionTable */
+  --table-head-element-background-color: #2a2b2c;
   --table-element-background-color: #252525;
-  --table-element-border-color: #292929;
-  --summary-background-color: #292929;
+  --table-element-border-color: #2a2b2c;
+  --table-income-text-color: #407946;
+  --table-expense-text-color: #e7192e;
+
+  /* SummaryTable */
+  --summary-background-color: #2a2b2c;
   --summary-border-color: #252525;
+
+  /* Report */
+  /* Top Panel */
   --top-panel-background-color: #252525;
+  --top-panel-expense-color: #e53935;
+  --top-panel-income-color: #407946;
+
+  /* Reports */
+
+  --report-bg-rectangle-active: #ffdac0;
+  --report-icon-fill: #071f41;
+
+  /* Diagram */
+  --diagram-descended-accent-color: #ffdac0;
 }
 
 /* light theme */
@@ -58,7 +109,7 @@ html[data-theme='light'] {
   --general-accent-background-color: #ff751d;
   --general-accent-text-color: #ffffff;
   --general-accent-shadow: drop-shadow(1px 3px 5px hsla(24, 100%, 52%, 0.35));
-  --general-text-color: #52555f;
+  --general-text-color: #2e2f30;
   --general-header-color: #000000;
 
   /* Universal Modal */
@@ -80,6 +131,10 @@ html[data-theme='light'] {
   --auth-form-button-background-color: #f5f6fb;
   --auth-form-button-text-color: #f5f6fb;
   --auth-form-button-shadow: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
+  --auth-form-button-normal-color1: #fefefe;
+  --auth-form-button-normal-color2: #f5f6fb;
+  --auth-form-button-normal-color3: #e6e9fb;
+
   --auth-form-validation-error-color: #eb5757;
 
   /* Balance */
@@ -174,9 +229,9 @@ code {
   text-decoration: none;
   background-image: linear-gradient(
     45deg,
-    #c9d1f9 0%,
-    #f5f6fb 50%,
-    #fefefe 100%
+    #4f4f52 0%,
+    #a1a1a3 60%,
+    #9d9b9b 100%
   );
   background-position: 100% 0;
   background-size: 200% 200%;
@@ -184,11 +239,11 @@ code {
   font-size: 12px;
   font-weight: 700;
   box-shadow: var(--auth-form-button-shadow);
-  color: rgba(82, 85, 95, 1);
+  color: var(--general-text-color);
   transition: 0.5s;
 }
 .btnNormal:hover {
-  box-shadow: 0 0 0 0 rgba(82, 85, 95, 0);
+  box-shadow: 0 0 0 0 rgba(27, 28, 31, 0);
   background-position: 0 0;
 }
 
