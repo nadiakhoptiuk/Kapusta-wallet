@@ -96,7 +96,7 @@ html[data-theme='dark'] {
   /* Reports */
 
   --report-icon-fill-active: #ffdac0;
-  --report-icon-fill: #rgba(231, 231, 234, 0.7);
+  --report-icon-fill: #4f4f52;
   --report-bg-rectangle-active: #ff751d;
 
   /* Diagram */
