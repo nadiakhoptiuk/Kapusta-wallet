@@ -95,8 +95,9 @@ html[data-theme='dark'] {
 
   /* Reports */
 
-  --report-bg-rectangle-active: #ffdac0;
-  --report-icon-fill: #52555f;
+  --report-icon-fill-active: #ffdac0;
+  --report-icon-fill: #rgba(231, 231, 234, 0.7);
+  --report-bg-rectangle-active: #ff751d;
 
   /* Diagram */
   --diagram-descended-accent-color: #ffdac0;
@@ -185,8 +186,9 @@ html[data-theme='light'] {
 
   /* Reports */
 
-  --report-bg-rectangle-active: #ffdac0;
+  --report-icon-fill-active: #ff751d;
   --report-icon-fill: #071f41;
+  --report-bg-rectangle-active: #ffdac0;
 
   /* Diagram */
   --diagram-descended-accent-color: #ffdac0;
