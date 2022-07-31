@@ -70,7 +70,7 @@
     font-weight: 700;
     text-align: center;
     font-size: 20px;
-    color: var(--balance-balance-text-color);
+    color: var(--table-description-text-color);
     opacity: 0.8;
     width: 280px;
   }
@@ -88,7 +88,7 @@
     padding-top: 8px;
     padding-bottom: 8px;
     /* background-color: var(--general-background-bot-part-color); */
-    color: #52555f;
+    color: var(--table-description-text-color);
     max-width: 90px;
   }
 
@@ -98,7 +98,7 @@
     line-height: 9px;
     letter-spacing: 0.04em;
     text-align: start;
-    color: #52555f;
+    color: var(--table-description-text-color);
   }
 
   .category {
@@ -107,7 +107,7 @@
     line-height: 9px;
     letter-spacing: 0.04em;
     text-align: start;
-    color: #52555f;
+    color: var(--table-description-text-color);
   }
 
   .tableRow {
@@ -120,7 +120,7 @@
     width: 100%;
     table-layout: fixed;
 
-    color: #52555f;
+    color: var(--table-description-text-color);
   }
 
   .lastTD {
@@ -148,7 +148,7 @@
     height: 150px;
     width: 100%;
     table-layout: fixed;
-    color: #52555f;
+    color: var(--table-description-text-color);
   }
 
   .mobileTable {
@@ -188,7 +188,7 @@
     font-weight: 700;
     text-align: center;
     font-size: 30px;
-    color: var(--balance-balance-text-color);
+    color: var(--table-description-text-color);
     opacity: 0.8;
     width: 500px;
   }
@@ -243,7 +243,7 @@
     display: table;
     width: 100%;
     table-layout: fixed;
-    color: #52555f;
+    color: var(--table-description-text-color);
   }
 
   .lastTD {

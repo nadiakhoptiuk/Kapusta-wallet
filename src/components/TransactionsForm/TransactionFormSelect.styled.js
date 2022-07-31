@@ -9,7 +9,6 @@ export const customStyles = {
   control: (_, { selectProps: { width } }) => ({
     display: 'flex',
     height: '44px',
-    border: '2px solid var(--modal-button-border-color)',
     fontSize: '12px',
     lineHeight: '14px',
     paddingLeft: '19px',
