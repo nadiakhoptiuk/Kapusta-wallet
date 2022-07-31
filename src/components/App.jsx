@@ -1,5 +1,11 @@
 import { Fragment, useEffect } from 'react';
-import { Route, Routes, Navigate, useSearchParams } from 'react-router-dom';
+import {
+  Route,
+  Routes,
+  Navigate,
+  useSearchParams,
+  useLocation,
+} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import SharedLayout from './SharedLayout';
 import 'react-toastify/dist/ReactToastify.css';
@@ -43,6 +49,10 @@ export const App = () => {
     dispatch(googleAuth({ accessToken, refreshToken, sid }));
     dispatch(authOperations.getUserData());
   }, [dispatch, searchParams]);
+  const location = useLocation();
+  const isReportPage = !location.pathname.endsWith('transactions')
+    ? true
+    : false;
 
   return (
     <Fragment>
@@ -51,7 +61,8 @@ export const App = () => {
           path={home}
           element={
             <PublicRoute>
-              <Personage />
+              {!isReportPage && <Personage />}
+
               <SharedLayout />
             </PublicRoute>
           }

@@ -50,7 +50,7 @@ html[data-theme='dark'] {
   --auth-form-validation-error-color: #eb5757;
 
   /* Balance */
-  --balance-balance-text-color: #d7d8dab2;
+  --balance-balance-text-color: #59595ab2;
   --balance-balance-text-opacity: 70%;
   --balance-button-border-color: #b7b5b5;
   --balance-popup-message-gradient: linear-gradient(
@@ -81,6 +81,8 @@ html[data-theme='dark'] {
   --table-head-element-background-color: #2a2b2c;
   --table-element-background-color: #252525;
   --table-element-border-color: #2a2b2c;
+  --balance-text-color: rgba(255, 255, 255);
+  --table-description-text-color: rgba(255, 255, 255);
   --table-income-text-color: #407946;
   --table-expense-text-color: #e7192e;
 
