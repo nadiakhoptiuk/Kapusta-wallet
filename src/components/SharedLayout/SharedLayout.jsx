@@ -20,7 +20,7 @@ const SharedLayout = () => {
     <Fragment>
       <header className={s.header}>
         <div className={s.logoWrapper}>
-          <NavLink className={s.logo} to="/">
+          <NavLink className={s.logo} to="/" aria-label="logo">
             {/* <img
               src={require('../../images/logo.jpg')}
               alt="avatar"

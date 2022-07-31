@@ -38,6 +38,7 @@ const UserMenu = () => {
           <Fragment>
             {matches.small && (
               <button
+                aria-label="logout"
                 className={s.logout}
                 onClick={() => setShowConfirmModal(true)}
               >
@@ -51,6 +52,7 @@ const UserMenu = () => {
                 <span className={s.email}>{name}</span>
                 <span className={s.line}></span>
                 <button
+                  aria-label="exit"
                   className={s.btnExit}
                   onClick={() => setShowConfirmModal(true)}
                 >
