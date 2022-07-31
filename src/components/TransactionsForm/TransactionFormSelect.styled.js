@@ -18,7 +18,7 @@ export const customStyles = {
   placeholder: defaultStyles => {
     return {
       ...defaultStyles,
-      color: '#C7CCDC',
+      color: 'var(--trans-form-input-placeholder-color)',
       margin: 0,
     };
   },
