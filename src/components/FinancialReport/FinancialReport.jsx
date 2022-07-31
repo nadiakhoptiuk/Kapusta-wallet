@@ -123,7 +123,7 @@ export default function FinancialReport({
                             : `${s.categoryBtnExitActive}`
                         }
                         onClick={() => changeCategory(backendName)}
-                        ariaLabel={`category ${category} button`}
+                        aria-label={`category ${category} button`}
                       >
                         <svg className={s.categoryIcon}>
                           <use href={`${Sprite}#${imgPath}`}></use>

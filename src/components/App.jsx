@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, lazy } from 'react';
 import {
   Route,
   Routes,
@@ -11,11 +11,8 @@ import SharedLayout from './SharedLayout';
 import 'react-toastify/dist/ReactToastify.css';
 import routes from 'utils/routes';
 import HomeView from 'views/HomeView';
-import ReportView from 'views/ReportView';
 import { PublicRoute } from './PublicRoute/PublicRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
-import Balance from './Balance';
-import TransactionsView from 'views/TransactionsView';
 import { useDispatch, useSelector } from 'react-redux';
 import { authHeader } from 'service/kapustaAPI';
 import { authOperations } from 'redux/auth/auth-operations';
@@ -23,7 +20,10 @@ import { googleAuth } from 'redux/auth/auth-slice';
 import { isLoadingSelector } from 'redux/currentPeriod/period-selectors';
 import Loader from './Loader';
 import Personage from './Personage/Personage';
-// import ChartController from './ChartController/ChartController';
+
+const Balance = lazy(() => import('./Balance'));
+const TransactionsView = lazy(() => import('views/TransactionsView'));
+const ReportView = lazy(() => import('views/ReportView'));
 
 const { home, app, reports, transactions } = routes;
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -17,6 +17,7 @@ import Container from 'components/Container/Container';
 import { useLocalStorage } from 'hooks/useLocalStorage';
 import addSpaceForAmount from 'utils/addSpaceForAmount';
 import CurrencyInput from 'react-currency-input-field';
+import Loader from 'components/Loader';
 
 const { reports, transactions } = routes;
 
@@ -171,7 +172,7 @@ export default function Balance() {
                         type="text"
                         required
                         name="balance"
-                        value={currentBalance}
+                        value={balanceFormated}
                         onChange={handleChange}
                         readOnly
                       />
@@ -203,7 +204,9 @@ export default function Balance() {
           </div>
         </div>
         <div className={!isReportPage ? s.transactionsWrap : undefined}>
-          <Outlet />
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
         </div>
       </Container>
     </div>

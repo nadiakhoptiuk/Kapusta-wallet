@@ -3,6 +3,7 @@
   flex-direction: column;
   display: flex;
   margin: 0 auto;
+  padding: 0 20px;
 }
 .name {
   margin-top: 86px;
