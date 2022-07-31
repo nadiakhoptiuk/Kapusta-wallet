@@ -96,8 +96,9 @@ html[data-theme='dark'] {
 
   /* Reports */
 
-  --report-bg-rectangle-active: #ffdac0;
-  --report-icon-fill: #52555f;
+  --report-icon-fill-active: #ffdac0;
+  --report-icon-fill: #4f4f52;
+  --report-bg-rectangle-active: #ff751d;
 
   /* Diagram */
   --diagram-descended-accent-color: #ffdac0;
@@ -149,7 +150,7 @@ html[data-theme='light'] {
     #031634 67.28%
   );
   --balance-popup-message-text-color: #ffffff;
-  --balance-text-color: rgba(85, 85, 95, 0.7);
+  --balance-text-color: rgba(82, 85, 95, 0.7);
   --balance-modal-top-color: #1d346a;
 
   /* Transactions */
@@ -173,6 +174,7 @@ html[data-theme='light'] {
   --table-element-border-color: #f5f6fb;
   --table-income-text-color: #407946;
   --table-expense-text-color: #e7192e;
+  --table-description-text-color: #52555f;
 
   /* SummaryTable */
   --summary-background-color: #f5f6fb;
@@ -186,8 +188,9 @@ html[data-theme='light'] {
 
   /* Reports */
 
-  --report-bg-rectangle-active: #ffdac0;
+  --report-icon-fill-active: #ff751d;
   --report-icon-fill: #071f41;
+  --report-bg-rectangle-active: #ffdac0;
 
   /* Diagram */
   --diagram-descended-accent-color: #ffdac0;
@@ -262,4 +265,9 @@ p,
 li {
   margin: 0;
   padding: 0;
+}
+
+#modal-root {
+  position: relative;
+  z-index: 500;
 }

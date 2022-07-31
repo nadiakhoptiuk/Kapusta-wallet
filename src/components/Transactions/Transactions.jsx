@@ -57,6 +57,7 @@ const Transactions = ({ mode }) => {
 
         {!modalOpen && (
           <button
+            aria-label="Open modal"
             type="button"
             onClick={onButtonModalClick}
             className={s.buttonModal}
@@ -68,6 +69,7 @@ const Transactions = ({ mode }) => {
       {modalOpen && (
         <TransactionsModal onClose={onButtonModalClick}>
           <button
+            aria-label="Close"
             type="button"
             onClick={onButtonModalClick}
             className={s.buttonClose}

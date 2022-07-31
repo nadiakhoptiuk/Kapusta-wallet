@@ -15,8 +15,8 @@ import {
 import { authOperations } from 'redux/auth/auth-operations';
 import Container from 'components/Container/Container';
 import { useLocalStorage } from 'hooks/useLocalStorage';
-// import ConfirmModal from 'components/ConfirmModal/ConfirmModal';
 import addSpaceForAmount from 'utils/addSpaceForAmount';
+import CurrencyInput from 'react-currency-input-field';
 
 const { reports, transactions } = routes;
 
@@ -27,7 +27,7 @@ export default function Balance() {
   const [balance, setBalance] = useState(0);
   const [counter, setCounter] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const [disabledButton, setDisabledButton] = useState(false);
+  const [inputNumber, setInputNumber] = useState(null);
   const dispatch = useDispatch();
   const location = useLocation();
   const isReportPage = !location.pathname.endsWith('transactions')
@@ -65,14 +65,18 @@ export default function Balance() {
   };
 
   const handleSubmit = e => {
+    const inputNumberFormated = Number.parseFloat(inputNumber);
     e.preventDefault();
-    if (balance < 0) {
-      toast.error('Balance cannot be negative');
+    if (inputNumberFormated < 0) {
+      toast.warn('Balance cannot be negative');
+      return;
+    }
+    if (Number.isNaN(inputNumberFormated)) {
+      toast.warn('Please enter balance');
       return;
     }
     toggleModal();
-    dispatch(authOperations.updateUserBalance(Number(balance)));
-    setDisabledButton(true);
+    dispatch(authOperations.updateUserBalance(inputNumberFormated));
     setIsNewUser(false);
   };
 
@@ -90,7 +94,7 @@ export default function Balance() {
         <div className={`${classBalance} ${s.container}`}>
           {isReportPage && (
             <Link to={transactions} className={s.linkToHome}>
-              <svg width="18" height="12">
+              <svg width="24" height="24">
                 <use href={`${sprite}#arrow-to-main-icon`}></use>
               </svg>
               <p className={s.linkToHomeText}>Main page</p>
@@ -107,7 +111,7 @@ export default function Balance() {
                     type="button"
                     className={s.monthChangeBtn}
                   >
-                    <svg width={10} height={16}>
+                    <svg width={6} height={12}>
                       <use href={`${sprite}#arrow-prev-icon`}></use>
                     </svg>
                   </button>
@@ -117,7 +121,7 @@ export default function Balance() {
                     type="button"
                     className={s.monthChangeBtn}
                   >
-                    <svg width={10} height={16}>
+                    <svg width={6} height={12}>
                       <use href={`${sprite}#arrow-next-icon`}></use>
                     </svg>
                   </button>
@@ -149,29 +153,44 @@ export default function Balance() {
                   <span className={s.labelText}>Balance:</span>
 
                   <div className={s.modalWraper}>
-                    <input
-                      className={s.input}
-                      type="number"
-                      required
-                      name="balance"
-                      value={isNewUser ? balanceFormated : currentBalance}
-                      onChange={handleChange}
-                      readOnly={!isNewUser}
-                    />
+                    {isNewUser && !isUserOperations ? (
+                      <CurrencyInput
+                        className={s.input}
+                        id="balance"
+                        name="balance"
+                        placeholder="00.00"
+                        decimalsLimit={2}
+                        decimalSeparator={'.'}
+                        onValueChange={value => {
+                          setInputNumber(value);
+                        }}
+                      />
+                    ) : (
+                      <input
+                        className={s.input}
+                        type="text"
+                        required
+                        name="balance"
+                        value={currentBalance}
+                        onChange={handleChange}
+                        readOnly
+                      />
+                    )}
                     <p className={s.currency}>UAH</p>
                     {!isReportPage && (
                       <button
                         type="submit"
                         className={
-                          isNewUser ? s.buttonForm : s.buttonFormDisabled
+                          isNewUser && !isUserOperations
+                            ? s.buttonForm
+                            : s.buttonFormDisabled
                         }
-                        disabled={!isNewUser}
+                        disabled={!isNewUser && !isUserOperations}
                       >
                         Confirm
                       </button>
                     )}
-                    {/* <ConfirmModal /> */}
-                    {isNewUser && <BalanceModal />}
+                    {isNewUser && !isUserOperations && <BalanceModal />}
                   </div>
                 </label>
               </form>
@@ -183,9 +202,9 @@ export default function Balance() {
             )}
           </div>
         </div>
-        
+        <div className={!isReportPage ? s.transactionsWrap : undefined}>
           <Outlet />
-        
+        </div>
       </Container>
     </div>
   );

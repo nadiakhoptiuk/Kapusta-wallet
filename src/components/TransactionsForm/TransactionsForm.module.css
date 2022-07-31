@@ -24,15 +24,13 @@
   .description {
     width: 280px;
     height: 44px;
-    border: 2px solid #fff;
     border-top-left-radius: 16px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
     font-size: 12px;
     line-height: 14px;
-    text-align: center;
+    text-align: start;
     background-color: transparent;
+    padding-left: 30px;
+    border: 2px solid var(--trans-dropdown-background-color);
   }
 
   .description::placeholder {
@@ -42,17 +40,9 @@
   .select {
     width: 280px;
     height: 44px;
-    border: 2px solid #fff;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 12px;
-    line-height: 14px;
-    text-align: center;
+    border: 2px solid var(--trans-dropdown-background-color);
     border-bottom-right-radius: 16px;
-    background-color: transparent;
-
-    color: var(--general-text-color);
+    color: var(--trans-form-input-placeholder-color);
   }
 
   .inputCountWrapper {
@@ -69,12 +59,10 @@
   .inputCount {
     width: 183px;
     height: 44px;
-    border: 2px solid #fff;
+    border: 2px solid var(--trans-dropdown-background-color);
     padding-right: 55px;
     padding-left: 55px;
     border-radius: 22px;
-    font-family: 'Roboto';
-    font-style: normal;
     font-weight: 900;
     font-size: 12px;
     line-height: 14px;
@@ -99,8 +87,6 @@
   }
 
   .datePicker {
-    font-family: 'Roboto';
-    font-style: normal;
     font-weight: 900;
     font-size: 12px;
     line-height: 14px;
@@ -134,13 +120,10 @@
   .btnInput {
     width: 130px;
     height: 44px;
-
-    background: #ff751d;
+    background: var(--general-accent-background-color);
     border: none;
     border-radius: 16px;
     margin-right: 15px;
-    font-family: 'Roboto';
-    font-style: normal;
     font-weight: 700;
     font-size: 12px;
     line-height: 14px;
@@ -149,17 +132,16 @@
     text-transform: uppercase;
 
     color: var(--modal-background-color);
+    box-shadow: 8px 2px 22px 0px rgba(0, 0, 0, 0.38);
+    cursor: pointer;
   }
 
   .btnClear {
     width: 130px;
     height: 44px;
     background-color: transparent;
-
     border: 2px solid var(--trans-form-clear-button-border-color);
     border-radius: 16px;
-    font-family: 'Roboto';
-    font-style: normal;
     font-weight: 700;
     font-size: 12px;
     line-height: 14px;
@@ -168,6 +150,8 @@
     text-transform: uppercase;
 
     color: var(--general-text-color);
+    box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
   }
   .buttonWrap {
     display: flex;
@@ -203,8 +187,6 @@
   }
 
   .datePicker {
-    font-family: 'Roboto';
-    font-style: normal;
     font-weight: 900;
     font-size: 12px;
     line-height: 14px;
@@ -240,29 +222,21 @@
     height: 44px;
     border: 2px solid var(--modal-button-border-color);
     border-top-left-radius: 16px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
     font-size: 12px;
     line-height: 14px;
     padding-left: 19px;
+    background-color: transparent;
   }
 
   .description::placeholder {
     color: var(--trans-form-input-placeholder-color);
   }
+
   .select {
     width: 184px;
     height: 44px;
+    margin-bottom: 0;
     border: 2px solid var(--modal-button-border-color);
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 12px;
-    line-height: 14px;
-    padding-left: 19px;
-    background-color: transparent;
-    color: var(--general-text-color);
   }
 
   .inputCountWrapper {
@@ -284,12 +258,11 @@
     border: 2px solid var(--modal-button-border-color);
     border-top-right-radius: 16px;
     border-bottom-right-radius: 16px;
-    font-family: 'Roboto';
-    font-style: normal;
     font-weight: 900;
     font-size: 12px;
     line-height: 14px;
     text-align: center;
+    background-color: transparent;
 
     color: var(--general-text-color);
   }
@@ -297,13 +270,10 @@
   .btnInput {
     width: 125px;
     height: 44px;
-
-    background: #ff751d;
+    background: var(--general-accent-background-color);
     border: none;
     border-radius: 16px;
     margin-right: 15px;
-    font-family: 'Roboto';
-    font-style: normal;
     font-weight: 700;
     font-size: 12px;
     line-height: 14px;
@@ -312,6 +282,8 @@
     text-transform: uppercase;
 
     color: var(--trans-background-color);
+    box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
   }
 
   .btnClear {
@@ -321,8 +293,6 @@
 
     border: 2px solid #f6f7fc;
     border-radius: 16px;
-    font-family: 'Roboto';
-    font-style: normal;
     font-weight: 700;
     font-size: 12px;
     line-height: 14px;
@@ -331,6 +301,8 @@
     text-transform: uppercase;
 
     color: var(--general-text-color);
+    box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
   }
   .buttonWrap {
     display: flex;
@@ -344,7 +316,6 @@
   .wrap {
     width: 1120px;
     display: flex;
-    /* align-items: center; */
     flex-direction: row;
     flex-wrap: nowrap;
     padding: 0;

@@ -11,6 +11,7 @@ const NavBar = ({ mode, setMode }) => {
         <ul className={s.navList}>
           <li className={s.navListItem}>
             <button
+              aria-label="Expense"
               type="button"
               className={mode === MODES.expenseMode ? s.linkActive : s.link}
               onClick={() => setMode(MODES.expenseMode)}
@@ -20,6 +21,7 @@ const NavBar = ({ mode, setMode }) => {
           </li>
           <li className={s.navListItem}>
             <button
+              aria-label="Income"
               type="button"
               className={mode === MODES.incomeMode ? s.linkActive : s.link}
               onClick={() => setMode(MODES.incomeMode)}

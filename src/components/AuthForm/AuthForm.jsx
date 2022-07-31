@@ -75,9 +75,11 @@ export default function AuthForm() {
 
   const onClickYesReg = () => {
     dispatch(authOperations.register({ email, password }));
+    setShowPalyanytsyaReg(false);
   };
   const onClickYesLog = () => {
     dispatch(authOperations.login({ email, password }));
+    setShowPalyanytsyaLog(false);
   };
 
   const onClickNo = () => {

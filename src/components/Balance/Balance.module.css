@@ -20,7 +20,6 @@
 
 .currentPeriodText {
   margin: 0;
-  /* margin-bottom: 5px; */
   font-size: 12px;
   line-height: 1.17;
   letter-spacing: 0.04em;
@@ -88,8 +87,6 @@
 
 .form {
   text-align: center;
-  /* width: 280px; */
-  /* margin: 0 auto; */
 }
 
 .labelText {
@@ -151,7 +148,7 @@
 .currency {
   position: absolute;
   top: 15px;
-  left: 80px;
+  left: 88px;
 
   font-weight: 700;
   font-size: 12px;
@@ -163,7 +160,6 @@
 }
 
 .buttonForm {
-  /* position: relative; */
   top: -1.5px;
   width: 140px;
   height: 44px;
@@ -245,12 +241,15 @@
 }
 
 @media screen and (max-width: 767px) {
+  .transactionsWrap {
+    margin-top: 120px;
+  }
+
   .input {
     border-radius: 22px 0px 0px 22px;
   }
 
   .buttonForm {
-    /* position: relative; */
     border-radius: 0px 22px 22px 0px;
   }
 
@@ -264,6 +263,7 @@
 
   .linkToHome {
     margin-bottom: 16px;
+    margin-left: 20px;
   }
 
   .linkToHomeText {
@@ -282,7 +282,7 @@
   .currency {
     position: absolute;
     top: 15px;
-    left: 100px;
+    left: 107px;
   }
 }
 
@@ -301,21 +301,20 @@
   .linkToHome {
     width: 100px;
     text-decoration: none;
-    /* margin-right: 139px; */
     margin-right: 100px;
     padding-left: 6px;
   }
 
   .linkToHomeText {
     display: inline-block;
-    width: 61px;
+    width: 81px;
     margin-left: 16px;
 
     font-size: 12px;
     line-height: 1.17;
     letter-spacing: 0.04em;
 
-    color: rgba(82, 85, 95, 0.7);
+    color: var(--balance-text-color);
   }
 
   .linkReports {
@@ -355,7 +354,6 @@
     flex-direction: row-reverse;
     width: 100%;
     justify-content: space-between;
-    /* margin-left: 139px; */
   }
 
   .balanceWraper {
@@ -383,6 +381,5 @@
 
   .wraper {
     margin: 0;
-    /* margin-left: 250px; */
   }
 }

@@ -158,7 +158,7 @@ export default function FinancialReport({
 
 FinancialReport.propTypes = {
   selectedCategory: PropTypes.string,
-  setSelectedCategory: PropTypes.func.isRequired,
-  selectedOperation: PropTypes.string.isRequired,
-  setSelectedOperation: PropTypes.func.isRequired,
+  setSelectedCategory: PropTypes.func,
+  selectedOperation: PropTypes.string,
+  setSelectedOperation: PropTypes.func,
 };
