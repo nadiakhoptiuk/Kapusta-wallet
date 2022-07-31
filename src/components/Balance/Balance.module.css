@@ -264,6 +264,7 @@
 
   .linkToHome {
     margin-bottom: 16px;
+    margin-left: 20px;
   }
 
   .linkToHomeText {
@@ -308,7 +309,7 @@
 
   .linkToHomeText {
     display: inline-block;
-    width: 61px;
+    width: 81px;
     margin-left: 16px;
 
     font-size: 12px;
