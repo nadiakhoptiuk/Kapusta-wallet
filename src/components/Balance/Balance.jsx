@@ -183,9 +183,9 @@ export default function Balance() {
             )}
           </div>
         </div>
-        
+        <div className={!isReportPage ? s.transactionsWrap : undefined}>
           <Outlet />
-        
+        </div>
       </Container>
     </div>
   );

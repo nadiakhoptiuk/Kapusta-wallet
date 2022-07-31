@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 
@@ -8,7 +9,7 @@ import {
 } from 'service/kapustaAPI';
 import { MODES } from 'utils/transactionConstants';
 import Sprite from '../../images/sprite.svg';
-import StyledSelect from './TransactionFormSelect.styled';
+import { customStyles } from './TransactionFormSelect.styled';
 import s from './TransactionsForm.module.css';
 import { authOperations } from 'redux/auth/auth-operations';
 import { useDispatch } from 'react-redux';
@@ -16,16 +17,16 @@ import { useDispatch } from 'react-redux';
 const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
-  const [category, setCategory] = useState(null);
-  const [amount, setAmount] = useState(0);
-  const [categories, setCategories] = useState('');
+  const [category, setCategory] = useState('');
+  const [amount, setAmount] = useState('');
+  const [categories, setCategories] = useState([]);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     setDate(moment(new Date()).format('YYYY-MM-DD'));
     setDescription('');
-    setCategory(null);
+    setCategory('');
     setAmount('');
     if (mode === MODES.expenseMode) {
       getExpenseCategoriesQuery()
@@ -74,11 +75,8 @@ const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    setIsLoading(true);
-
     if (description.trim().length === 0) {
       toast.warning('Please fill in all fields');
-      setIsLoading(false);
       return;
     }
 
@@ -92,23 +90,37 @@ const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
     closeModal();
 
     if (mode === MODES.expenseMode) {
+      if (
+        !transactionsList.category ||
+        !transactionsList.description ||
+        !transactionsList.amount
+      ) {
+        return toast.error('Please fill in all fields');
+      }
       dispatch(authOperations.sendExpenseTransaction(transactionsList));
     }
 
     if (mode === MODES.incomeMode) {
+      if (
+        !transactionsList.category ||
+        !transactionsList.description ||
+        !transactionsList.amount
+      ) {
+        return toast.error('Please fill in all fields');
+      }
       dispatch(authOperations.sendIncomeTransaction(transactionsList));
     }
 
     setDate(moment(new Date()).format('YYYY-MM-DD'));
     setDescription('');
-    setCategory(null);
+    setCategory('');
     setAmount('');
   };
 
   const onHandleResetForm = () => {
     setDate(moment(new Date()).format('YYYY-MM-DD'));
     setDescription('');
-    setCategory(null);
+    setCategory('');
     setAmount('');
   };
 
@@ -117,7 +129,7 @@ const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
       <div className={s.wrapInput}>
         <div className={s.dateWrapper}>
           <input
-            required
+            aria-label="Date"
             name="date"
             onChange={handleChange}
             type="date"
@@ -130,7 +142,7 @@ const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
         </div>
 
         <input
-          required
+          aria-label="Text"
           onChange={handleChange}
           className={s.description}
           name="description"
@@ -138,24 +150,21 @@ const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
           placeholder="Product description"
           value={description}
         />
-        {/* <Select
+
+        <Select
+          aria-label="Select"
           placeholder={<div>Product category</div>}
           width="200px"
           styles={customStyles}
           value={category}
           onChange={setCategory}
           options={selectOptions()}
-        /> */}
-        <StyledSelect
-          placeholder={<div>Product category</div>}
-          value={category}
-          onChange={setCategory}
-          options={selectOptions()}
+          className={s.select}
         />
 
         <div className={s.inputCountWrapper}>
           <input
-            required
+            aria-label="Number"
             onChange={handleChange}
             type="number"
             name="amount"
@@ -169,10 +178,11 @@ const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
         </div>
       </div>
       <div className={s.buttonWrap}>
-        <button type="submit" className={s.btnInput}>
+        <button aria-label="Input" type="submit" className={s.btnInput}>
           input
         </button>
         <button
+          aria-label="Clear"
           type="button"
           className={s.btnClear}
           onClick={onHandleResetForm}

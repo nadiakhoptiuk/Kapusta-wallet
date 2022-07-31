@@ -1,7 +1,10 @@
 @media screen and (max-width: 767px) {
-  .container {
-    padding-bottom: 60px;
+  .relativeContainer {
+    flex: 1 0 auto;
   }
+  /* .container {
+    padding-bottom: 60px;
+  } */
 
   .formWrap {
     display: none;
@@ -15,7 +18,7 @@
     height: 30px;
     background-color: var(--general-accent-background-color);
     position: absolute;
-    z-index: 8;
+    z-index: 2;
     top: 280px;
     left: 50%;
     transform: translateX(-50%);
