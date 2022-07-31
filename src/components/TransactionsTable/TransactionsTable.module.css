@@ -22,7 +22,7 @@
     display: block;
     overflow: auto;
     min-width: 310px;
-    /* max-height: 150px; */
+    max-height: 150px;
   }
 
   .tBody::-webkit-scrollbar {
