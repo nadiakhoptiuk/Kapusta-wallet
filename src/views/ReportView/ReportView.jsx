@@ -1,5 +1,4 @@
 import { IncomesInMonthly } from 'components/IncomesInMonthly';
-import Container from 'components/Container/Container';
 import s from './ReportView.module.css';
 import FinancialReport from 'components/FinancialReport';
 import { useState, useEffect } from 'react';
@@ -25,23 +24,37 @@ export default function ReportView() {
         item => item[0] === selectedCategory
       );
 
-      arrayOfDescription && setDiagramData(arrayOfDescription[1]);
+      if (arrayOfDescription) {
+        setDiagramData(arrayOfDescription[1]);
+      } else {
+        setDiagramData({});
+      }
     }
   }, [currentPeriodData, selectedCategory, selectedOperation]);
 
-  return (
-    <Container>
-      <div className={s.balance_line}>
-        <IncomesInMonthly />
-      </div>
+  // console.log(diagramData);
 
-      <FinancialReport
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        selectedOperation={selectedOperation}
-        setSelectedOperation={setSelectedOperation}
-      />
-      <ChartController categoryObject={diagramData} />
-    </Container>
+  return (
+    <>
+      <div className={s.fon}></div>
+      <div className={s.img}></div>
+        <div className={s.balance_line}>
+          <IncomesInMonthly />
+        </div>
+        <div className={s.module}>
+          <FinancialReport
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            selectedOperation={selectedOperation}
+            setSelectedOperation={setSelectedOperation}
+          />
+        </div>
+
+        {!!Object.keys(diagramData)?.length && (
+          <div className={s.module}>
+            <ChartController categoryObject={diagramData} />
+          </div>
+        )}
+    </>
   );
 }

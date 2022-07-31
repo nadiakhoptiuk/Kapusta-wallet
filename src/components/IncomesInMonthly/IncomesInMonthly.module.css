@@ -5,16 +5,19 @@
 }
 
 .outcomes {
-    color: #e53935;
+    color: var(--top-panel-expense-color);
 }
 
 .line{
-    border-left: 1px solid #E0E5EB;
+    border-left: 1px solid var(--header-line-separator-color);
     margin: 0px 10px;
 } 
 
 .incomes {
-    color: #407946;
+    color: var(--top-panel-income-color);
+}
+.title{
+color: var(--general-header-color);
 }
 
 .title,
