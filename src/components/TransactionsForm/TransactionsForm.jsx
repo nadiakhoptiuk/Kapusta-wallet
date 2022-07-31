@@ -159,6 +159,7 @@ const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
           value={category}
           onChange={setCategory}
           options={selectOptions()}
+          className={s.select}
         />
 
         <div className={s.inputCountWrapper}>

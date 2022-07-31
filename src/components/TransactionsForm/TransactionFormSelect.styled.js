@@ -41,7 +41,7 @@ export const customStylesMobile = {
     ...provided,
     width: state.selectProps.width,
     borderBottom: '1px dotted pink',
-    padding: 5,
+    // padding: 5,
   }),
 
   control: (_, { selectProps: { width } }) => ({
@@ -49,13 +49,7 @@ export const customStylesMobile = {
     width: '280px',
     height: '44px',
     border: '2px solid #fff',
-    fontFamily: 'Roboto',
-    fontSize: '12px',
-    lineHeight: '14px',
-    color: 'var(--general-text-color)',
     textAlign: 'start',
-    borderBottomRightRadius: '16px',
-    backgroundColor: 'transparent',
   }),
 
   placeholder: defaultStyles => {
