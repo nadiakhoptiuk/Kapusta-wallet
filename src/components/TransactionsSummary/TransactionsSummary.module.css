@@ -17,6 +17,7 @@
     padding: 10px;
     background-color: var(--trans-dropdown-border-color);
     border-bottom: 1px solid var(--trans-dropdown-background-color);
+    color: var(--general-header-color);
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
   }

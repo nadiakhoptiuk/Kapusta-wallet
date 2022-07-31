@@ -1,0 +1,105 @@
+/* MOBIL */
+@media screen and (min-width: 320px) {
+  .personage {
+    z-index: 10;
+    position: absolute;
+    top: 35%;
+    bottom: 5%;
+    left: 2%;
+  }
+}
+@media screen and (min-width: 320px) {
+  .wrapDialog {
+    opacity: 0;
+  }
+}
+@media screen and (min-width: 320px) {
+  .container {
+    position: relative;
+    text-align: center;
+    color: rgb(41, 40, 40);
+  }
+}
+/* .dialog {
+  padding: 0;
+  width: 150px;
+  height: 100px;
+} */
+@media screen and (min-width: 320px) {
+  .text {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 11px;
+  }
+}
+/*  TABLET */
+@media screen and (min-width: 768px) {
+  .personage {
+    position: absolute;
+    top: 55%;
+    bottom: 5%;
+    left: 2%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .wrapDialog {
+    opacity: 1;
+    position: absolute;
+    bottom: 100%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    z-index: 10;
+    position: relative;
+    text-align: center;
+    color: rgb(41, 40, 40);
+  }
+}
+@media screen and (min-width: 768px) {
+  .text {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 11px;
+  }
+}
+
+/* DESCTOP */
+@media screen and (min-width: 1280px) {
+  .personage {
+    position: absolute;
+    top: 55%;
+    bottom: 5%;
+    left: 3%;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .wrapDialog {
+    opacity: 1;
+    position: absolute;
+    bottom: 100%;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    z-index: 10;
+    position: relative;
+    text-align: center;
+    color: rgb(41, 40, 40);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .text {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 11px;
+  }
+}
+
+/* @media screen and (min-width: 768px)  */

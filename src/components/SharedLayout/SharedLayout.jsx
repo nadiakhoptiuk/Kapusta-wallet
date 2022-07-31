@@ -21,12 +21,6 @@ const SharedLayout = () => {
       <header className={s.header}>
         <div className={s.logoWrapper}>
           <NavLink className={s.logo} to="/" aria-label="logo">
-            {/* <img
-              src={require('../../images/logo.jpg')}
-              alt="avatar"
-              width={90}
-              height={31}
-            /> */}
             <svg alt="logo" width={90} height={31}>
               <use href={`${Sprite}#icon-logo`}></use>
             </svg>

@@ -80,7 +80,7 @@
     padding-top: 8px;
     padding-bottom: 8px;
     /* background-color: var(--general-background-bot-part-color); */
-    color: var(--table-description-text-color);
+    color: var(--balance-balance-text-color);
     max-width: 90px;
   }
 
@@ -90,7 +90,7 @@
     line-height: 9px;
     letter-spacing: 0.04em;
     text-align: start;
-    color: var(--table-description-text-color);
+    color: var(--balance-balance-text-color);
   }
 
   .category {
@@ -99,7 +99,7 @@
     line-height: 9px;
     letter-spacing: 0.04em;
     text-align: start;
-    color: var(--table-description-text-color);
+    color: var(--balance-balance-text-color);
   }
 
   .tableRow {

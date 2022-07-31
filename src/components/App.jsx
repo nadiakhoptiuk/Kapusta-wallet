@@ -1,5 +1,11 @@
 import { Fragment, useEffect, lazy } from 'react';
-import { Route, Routes, Navigate, useSearchParams } from 'react-router-dom';
+import {
+  Route,
+  Routes,
+  Navigate,
+  useSearchParams,
+  useLocation,
+} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import SharedLayout from './SharedLayout';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,6 +19,7 @@ import { authOperations } from 'redux/auth/auth-operations';
 import { googleAuth } from 'redux/auth/auth-slice';
 import { isLoadingSelector } from 'redux/currentPeriod/period-selectors';
 import Loader from './Loader';
+import Personage from './Personage/Personage';
 
 const Balance = lazy(() => import('./Balance'));
 const TransactionsView = lazy(() => import('views/TransactionsView'));
@@ -42,6 +49,10 @@ export const App = () => {
     dispatch(googleAuth({ accessToken, refreshToken, sid }));
     dispatch(authOperations.getUserData());
   }, [dispatch, searchParams]);
+  const location = useLocation();
+  const isReportPage = !location.pathname.endsWith('transactions')
+    ? true
+    : false;
 
   return (
     <Fragment>
@@ -50,6 +61,8 @@ export const App = () => {
           path={home}
           element={
             <PublicRoute>
+              {!isReportPage && <Personage />}
+
               <SharedLayout />
             </PublicRoute>
           }
