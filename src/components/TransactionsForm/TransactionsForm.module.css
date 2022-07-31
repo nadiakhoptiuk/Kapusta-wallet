@@ -24,13 +24,13 @@
   .description {
     width: 280px;
     height: 44px;
-    border: 2px solid #fff;
     border-top-left-radius: 16px;
     font-size: 12px;
     line-height: 14px;
     text-align: start;
     background-color: transparent;
     padding-left: 30px;
+    border: 2px solid var(--trans-dropdown-background-color);
   }
 
   .description::placeholder {
@@ -40,8 +40,7 @@
   .select {
     width: 280px;
     height: 44px;
-    border: 2px solid #fff;
-
+    border: 2px solid var(--trans-dropdown-background-color);
     border-bottom-right-radius: 16px;
     color: var(--general-text-color);
   }
@@ -60,7 +59,7 @@
   .inputCount {
     width: 183px;
     height: 44px;
-    border: 2px solid #fff;
+    border: 2px solid var(--trans-dropdown-background-color);
     padding-right: 55px;
     padding-left: 55px;
     border-radius: 22px;
@@ -121,8 +120,7 @@
   .btnInput {
     width: 130px;
     height: 44px;
-
-    background: #ff751d;
+    background: var(--general-accent-background-color);
     border: none;
     border-radius: 16px;
     margin-right: 15px;
@@ -142,7 +140,6 @@
     width: 130px;
     height: 44px;
     background-color: transparent;
-
     border: 2px solid var(--trans-form-clear-button-border-color);
     border-radius: 16px;
     font-weight: 700;
@@ -238,6 +235,7 @@
     width: 184px;
     height: 44px;
     margin-bottom: 0;
+    border: 2px solid var(--modal-button-border-color);
   }
 
   .inputCountWrapper {
@@ -270,8 +268,7 @@
   .btnInput {
     width: 125px;
     height: 44px;
-
-    background: #ff751d;
+    background: var(--general-accent-background-color);
     border: none;
     border-radius: 16px;
     margin-right: 15px;
@@ -317,7 +314,6 @@
   .wrap {
     width: 1120px;
     display: flex;
-    /* align-items: center; */
     flex-direction: row;
     flex-wrap: nowrap;
     padding: 0;

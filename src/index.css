@@ -171,6 +171,7 @@ html[data-theme='light'] {
   --table-element-border-color: #f5f6fb;
   --table-income-text-color: #407946;
   --table-expense-text-color: #e7192e;
+  --table-description-text-color: #52555f;
 
   /* SummaryTable */
   --summary-background-color: #f5f6fb;
