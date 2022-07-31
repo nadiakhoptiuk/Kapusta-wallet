@@ -9,12 +9,27 @@ import { authOperations } from 'redux/auth/auth-operations';
 import {
   getExpenseTransactions,
   getIncomeTransactions,
+  getIsSendingExpense,
+  getIsSendingIncome,
   isDeleting,
+  isGettingExpense,
+  isGettingIncome,
 } from 'redux/auth/auth-selectors';
 import addSpaceForAmount from 'utils/addSpaceForAmount';
 
 const TransactionsTable = ({ mode }) => {
   const isDeletingTransaction = useSelector(isDeleting);
+  const isIncomeLoading = useSelector(isGettingIncome);
+  const isExpenseLoading = useSelector(isGettingExpense);
+  const isSendingIncome = useSelector(getIsSendingIncome);
+  const isSendingExpense = useSelector(getIsSendingExpense);
+
+  const isLoading =
+    isDeletingTransaction ||
+    isIncomeLoading ||
+    isExpenseLoading ||
+    isSendingIncome ||
+    isSendingExpense;
 
   const dispatch = useDispatch();
 
@@ -40,7 +55,7 @@ const TransactionsTable = ({ mode }) => {
           </tr>
         </thead>
         <tbody className={s.tableBody}>
-          {isDeletingTransaction ? (
+          {isLoading ? (
             <tr>
               <td className={s.loader}>
                 <Loader />
@@ -77,9 +92,9 @@ const TransactionsTable = ({ mode }) => {
               </tr>
             ))
           ) : (
-            <tr className={s.message}>
+            <tr className={s.tableRowMobile}>
               <td>
-                <p>You can add your transactions</p>
+                <p className={s.message}>You can add your transactions</p>
               </td>
             </tr>
           )}
@@ -89,7 +104,7 @@ const TransactionsTable = ({ mode }) => {
       <div className={s.tableMobileWrap}>
         <table className={s.mobileTable}>
           <tbody className={s.tBody}>
-            {isDeletingTransaction ? (
+            {isLoading ? (
               <tr>
                 <td className={s.loader}>
                   <Loader />

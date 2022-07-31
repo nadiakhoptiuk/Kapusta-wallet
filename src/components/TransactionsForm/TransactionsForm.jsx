@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 
@@ -8,15 +9,10 @@ import {
 } from 'service/kapustaAPI';
 import { MODES } from 'utils/transactionConstants';
 import Sprite from '../../images/sprite.svg';
-import {
-  customStyles,
-  customStylesMobile,
-} from './TransactionFormSelect.styled';
+import { customStyles } from './TransactionFormSelect.styled';
 import s from './TransactionsForm.module.css';
 import { authOperations } from 'redux/auth/auth-operations';
 import { useDispatch } from 'react-redux';
-import Select from 'react-select';
-import Media from 'react-media';
 
 const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
@@ -79,11 +75,8 @@ const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    setIsLoading(true);
-
     if (description.trim().length === 0) {
       toast.warning('Please fill in all fields');
-      setIsLoading(false);
       return;
     }
 

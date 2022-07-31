@@ -150,6 +150,8 @@
     text-transform: uppercase;
 
     color: var(--modal-background-color);
+    box-shadow: 8px 2px 22px 0px rgba(0, 0, 0, 0.38);
+    cursor: pointer;
   }
 
   .btnClear {
@@ -169,6 +171,8 @@
     text-transform: uppercase;
 
     color: var(--general-text-color);
+    box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
   }
   .buttonWrap {
     display: flex;
@@ -313,6 +317,8 @@
     text-transform: uppercase;
 
     color: var(--trans-background-color);
+    box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
   }
 
   .btnClear {
@@ -332,6 +338,8 @@
     text-transform: uppercase;
 
     color: var(--general-text-color);
+    box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
   }
   .buttonWrap {
     display: flex;
