@@ -12,7 +12,6 @@ export const customStyles = {
     fontSize: '12px',
     lineHeight: '14px',
     paddingLeft: '19px',
-    color: 'var(--general-text-color)',
   }),
 
   placeholder: defaultStyles => {
@@ -27,7 +26,8 @@ export const customStyles = {
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1;
     const transition = 'opacity 300ms';
+    const color = 'var(--table-description-text-color)';
 
-    return { ...provided, opacity, transition };
+    return { ...provided, opacity, transition, color };
   },
 };
