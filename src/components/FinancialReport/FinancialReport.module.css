@@ -114,13 +114,13 @@ button {
 
 .categoryBtnEnterActive {
   composes: categoryBtn;
-  color: var(--general-accent-background-color);
+  color: var(--report-icon-fill-active);
   transition: color 300ms ease-in-out;
 }
 
 .categoryBtnExit {
   composes: categoryBtn;
-  color: var(--general-accent-background-color);
+  color: var(--report-icon-fill-active);
 }
 
 .categoryBtnExitActive {
