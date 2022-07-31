@@ -181,19 +181,15 @@ export default function Balance() {
                       <button
                         type="submit"
                         className={
-                          // isNewUser ? s.buttonForm : s.buttonFormDisabled
                           isNewUser && !isUserOperations
                             ? s.buttonForm
                             : s.buttonFormDisabled
                         }
-                        // disabled={!isNewUser}
                         disabled={!isNewUser && !isUserOperations}
                       >
                         Confirm
                       </button>
                     )}
-                    {/* <ConfirmModal /> */}
-                    {/* {isNewUser && <BalanceModal />} */}
                     {isNewUser && !isUserOperations && <BalanceModal />}
                   </div>
                 </label>
