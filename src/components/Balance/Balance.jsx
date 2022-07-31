@@ -171,7 +171,7 @@ export default function Balance() {
                         type="text"
                         required
                         name="balance"
-                        value={currentBalance}
+                        value={balanceFormated}
                         onChange={handleChange}
                         readOnly
                       />
