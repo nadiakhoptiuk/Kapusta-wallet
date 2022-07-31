@@ -16,6 +16,7 @@ import { authOperations } from 'redux/auth/auth-operations';
 import { googleAuth } from 'redux/auth/auth-slice';
 import { isLoadingSelector } from 'redux/currentPeriod/period-selectors';
 import Loader from './Loader';
+import Personage from './Personage/Personage';
 // import ChartController from './ChartController/ChartController';
 
 const { home, app, reports, transactions } = routes;
@@ -50,6 +51,7 @@ export const App = () => {
           path={home}
           element={
             <PublicRoute>
+              <Personage />
               <SharedLayout />
             </PublicRoute>
           }
