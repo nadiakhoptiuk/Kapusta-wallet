@@ -153,7 +153,7 @@ export default function Balance() {
                   <span className={s.labelText}>Balance:</span>
 
                   <div className={s.modalWraper}>
-                    {isNewUser ? (
+                    {isNewUser && !isUserOperations ? (
                       <CurrencyInput
                         className={s.input}
                         id="balance"
@@ -181,15 +181,20 @@ export default function Balance() {
                       <button
                         type="submit"
                         className={
-                          isNewUser ? s.buttonForm : s.buttonFormDisabled
+                          // isNewUser ? s.buttonForm : s.buttonFormDisabled
+                          isNewUser && !isUserOperations
+                            ? s.buttonForm
+                            : s.buttonFormDisabled
                         }
-                        disabled={!isNewUser}
+                        // disabled={!isNewUser}
+                        disabled={!isNewUser && !isUserOperations}
                       >
                         Confirm
                       </button>
                     )}
                     {/* <ConfirmModal /> */}
-                    {isNewUser && <BalanceModal />}
+                    {/* {isNewUser && <BalanceModal />} */}
+                    {isNewUser && !isUserOperations && <BalanceModal />}
                   </div>
                 </label>
               </form>
