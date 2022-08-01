@@ -61,7 +61,6 @@ export default function CustomizedSwitches() {
     <FormControlLabel
       control={
         <MaterialUISwitch
-          checked={theme === 'dark' && 'checked'}
           sx={{ m: 1 }}
           onChange={() => {
             if (theme === 'light') {

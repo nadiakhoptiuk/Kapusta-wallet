@@ -50,8 +50,7 @@ const Personage = () => {
                     height={100}
                   />
                   <div className={s.text}>
-                    {/* If you don’t walk today, you’ll have to run tomorrow */}
-                    If you're going through hell, keep going.
+                    I have nothing to offer but toil, tears and sweat.
                   </div>
                 </div>
               </div>

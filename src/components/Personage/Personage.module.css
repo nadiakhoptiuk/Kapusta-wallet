@@ -3,7 +3,7 @@
   .personage {
     z-index: 10;
     position: absolute;
-    top: 35%;
+    top: 245px;
     bottom: 5%;
     left: 2%;
   }
@@ -40,7 +40,7 @@
 @media screen and (min-width: 768px) {
   .personage {
     position: absolute;
-    top: 55%;
+    top: 370px;
     bottom: 5%;
     left: 2%;
   }
@@ -49,7 +49,7 @@
   .wrapDialog {
     opacity: 1;
     position: absolute;
-    bottom: 100%;
+    bottom: 95%;
   }
 }
 @media screen and (min-width: 768px) {
@@ -74,7 +74,7 @@
 @media screen and (min-width: 1280px) {
   .personage {
     position: absolute;
-    top: 55%;
+    top: 380px;
     bottom: 5%;
     left: 3%;
   }
@@ -104,7 +104,6 @@
   }
 }
 
-/* @media screen and (min-width: 768px)  */
 @media screen and (min-width: 320px) {
   .grupPersonage {
     opacity: 0;

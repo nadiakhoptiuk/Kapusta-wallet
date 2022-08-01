@@ -16,20 +16,6 @@ const PersonageCart = () => {
             width={150}
             height={175}
           />
-          {/* <div className={s.wrapDialog}>
-            <div className={s.container}>
-              <img
-                className={s.dialog}
-                src={require('./png/obl.png')}
-                alt="personage"
-                width={150}
-                height={100}
-              />
-              <div className={s.text}>
-                The best revenge is massive success (Frank Sinatra)
-              </div>
-            </div>
-          </div> */}
         </NavLink>
       )}
     </>

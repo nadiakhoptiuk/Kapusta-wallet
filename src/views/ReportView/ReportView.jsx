@@ -32,29 +32,27 @@ export default function ReportView() {
     }
   }, [currentPeriodData, selectedCategory, selectedOperation]);
 
-  // console.log(diagramData);
-
   return (
     <>
       <div className={s.fon}></div>
       <div className={s.img}></div>
-        <div className={s.balance_line}>
-          <IncomesInMonthly />
-        </div>
-        <div className={s.module}>
-          <FinancialReport
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-            selectedOperation={selectedOperation}
-            setSelectedOperation={setSelectedOperation}
-          />
-        </div>
+      <div className={s.balance_line}>
+        <IncomesInMonthly />
+      </div>
+      <div className={s.module}>
+        <FinancialReport
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          selectedOperation={selectedOperation}
+          setSelectedOperation={setSelectedOperation}
+        />
+      </div>
 
-        {!!Object.keys(diagramData)?.length && (
-          <div className={s.module}>
-            <ChartController categoryObject={diagramData} />
-          </div>
-        )}
+      {!!Object.keys(diagramData)?.length && (
+        <div className={s.module}>
+          <ChartController categoryObject={diagramData} />
+        </div>
+      )}
     </>
   );
 }
