@@ -3,7 +3,7 @@
   .personage {
     z-index: 10;
     position: absolute;
-    top: 35%;
+    top: 245px;
     bottom: 5%;
     left: 2%;
   }
@@ -13,6 +13,7 @@
     opacity: 0;
   }
 }
+
 @media screen and (min-width: 320px) {
   .container {
     position: relative;
@@ -34,11 +35,12 @@
     font-size: 11px;
   }
 }
+
 /*  TABLET */
 @media screen and (min-width: 768px) {
   .personage {
     position: absolute;
-    top: 55%;
+    top: 370px;
     bottom: 5%;
     left: 2%;
   }
@@ -47,7 +49,7 @@
   .wrapDialog {
     opacity: 1;
     position: absolute;
-    bottom: 100%;
+    bottom: 95%;
   }
 }
 @media screen and (min-width: 768px) {
@@ -72,7 +74,7 @@
 @media screen and (min-width: 1280px) {
   .personage {
     position: absolute;
-    top: 55%;
+    top: 380px;
     bottom: 5%;
     left: 3%;
   }
@@ -102,4 +104,37 @@
   }
 }
 
-/* @media screen and (min-width: 768px)  */
+@media screen and (min-width: 320px) {
+  .grupPersonage {
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+
+    left: 50%;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .grupPersonage {
+    opacity: 1;
+    position: absolute;
+    top: 160%;
+    bottom: 10%;
+    left: -2%;
+    width: 100px;
+    height: 85px;
+  }
+}
+@media screen and (min-width: 950px) {
+  .grupPersonage {
+    opacity: 1;
+    position: absolute;
+    top: 155%;
+    bottom: 10%;
+    left: 83%;
+    width: 150px;
+    height: 175px;
+  }
+}

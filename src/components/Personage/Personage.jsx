@@ -29,9 +29,7 @@ const Personage = () => {
                     width={150}
                     height={100}
                   />
-                  <div className={s.text}>
-                    The best revenge is massive success (Frank Sinatra)
-                  </div>
+                  <div className={s.text}>Wealth is his who enjoys it.</div>
                 </div>
               </div>
             </>
@@ -52,7 +50,7 @@ const Personage = () => {
                     height={100}
                   />
                   <div className={s.text}>
-                    If you don’t walk today, you’ll have to run tomorrow
+                    I have nothing to offer but toil, tears and sweat.
                   </div>
                 </div>
               </div>

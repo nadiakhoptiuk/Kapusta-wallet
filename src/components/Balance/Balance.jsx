@@ -25,7 +25,7 @@ const balanceRow = s.Balance;
 const balanceRowRevers = s.BalanceRevers;
 
 export default function Balance() {
-  const [balance, setBalance] = useState(0);
+  const [, setBalance] = useState(0);
   const [counter, setCounter] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [inputNumber, setInputNumber] = useState(null);
@@ -60,9 +60,7 @@ export default function Balance() {
   };
 
   const handleChange = e => {
-    console.log(balance);
     setBalance(e.target.value);
-    console.log(balance);
   };
 
   const handleSubmit = e => {

@@ -70,6 +70,7 @@
     text-align: center;
     margin-top: 32px;
     background-color: transparent;
+    color: var(--table-description-text-color);
   }
 
   .inputCount::placeholder {
