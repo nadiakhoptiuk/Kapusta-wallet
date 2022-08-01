@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/react-kapusta-project/static/css/main.7b06423a.css",
-    "main.js": "/react-kapusta-project/static/js/main.5e51abbc.js",
+    "main.css": "/react-kapusta-project/static/css/main.653e1e69.css",
+    "main.js": "/react-kapusta-project/static/js/main.9853f565.js",
     "static/css/574.499ec945.chunk.css": "/react-kapusta-project/static/css/574.499ec945.chunk.css",
-    "static/js/574.78f5ce7c.chunk.js": "/react-kapusta-project/static/js/574.78f5ce7c.chunk.js",
-    "static/css/370.166c934d.chunk.css": "/react-kapusta-project/static/css/370.166c934d.chunk.css",
+    "static/js/574.dd650216.chunk.js": "/react-kapusta-project/static/js/574.dd650216.chunk.js",
+    "static/css/370.208e4bc6.chunk.css": "/react-kapusta-project/static/css/370.208e4bc6.chunk.css",
     "static/js/370.3ca377dd.chunk.js": "/react-kapusta-project/static/js/370.3ca377dd.chunk.js",
     "static/css/642.3983f8a9.chunk.css": "/react-kapusta-project/static/css/642.3983f8a9.chunk.css",
     "static/js/642.d77d324d.chunk.js": "/react-kapusta-project/static/js/642.d77d324d.chunk.js",
@@ -12,6 +12,7 @@
     "static/js/951.7953d09f.chunk.js": "/react-kapusta-project/static/js/951.7953d09f.chunk.js",
     "static/js/606.b34269c0.chunk.js": "/react-kapusta-project/static/js/606.b34269c0.chunk.js",
     "static/media/Minions-graf.png": "/react-kapusta-project/static/media/Minions-graf.88db2bf5b6c4611ccb3a.png",
+    "static/media/Group-Minions-PNG-File.png": "/react-kapusta-project/static/media/Group-Minions-PNG-File.d092692e96e6a81c6b59.png",
     "static/media/minions-bed.png": "/react-kapusta-project/static/media/minions-bed.4f822814d3ca8b3911ed.png",
     "static/media/palan.png": "/react-kapusta-project/static/media/palan.463be3a21af8d75c758f.png",
     "static/media/sprite.svg": "/react-kapusta-project/static/media/sprite.2b9b2e4ca0ed6dab0b2afd0eaf291626.svg",
@@ -19,11 +20,11 @@
     "static/media/many-kapustas-bg-min.webp": "/react-kapusta-project/static/media/many-kapustas-bg-min.c966eb865cd25e5024a9.webp",
     "static/media/two-kapustas-bg-min.webp": "/react-kapusta-project/static/media/two-kapustas-bg-min.7fc78f7c8751ab9dd88b.webp",
     "index.html": "/react-kapusta-project/index.html",
-    "main.7b06423a.css.map": "/react-kapusta-project/static/css/main.7b06423a.css.map",
-    "main.5e51abbc.js.map": "/react-kapusta-project/static/js/main.5e51abbc.js.map",
+    "main.653e1e69.css.map": "/react-kapusta-project/static/css/main.653e1e69.css.map",
+    "main.9853f565.js.map": "/react-kapusta-project/static/js/main.9853f565.js.map",
     "574.499ec945.chunk.css.map": "/react-kapusta-project/static/css/574.499ec945.chunk.css.map",
-    "574.78f5ce7c.chunk.js.map": "/react-kapusta-project/static/js/574.78f5ce7c.chunk.js.map",
-    "370.166c934d.chunk.css.map": "/react-kapusta-project/static/css/370.166c934d.chunk.css.map",
+    "574.dd650216.chunk.js.map": "/react-kapusta-project/static/js/574.dd650216.chunk.js.map",
+    "370.208e4bc6.chunk.css.map": "/react-kapusta-project/static/css/370.208e4bc6.chunk.css.map",
     "370.3ca377dd.chunk.js.map": "/react-kapusta-project/static/js/370.3ca377dd.chunk.js.map",
     "642.3983f8a9.chunk.css.map": "/react-kapusta-project/static/css/642.3983f8a9.chunk.css.map",
     "642.d77d324d.chunk.js.map": "/react-kapusta-project/static/js/642.d77d324d.chunk.js.map",
@@ -32,7 +33,7 @@
     "606.b34269c0.chunk.js.map": "/react-kapusta-project/static/js/606.b34269c0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7b06423a.css",
-    "static/js/main.5e51abbc.js"
+    "static/css/main.653e1e69.css",
+    "static/js/main.9853f565.js"
   ]
 }
