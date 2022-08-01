@@ -1,5 +1,6 @@
 .menu {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 @media screen and (min-width: 768px) {
@@ -32,7 +33,6 @@
 .logout {
   width: 16px;
   height: 16px;
-  margin-top: 10px;
   background: transparent;
   border: none;
   cursor: pointer;
