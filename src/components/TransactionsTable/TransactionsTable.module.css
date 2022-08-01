@@ -13,7 +13,7 @@
   .tBody {
     display: block;
     overflow: auto;
-    min-width: 310px;
+    min-width: 280px;
     max-height: 150px;
   }
 
