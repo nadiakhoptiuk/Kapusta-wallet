@@ -14,7 +14,6 @@ import {
 } from 'redux/currentPeriod/period-operations';
 import { authOperations } from 'redux/auth/auth-operations';
 import Container from 'components/Container/Container';
-import { useLocalStorage } from 'hooks/useLocalStorage';
 import addSpaceForAmount from 'utils/addSpaceForAmount';
 import CurrencyInput from 'react-currency-input-field';
 
@@ -24,7 +23,6 @@ const balanceRow = s.Balance;
 const balanceRowRevers = s.BalanceRevers;
 
 export default function Balance() {
-  const [balance, setBalance] = useState(0);
   const [counter, setCounter] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [inputNumber, setInputNumber] = useState(null);
@@ -37,11 +35,8 @@ export default function Balance() {
   const nextMonth = moment().add(counter, 'M').format('MMMM YYYY');
   const nextMonthForFetch = moment().add(counter, 'M').format('YYYY-MM');
   const currentBalance = useSelector(getUserData).balance;
-  const [isNewUser, setIsNewUser] = useLocalStorage('isNewUser', true);
   const isUserOperations = useSelector(getUserData).transactions.length;
   const balanceFormated = addSpaceForAmount(Number(currentBalance));
-
-  useEffect(() => {});
 
   useEffect(() => {
     if (isReportPage) {
@@ -58,17 +53,11 @@ export default function Balance() {
     setCounter(counter - 1);
   };
 
-  const handleChange = e => {
-    console.log(balance);
-    setBalance(e.target.value);
-    console.log(balance);
-  };
-
   const handleSubmit = e => {
     const inputNumberFormated = Number.parseFloat(inputNumber);
     e.preventDefault();
-    if (inputNumberFormated < 0) {
-      toast.warn('Balance cannot be negative');
+    if (inputNumberFormated < 1) {
+      toast.warn('Balance must be greater than or equal to 1 UAH');
       return;
     }
     if (Number.isNaN(inputNumberFormated)) {
@@ -77,7 +66,6 @@ export default function Balance() {
     }
     toggleModal();
     dispatch(authOperations.updateUserBalance(inputNumberFormated));
-    setIsNewUser(false);
   };
 
   const toggleModal = () => {
@@ -153,7 +141,7 @@ export default function Balance() {
                   <span className={s.labelText}>Balance:</span>
 
                   <div className={s.modalWraper}>
-                    {isNewUser && !isUserOperations ? (
+                    {currentBalance === 0 && !isUserOperations ? (
                       <CurrencyInput
                         className={s.input}
                         id="balance"
@@ -172,7 +160,6 @@ export default function Balance() {
                         required
                         name="balance"
                         value={balanceFormated}
-                        onChange={handleChange}
                         readOnly
                       />
                     )}
@@ -181,16 +168,18 @@ export default function Balance() {
                       <button
                         type="submit"
                         className={
-                          isNewUser && !isUserOperations
+                          currentBalance === 0 && !isUserOperations
                             ? s.buttonForm
                             : s.buttonFormDisabled
                         }
-                        disabled={!isNewUser && !isUserOperations}
+                        disabled={!currentBalance === 0 && !isUserOperations}
                       >
                         Confirm
                       </button>
                     )}
-                    {isNewUser && !isUserOperations && <BalanceModal />}
+                    {currentBalance === 0 && !isUserOperations && (
+                      <BalanceModal />
+                    )}
                   </div>
                 </label>
               </form>
