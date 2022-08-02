@@ -61,6 +61,9 @@ export default function Balance() {
       toast.warn('Balance must be greater than or equal to 1 UAH');
       return;
     }
+    if (isReportPage || isUserOperations || currentBalance !== 0) {
+      return;
+    }
     if (Number.isNaN(inputNumberFormated)) {
       toast.warn('Please enter balance');
       return;
