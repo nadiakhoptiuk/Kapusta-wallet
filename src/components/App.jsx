@@ -1,22 +1,30 @@
-import { Fragment, useEffect } from 'react';
-import { Route, Routes, Navigate, useSearchParams } from 'react-router-dom';
+import { Fragment, useEffect, lazy } from 'react';
+import {
+  Route,
+  Routes,
+  Navigate,
+  useSearchParams,
+  useLocation,
+} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import SharedLayout from './SharedLayout';
 import 'react-toastify/dist/ReactToastify.css';
 import routes from 'utils/routes';
 import HomeView from 'views/HomeView';
-import ReportView from 'views/ReportView';
 import { PublicRoute } from './PublicRoute/PublicRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
-import Balance from './Balance';
-import TransactionsView from 'views/TransactionsView';
 import { useDispatch, useSelector } from 'react-redux';
 import { authHeader } from 'service/kapustaAPI';
 import { authOperations } from 'redux/auth/auth-operations';
 import { googleAuth } from 'redux/auth/auth-slice';
 import { isLoadingSelector } from 'redux/currentPeriod/period-selectors';
 import Loader from './Loader';
-// import ChartController from './ChartController/ChartController';
+import Personage from './Personage/Personage';
+import PersonageCart from './Personage/PresonageCart';
+
+const Balance = lazy(() => import('./Balance'));
+const TransactionsView = lazy(() => import('views/TransactionsView'));
+const ReportView = lazy(() => import('views/ReportView'));
 
 const { home, app, reports, transactions } = routes;
 
@@ -42,6 +50,10 @@ export const App = () => {
     dispatch(googleAuth({ accessToken, refreshToken, sid }));
     dispatch(authOperations.getUserData());
   }, [dispatch, searchParams]);
+  const location = useLocation();
+  const isReportPage = !location.pathname.endsWith('transactions')
+    ? true
+    : false;
 
   return (
     <Fragment>
@@ -50,6 +62,8 @@ export const App = () => {
           path={home}
           element={
             <PublicRoute>
+              {!isReportPage ? <Personage /> : <PersonageCart />}
+
               <SharedLayout />
             </PublicRoute>
           }

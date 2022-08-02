@@ -125,7 +125,7 @@ const TransactionsForm = ({ mode, setIsLoading, closeModal = () => 7 }) => {
   };
 
   return (
-    <form className={s.wrap} onSubmit={handleSubmit}>
+    <form className={s.wrap} onSubmit={handleSubmit} autoComplete="off">
       <div className={s.wrapInput}>
         <div className={s.dateWrapper}>
           <input

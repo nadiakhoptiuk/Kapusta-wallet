@@ -16,6 +16,7 @@ import {
   isGettingIncome,
 } from 'redux/auth/auth-selectors';
 import addSpaceForAmount from 'utils/addSpaceForAmount';
+import { transactionDateComparatorDesc } from 'utils/comparators';
 
 const TransactionsTable = ({ mode }) => {
   const isDeletingTransaction = useSelector(isDeleting);
@@ -37,6 +38,10 @@ const TransactionsTable = ({ mode }) => {
   const expenseTransactions = useSelector(getExpenseTransactions);
   const currentTransactions =
     mode === MODES.expenseMode ? expenseTransactions : incomeTransactions;
+
+  const sortedTransactions = [...currentTransactions].sort(
+    transactionDateComparatorDesc
+  );
 
   const deleteTransaction = async (transactionId, mode) => {
     dispatch(authOperations.deleteTransaction({ transactionId, mode }));
@@ -61,8 +66,8 @@ const TransactionsTable = ({ mode }) => {
                 <Loader />
               </td>
             </tr>
-          ) : currentTransactions?.length > 0 ? (
-            currentTransactions.map(el => (
+          ) : sortedTransactions?.length > 0 ? (
+            sortedTransactions.map(el => (
               <tr key={el._id} className={s.tableRow}>
                 <td className={s.description}>
                   {moment(el.date).format('DD.MM.YYYY')}
@@ -110,8 +115,8 @@ const TransactionsTable = ({ mode }) => {
                   <Loader />
                 </td>
               </tr>
-            ) : currentTransactions?.length > 0 ? (
-              currentTransactions.map(el => (
+            ) : sortedTransactions?.length > 0 ? (
+              sortedTransactions.map(el => (
                 <tr key={el._id} className={s.tableRow}>
                   <td className={s.column}>
                     <span className={s.descriptionMobile}>

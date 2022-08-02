@@ -113,7 +113,7 @@ export default function FinancialReport({
                     {addSpaceForAmount(total)}
                   </span>
 
-                  <CSSTransition classNames={{ ...s }}>
+                  <CSSTransition timeout={300} classNames={{ ...s }}>
                     <div className={s.btnWrap}>
                       <button
                         type="button"
@@ -123,7 +123,7 @@ export default function FinancialReport({
                             : `${s.categoryBtnExitActive}`
                         }
                         onClick={() => changeCategory(backendName)}
-                        ariaLabel={`category ${category} button`}
+                        aria-label={`category ${category} button`}
                       >
                         <svg className={s.categoryIcon}>
                           <use href={`${Sprite}#${imgPath}`}></use>
@@ -158,7 +158,7 @@ export default function FinancialReport({
 
 FinancialReport.propTypes = {
   selectedCategory: PropTypes.string,
-  setSelectedCategory: PropTypes.func.isRequired,
-  selectedOperation: PropTypes.string.isRequired,
-  setSelectedOperation: PropTypes.func.isRequired,
+  setSelectedCategory: PropTypes.func,
+  selectedOperation: PropTypes.string,
+  setSelectedOperation: PropTypes.func,
 };

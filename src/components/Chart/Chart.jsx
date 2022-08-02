@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Bar } from 'react-chartjs-2';
-
+import PropTypes from 'prop-types';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import ChartJS from 'chart.js/auto';
 import addSpaceForAmount from '../../utils/addSpaceForAmount';
@@ -231,6 +231,12 @@ const Chart = ({ labels, data, maxData }) => {
       )}
     </Media>
   );
+};
+
+Chart.propTypes = {
+  labels: PropTypes.array,
+  data: PropTypes.array,
+  maxData: PropTypes.number,
 };
 
 export default Chart;

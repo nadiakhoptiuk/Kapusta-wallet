@@ -31,6 +31,7 @@
     background-color: transparent;
     padding-left: 30px;
     border: 2px solid var(--trans-dropdown-background-color);
+    color: var(--table-description-text-color);
   }
 
   .description::placeholder {
@@ -42,7 +43,7 @@
     height: 44px;
     border: 2px solid var(--trans-dropdown-background-color);
     border-bottom-right-radius: 16px;
-    color: var(--general-text-color);
+    color: var(--trans-form-input-placeholder-color);
   }
 
   .inputCountWrapper {
@@ -69,6 +70,7 @@
     text-align: center;
     margin-top: 32px;
     background-color: transparent;
+    color: var(--table-description-text-color);
   }
 
   .inputCount::placeholder {
@@ -190,7 +192,7 @@
     font-weight: 900;
     font-size: 12px;
     line-height: 14px;
-    color: var(--general-text-color);
+    color: var(--table-description-text-color);
     background-color: transparent;
     border: none;
     width: 90px;
@@ -225,6 +227,8 @@
     font-size: 12px;
     line-height: 14px;
     padding-left: 19px;
+    background-color: transparent;
+    color: var(--table-description-text-color);
   }
 
   .description::placeholder {
@@ -261,8 +265,9 @@
     font-size: 12px;
     line-height: 14px;
     text-align: center;
+    background-color: transparent;
 
-    color: var(--general-text-color);
+    color: var(--table-description-text-color);
   }
 
   .btnInput {
