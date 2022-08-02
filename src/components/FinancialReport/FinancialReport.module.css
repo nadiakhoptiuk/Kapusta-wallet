@@ -54,7 +54,7 @@ button {
   margin: 0 auto;
 
   text-align: center;
-  border-bottom: 1px solid var(--header-line-separator-color);
+  overflow: hidden;
 }
 
 .categoryItem {
@@ -71,13 +71,13 @@ button {
   letter-spacing: 0.04em;
 }
 
-.categoryItem:nth-child(3n + 3)::before {
+.categoryItem::before {
   display: block;
-  width: 240px;
+  width: 280px;
   height: 1px;
   position: absolute;
-  right: 0;
-  bottom: -21px;
+  right: -140px;
+  bottom: -20px;
   background-color: var(--header-line-separator-color);
   content: '';
 }
