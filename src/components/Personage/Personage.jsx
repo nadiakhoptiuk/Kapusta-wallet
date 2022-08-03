@@ -1,24 +1,50 @@
 import { useSelector } from 'react-redux';
 import s from './Personage.module.css';
 import { getUserData, getIsLoggedIn } from '../../redux/auth/auth-selectors';
-import { NavLink } from 'react-router-dom';
+import { useLocalStorage } from 'hooks/useLocalStorage';
+import { useState } from 'react';
+import PersonageModal from '../PersonageModal/PersonageModal';
+import minionGoodBalance from './png/Minions-graf.png';
+import minionBadBalance from './png/minions-bed.png';
+
+import bunnyGoodBalance from './png/banny-gud.png';
+import bunnyBadBalance from './png/banny-bed.png';
+import sonicGoodBalance from './png/son-gud.png';
+import sonicBadBalance from './png/sonic-bed.png';
+
+const characters = {
+  minion: [minionGoodBalance, minionBadBalance],
+  bunny: [bunnyGoodBalance, bunnyBadBalance],
+  sonic: [sonicGoodBalance, sonicBadBalance],
+};
 
 const Personage = () => {
   const userData = useSelector(getUserData);
   const isLoggedIn = useSelector(getIsLoggedIn);
   const balance = userData.balance;
-
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+  const [currentCharacter, setCurrentCharacter] = useLocalStorage(
+    'character',
+    characters.minion
+  );
   return (
     <>
       {isLoggedIn && (
-        <NavLink aria-label="personage" to="/" className={s.personage}>
+        <button
+          aria-label="personage"
+          className={s.personage}
+          onClick={() => toggleModal()}
+        >
           {balance > 1000 ? (
             <>
               <img
-                src={require('./png/Minions-graf.png')}
+                src={currentCharacter[0]}
                 alt="personage"
                 width={80}
-                height={80}
+                height={90}
               />
               <div className={s.wrapDialog}>
                 <div className={s.container}>
@@ -36,10 +62,10 @@ const Personage = () => {
           ) : (
             <>
               <img
-                src={require('./png/minions-bed.png')}
+                src={currentCharacter[1]}
                 alt="personage"
                 width={80}
-                height={80}
+                height={100}
               />
               <div className={s.wrapDialog}>
                 <div className={s.container}>
@@ -56,7 +82,14 @@ const Personage = () => {
               </div>
             </>
           )}
-        </NavLink>
+        </button>
+      )}
+      {showModal && (
+        <PersonageModal
+          onClose={toggleModal}
+          setCurrentCharacter={setCurrentCharacter}
+          characters={characters}
+        />
       )}
     </>
   );
