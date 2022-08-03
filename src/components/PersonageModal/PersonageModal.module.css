@@ -1,0 +1,48 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.modal {
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 24px);
+  border-radius: 2px;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+.personageList {
+  display: flex;
+  background: var(--general-background-top-part-color);
+  list-style: none;
+  padding: 40px;
+  border-radius: 10px;
+}
+.personage {
+  border: none;
+  outline: none;
+  width: auto;
+  height: 165px;
+
+  background: transparent;
+  cursor: pointer;
+}
+
+.galleryImg {
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 300ms linear;
+}
+.galleryImg:hover {
+  transform: scale(1.1);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  border-radius: 10%;
+}

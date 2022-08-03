@@ -20,7 +20,6 @@ import { googleAuth } from 'redux/auth/auth-slice';
 import { isLoadingSelector } from 'redux/currentPeriod/period-selectors';
 import Loader from './Loader';
 import Personage from './Personage/Personage';
-import PersonageCart from './Personage/PresonageCart';
 
 const Balance = lazy(() => import('./Balance'));
 const TransactionsView = lazy(() => import('views/TransactionsView'));
@@ -62,7 +61,7 @@ export const App = () => {
           path={home}
           element={
             <PublicRoute>
-              {!isReportPage ? <Personage /> : <PersonageCart />}
+              {!isReportPage && <Personage />}
 
               <SharedLayout />
             </PublicRoute>
