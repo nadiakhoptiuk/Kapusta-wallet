@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Kapusta-wallet/static/css/main.02d9a219.css",
-    "main.js": "/Kapusta-wallet/static/js/main.23d4bc59.js",
+    "main.js": "/Kapusta-wallet/static/js/main.d314355a.js",
     "static/css/574.499ec945.chunk.css": "/Kapusta-wallet/static/css/574.499ec945.chunk.css",
     "static/js/574.e0a74e9f.chunk.js": "/Kapusta-wallet/static/js/574.e0a74e9f.chunk.js",
     "static/css/370.d1a05fdb.chunk.css": "/Kapusta-wallet/static/css/370.d1a05fdb.chunk.css",
@@ -24,7 +24,7 @@
     "static/media/two-kapustas-bg-min.webp": "/Kapusta-wallet/static/media/two-kapustas-bg-min.7fc78f7c8751ab9dd88b.webp",
     "index.html": "/Kapusta-wallet/index.html",
     "main.02d9a219.css.map": "/Kapusta-wallet/static/css/main.02d9a219.css.map",
-    "main.23d4bc59.js.map": "/Kapusta-wallet/static/js/main.23d4bc59.js.map",
+    "main.d314355a.js.map": "/Kapusta-wallet/static/js/main.d314355a.js.map",
     "574.499ec945.chunk.css.map": "/Kapusta-wallet/static/css/574.499ec945.chunk.css.map",
     "574.e0a74e9f.chunk.js.map": "/Kapusta-wallet/static/js/574.e0a74e9f.chunk.js.map",
     "370.d1a05fdb.chunk.css.map": "/Kapusta-wallet/static/css/370.d1a05fdb.chunk.css.map",
@@ -37,6 +37,6 @@
   },
   "entrypoints": [
     "static/css/main.02d9a219.css",
-    "static/js/main.23d4bc59.js"
+    "static/js/main.d314355a.js"
   ]
 }
